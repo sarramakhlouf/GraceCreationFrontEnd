@@ -1,336 +1,604 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-<style>
-  :host {
-    --bright-blue: oklch(51.01% 0.274 263.83);
-    --electric-violet: oklch(53.18% 0.28 296.97);
-    --french-violet: oklch(47.66% 0.246 305.88);
-    --vivid-pink: oklch(69.02% 0.277 332.77);
-    --hot-red: oklch(61.42% 0.238 15.34);
-    --orange-red: oklch(63.32% 0.24 31.68);
-
-    --gray-900: oklch(19.37% 0.006 300.98);
-    --gray-700: oklch(36.98% 0.014 302.71);
-    --gray-400: oklch(70.9% 0.015 304.04);
-
-    --red-to-pink-to-purple-vertical-gradient: linear-gradient(
-      180deg,
-      var(--orange-red) 0%,
-      var(--vivid-pink) 50%,
-      var(--electric-violet) 100%
-    );
-
-    --red-to-pink-to-purple-horizontal-gradient: linear-gradient(
-      90deg,
-      var(--orange-red) 0%,
-      var(--vivid-pink) 50%,
-      var(--electric-violet) 100%
-    );
-
-    --pill-accent: var(--bright-blue);
-
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol";
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  h1 {
-    font-size: 3.125rem;
-    color: var(--gray-900);
-    font-weight: 500;
-    line-height: 100%;
-    letter-spacing: -0.125rem;
-    margin: 0;
-    font-family: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol";
-  }
-
-  p {
-    margin: 0;
-    color: var(--gray-700);
-  }
-
-  main {
-    width: 100%;
-    min-height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    box-sizing: inherit;
-    position: relative;
-  }
-
-  .angular-logo {
-    max-width: 9.2rem;
-  }
-
-  .content {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    max-width: 700px;
-    margin-bottom: 3rem;
-  }
-
-  .content h1 {
-    margin-top: 1.75rem;
-  }
-
-  .content p {
-    margin-top: 1.5rem;
-  }
-
-  .divider {
-    width: 1px;
-    background: var(--red-to-pink-to-purple-vertical-gradient);
-    margin-inline: 0.5rem;
-  }
-
-  .pill-group {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    flex-wrap: wrap;
-    gap: 1.25rem;
-  }
-
-  .pill {
-    display: flex;
-    align-items: center;
-    --pill-accent: var(--bright-blue);
-    background: color-mix(in srgb, var(--pill-accent) 5%, transparent);
-    color: var(--pill-accent);
-    padding-inline: 0.75rem;
-    padding-block: 0.375rem;
-    border-radius: 2.75rem;
-    border: 0;
-    transition: background 0.3s ease;
-    font-family: var(--inter-font);
-    font-size: 0.875rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 1.4rem;
-    letter-spacing: -0.00875rem;
-    text-decoration: none;
-  }
-
-  .pill:hover {
-    background: color-mix(in srgb, var(--pill-accent) 15%, transparent);
-  }
-
-  .pill-group .pill:nth-child(6n + 1) {
-    --pill-accent: var(--bright-blue);
-  }
-  .pill-group .pill:nth-child(6n + 2) {
-    --pill-accent: var(--french-violet);
-  }
-  .pill-group .pill:nth-child(6n + 3),
-  .pill-group .pill:nth-child(6n + 4),
-  .pill-group .pill:nth-child(6n + 5) {
-    --pill-accent: var(--hot-red);
-  }
-
-  .pill-group svg {
-    margin-inline-start: 0.25rem;
-  }
-
-  .social-links {
-    display: flex;
-    align-items: center;
-    gap: 0.73rem;
-    margin-top: 1.5rem;
-  }
-
-  .social-links path {
-    transition: fill 0.3s ease;
-    fill: var(--gray-400);
-  }
-
-  .social-links a:hover svg path {
-    fill: var(--gray-900);
-  }
-
-  @media screen and (max-width: 650px) {
-    .content {
-      flex-direction: column;
-      width: max-content;
-    }
-
-    .divider {
-      height: 1px;
-      width: 100%;
-      background: var(--red-to-pink-to-purple-horizontal-gradient);
-      margin-block: 1.5rem;
-    }
-  }
-</style>
-
-<main class="main">
-  <div class="content">
-    <div class="left-side">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 982 239"
-        fill="none"
-        class="angular-logo"
-      >
-        <g clip-path="url(#a)">
-          <path
-            fill="url(#b)"
-            d="M388.676 191.625h30.849L363.31 31.828h-35.758l-56.215 159.797h30.848l13.174-39.356h60.061l13.256 39.356Zm-65.461-62.675 21.602-64.311h1.227l21.602 64.311h-44.431Zm126.831-7.527v70.202h-28.23V71.839h27.002v20.374h1.392c2.782-6.71 7.2-12.028 13.255-15.956 6.056-3.927 13.584-5.89 22.503-5.89 8.264 0 15.465 1.8 21.684 5.318 6.137 3.518 10.964 8.673 14.319 15.382 3.437 6.71 5.074 14.81 4.992 24.383v76.175h-28.23v-71.92c0-8.019-2.046-14.237-6.219-18.819-4.173-4.5-9.819-6.791-17.102-6.791-4.91 0-9.328 1.063-13.174 3.272-3.846 2.128-6.792 5.237-9.001 9.328-2.046 4.009-3.191 8.918-3.191 14.728ZM589.233 239c-10.147 0-18.82-1.391-26.103-4.091-7.282-2.7-13.092-6.382-17.511-10.964-4.418-4.582-7.528-9.655-9.164-15.219l25.448-6.136c1.145 2.372 2.782 4.663 4.991 6.954 2.209 2.291 5.155 4.255 8.837 5.81 3.683 1.554 8.428 2.291 14.074 2.291 8.019 0 14.647-1.964 19.884-5.81 5.237-3.845 7.856-10.227 7.856-19.064v-22.665h-1.391c-1.473 2.946-3.601 5.892-6.383 9.001-2.782 3.109-6.464 5.645-10.965 7.691-4.582 2.046-10.228 3.109-17.101 3.109-9.165 0-17.511-2.209-25.039-6.545-7.446-4.337-13.42-10.883-17.757-19.474-4.418-8.673-6.628-19.473-6.628-32.565 0-13.091 2.21-24.301 6.628-33.383 4.419-9.082 10.311-15.955 17.839-20.7 7.528-4.746 15.874-7.037 25.039-7.037 7.037 0 12.846 1.145 17.347 3.518 4.582 2.373 8.182 5.236 10.883 8.51 2.7 3.272 4.746 6.382 6.137 9.327h1.554v-19.8h27.821v121.749c0 10.228-2.454 18.737-7.364 25.447-4.91 6.709-11.538 11.7-20.048 15.055-8.509 3.355-18.165 4.991-28.884 4.991Zm.245-71.266c5.974 0 11.047-1.473 15.302-4.337 4.173-2.945 7.446-7.118 9.573-12.519 2.21-5.482 3.274-12.027 3.274-19.637 0-7.609-1.064-14.155-3.274-19.8-2.127-5.646-5.318-10.064-9.491-13.255-4.174-3.11-9.329-4.746-15.384-4.746s-11.537 1.636-15.792 4.91c-4.173 3.272-7.365 7.772-9.492 13.418-2.128 5.727-3.191 12.191-3.191 19.392 0 7.2 1.063 13.745 3.273 19.228 2.127 5.482 5.318 9.736 9.573 12.764 4.174 3.027 9.41 4.582 15.629 4.582Zm141.56-26.51V71.839h28.23v119.786h-27.412v-21.273h-1.227c-2.7 6.709-7.119 12.191-13.338 16.446-6.137 4.255-13.747 6.382-22.748 6.382-7.855 0-14.81-1.718-20.783-5.237-5.974-3.518-10.72-8.591-14.075-15.382-3.355-6.709-5.073-14.891-5.073-24.464V71.839h28.312v71.921c0 7.609 2.046 13.664 6.219 18.083 4.173 4.5 9.655 6.709 16.365 6.709 4.173 0 8.183-.982 12.111-3.028 3.927-2.045 7.118-5.072 9.655-9.082 2.537-4.091 3.764-9.164 3.764-15.218Zm65.707-109.395v159.796h-28.23V31.828h28.23Zm44.841 162.169c-7.61 0-14.402-1.391-20.457-4.091-6.055-2.7-10.883-6.791-14.32-12.109-3.518-5.319-5.237-11.946-5.237-19.801 0-6.791 1.228-12.355 3.765-16.773 2.536-4.419 5.891-7.937 10.228-10.637 4.337-2.618 9.164-4.664 14.647-6.055 5.4-1.391 11.046-2.373 16.856-3.027 7.037-.737 12.683-1.391 17.102-1.964 4.337-.573 7.528-1.555 9.574-2.782 1.963-1.309 3.027-3.273 3.027-5.973v-.491c0-5.891-1.718-10.391-5.237-13.664-3.518-3.191-8.51-4.828-15.056-4.828-6.955 0-12.356 1.473-16.447 4.5-4.009 3.028-6.71 6.546-8.183 10.719l-26.348-3.764c2.046-7.282 5.483-13.336 10.31-18.328 4.746-4.909 10.638-8.59 17.511-11.045 6.955-2.455 14.565-3.682 22.912-3.682 5.809 0 11.537.654 17.265 2.045s10.965 3.6 15.711 6.71c4.746 3.109 8.51 7.282 11.455 12.6 2.864 5.318 4.337 11.946 4.337 19.883v80.184h-27.166v-16.446h-.9c-1.719 3.355-4.092 6.464-7.201 9.328-3.109 2.864-6.955 5.237-11.619 6.955-4.828 1.718-10.229 2.536-16.529 2.536Zm7.364-20.701c5.646 0 10.556-1.145 14.729-3.354 4.173-2.291 7.364-5.237 9.655-9.001 2.292-3.763 3.355-7.854 3.355-12.273v-14.155c-.9.737-2.373 1.391-4.5 2.046-2.128.654-4.419 1.145-7.037 1.636-2.619.491-5.155.9-7.692 1.227-2.537.328-4.746.655-6.628.901-4.173.572-8.019 1.472-11.292 2.781-3.355 1.31-5.973 3.11-7.855 5.401-1.964 2.291-2.864 5.318-2.864 8.918 0 5.237 1.882 9.164 5.728 11.782 3.682 2.782 8.51 4.091 14.401 4.091Zm64.643 18.328V71.839h27.412v19.965h1.227c2.21-6.955 5.974-12.274 11.292-16.038 5.319-3.763 11.456-5.645 18.329-5.645 1.555 0 3.355.082 5.237.163 1.964.164 3.601.328 4.91.573v25.938c-1.227-.41-3.109-.819-5.646-1.146a58.814 58.814 0 0 0-7.446-.49c-5.155 0-9.738 1.145-13.829 3.354-4.091 2.209-7.282 5.236-9.655 9.164-2.373 3.927-3.519 8.427-3.519 13.5v70.448h-28.312ZM222.077 39.192l-8.019 125.923L137.387 0l84.69 39.192Zm-53.105 162.825-57.933 33.056-57.934-33.056 11.783-28.556h92.301l11.783 28.556ZM111.039 62.675l30.357 73.803H80.681l30.358-73.803ZM7.937 165.115 0 39.192 84.69 0 7.937 165.115Z"
-          />
-          <path
-            fill="url(#c)"
-            d="M388.676 191.625h30.849L363.31 31.828h-35.758l-56.215 159.797h30.848l13.174-39.356h60.061l13.256 39.356Zm-65.461-62.675 21.602-64.311h1.227l21.602 64.311h-44.431Zm126.831-7.527v70.202h-28.23V71.839h27.002v20.374h1.392c2.782-6.71 7.2-12.028 13.255-15.956 6.056-3.927 13.584-5.89 22.503-5.89 8.264 0 15.465 1.8 21.684 5.318 6.137 3.518 10.964 8.673 14.319 15.382 3.437 6.71 5.074 14.81 4.992 24.383v76.175h-28.23v-71.92c0-8.019-2.046-14.237-6.219-18.819-4.173-4.5-9.819-6.791-17.102-6.791-4.91 0-9.328 1.063-13.174 3.272-3.846 2.128-6.792 5.237-9.001 9.328-2.046 4.009-3.191 8.918-3.191 14.728ZM589.233 239c-10.147 0-18.82-1.391-26.103-4.091-7.282-2.7-13.092-6.382-17.511-10.964-4.418-4.582-7.528-9.655-9.164-15.219l25.448-6.136c1.145 2.372 2.782 4.663 4.991 6.954 2.209 2.291 5.155 4.255 8.837 5.81 3.683 1.554 8.428 2.291 14.074 2.291 8.019 0 14.647-1.964 19.884-5.81 5.237-3.845 7.856-10.227 7.856-19.064v-22.665h-1.391c-1.473 2.946-3.601 5.892-6.383 9.001-2.782 3.109-6.464 5.645-10.965 7.691-4.582 2.046-10.228 3.109-17.101 3.109-9.165 0-17.511-2.209-25.039-6.545-7.446-4.337-13.42-10.883-17.757-19.474-4.418-8.673-6.628-19.473-6.628-32.565 0-13.091 2.21-24.301 6.628-33.383 4.419-9.082 10.311-15.955 17.839-20.7 7.528-4.746 15.874-7.037 25.039-7.037 7.037 0 12.846 1.145 17.347 3.518 4.582 2.373 8.182 5.236 10.883 8.51 2.7 3.272 4.746 6.382 6.137 9.327h1.554v-19.8h27.821v121.749c0 10.228-2.454 18.737-7.364 25.447-4.91 6.709-11.538 11.7-20.048 15.055-8.509 3.355-18.165 4.991-28.884 4.991Zm.245-71.266c5.974 0 11.047-1.473 15.302-4.337 4.173-2.945 7.446-7.118 9.573-12.519 2.21-5.482 3.274-12.027 3.274-19.637 0-7.609-1.064-14.155-3.274-19.8-2.127-5.646-5.318-10.064-9.491-13.255-4.174-3.11-9.329-4.746-15.384-4.746s-11.537 1.636-15.792 4.91c-4.173 3.272-7.365 7.772-9.492 13.418-2.128 5.727-3.191 12.191-3.191 19.392 0 7.2 1.063 13.745 3.273 19.228 2.127 5.482 5.318 9.736 9.573 12.764 4.174 3.027 9.41 4.582 15.629 4.582Zm141.56-26.51V71.839h28.23v119.786h-27.412v-21.273h-1.227c-2.7 6.709-7.119 12.191-13.338 16.446-6.137 4.255-13.747 6.382-22.748 6.382-7.855 0-14.81-1.718-20.783-5.237-5.974-3.518-10.72-8.591-14.075-15.382-3.355-6.709-5.073-14.891-5.073-24.464V71.839h28.312v71.921c0 7.609 2.046 13.664 6.219 18.083 4.173 4.5 9.655 6.709 16.365 6.709 4.173 0 8.183-.982 12.111-3.028 3.927-2.045 7.118-5.072 9.655-9.082 2.537-4.091 3.764-9.164 3.764-15.218Zm65.707-109.395v159.796h-28.23V31.828h28.23Zm44.841 162.169c-7.61 0-14.402-1.391-20.457-4.091-6.055-2.7-10.883-6.791-14.32-12.109-3.518-5.319-5.237-11.946-5.237-19.801 0-6.791 1.228-12.355 3.765-16.773 2.536-4.419 5.891-7.937 10.228-10.637 4.337-2.618 9.164-4.664 14.647-6.055 5.4-1.391 11.046-2.373 16.856-3.027 7.037-.737 12.683-1.391 17.102-1.964 4.337-.573 7.528-1.555 9.574-2.782 1.963-1.309 3.027-3.273 3.027-5.973v-.491c0-5.891-1.718-10.391-5.237-13.664-3.518-3.191-8.51-4.828-15.056-4.828-6.955 0-12.356 1.473-16.447 4.5-4.009 3.028-6.71 6.546-8.183 10.719l-26.348-3.764c2.046-7.282 5.483-13.336 10.31-18.328 4.746-4.909 10.638-8.59 17.511-11.045 6.955-2.455 14.565-3.682 22.912-3.682 5.809 0 11.537.654 17.265 2.045s10.965 3.6 15.711 6.71c4.746 3.109 8.51 7.282 11.455 12.6 2.864 5.318 4.337 11.946 4.337 19.883v80.184h-27.166v-16.446h-.9c-1.719 3.355-4.092 6.464-7.201 9.328-3.109 2.864-6.955 5.237-11.619 6.955-4.828 1.718-10.229 2.536-16.529 2.536Zm7.364-20.701c5.646 0 10.556-1.145 14.729-3.354 4.173-2.291 7.364-5.237 9.655-9.001 2.292-3.763 3.355-7.854 3.355-12.273v-14.155c-.9.737-2.373 1.391-4.5 2.046-2.128.654-4.419 1.145-7.037 1.636-2.619.491-5.155.9-7.692 1.227-2.537.328-4.746.655-6.628.901-4.173.572-8.019 1.472-11.292 2.781-3.355 1.31-5.973 3.11-7.855 5.401-1.964 2.291-2.864 5.318-2.864 8.918 0 5.237 1.882 9.164 5.728 11.782 3.682 2.782 8.51 4.091 14.401 4.091Zm64.643 18.328V71.839h27.412v19.965h1.227c2.21-6.955 5.974-12.274 11.292-16.038 5.319-3.763 11.456-5.645 18.329-5.645 1.555 0 3.355.082 5.237.163 1.964.164 3.601.328 4.91.573v25.938c-1.227-.41-3.109-.819-5.646-1.146a58.814 58.814 0 0 0-7.446-.49c-5.155 0-9.738 1.145-13.829 3.354-4.091 2.209-7.282 5.236-9.655 9.164-2.373 3.927-3.519 8.427-3.519 13.5v70.448h-28.312ZM222.077 39.192l-8.019 125.923L137.387 0l84.69 39.192Zm-53.105 162.825-57.933 33.056-57.934-33.056 11.783-28.556h92.301l11.783 28.556ZM111.039 62.675l30.357 73.803H80.681l30.358-73.803ZM7.937 165.115 0 39.192 84.69 0 7.937 165.115Z"
-          />
-        </g>
-        <defs>
-          <radialGradient
-            id="c"
-            cx="0"
-            cy="0"
-            r="1"
-            gradientTransform="rotate(118.122 171.182 60.81) scale(205.794)"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stop-color="#FF41F8" />
-            <stop offset=".707" stop-color="#FF41F8" stop-opacity=".5" />
-            <stop offset="1" stop-color="#FF41F8" stop-opacity="0" />
-          </radialGradient>
-          <linearGradient
-            id="b"
-            x1="0"
-            x2="982"
-            y1="192"
-            y2="192"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stop-color="#F0060B" />
-            <stop offset="0" stop-color="#F0070C" />
-            <stop offset=".526" stop-color="#CC26D5" />
-            <stop offset="1" stop-color="#7702FF" />
-          </linearGradient>
-          <clipPath id="a"><path fill="#fff" d="M0 0h982v239H0z" /></clipPath>
-        </defs>
-      </svg>
-      <h1>Hello, {{ title }}</h1>
-      <p>Congratulations! Your app is running. 🎉</p>
-    </div>
-    <div class="divider" role="separator" aria-label="Divider"></div>
-    <div class="right-side">
-      <div class="pill-group">
-        @for (item of [
-          { title: 'Explore the Docs', link: 'https://angular.dev' },
-          { title: 'Learn with Tutorials', link: 'https://angular.dev/tutorials' },
-          { title: 'CLI Docs', link: 'https://angular.dev/tools/cli' },
-          { title: 'Angular Language Service', link: 'https://angular.dev/tools/language-service' },
-          { title: 'Angular DevTools', link: 'https://angular.dev/tools/devtools' },
-        ]; track item.title) {
-          <a
-            class="pill"
-            [href]="item.link"
-            target="_blank"
-            rel="noopener"
-          >
-            <span>{{ item.title }}</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="14"
-              viewBox="0 -960 960 960"
-              width="14"
-              fill="currentColor"
-            >
-              <path
-                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"
-              />
+<body>
+  <header class="header sticky-bar header-style-4">
+    <div class="container">
+      <div class="main-header">
+        <div class="header-logo">
+          <a class="d-flex" routerLink="">
+            <img alt="GraceCreations" src="assets/imgs/template/logo.svg">
+          </a>
+        </div>
+        <div class="header-menu">
+          <div class="header-nav">
+            <nav class="nav-main-menu d-none d-xl-block">
+              <ul class="main-menu">
+                <li class="has-mega-menu"><a class="active" routerLink="">Home</a>
+                  <div class="sub-menu">
+                    <div class="menu-inner">
+                      <div class="col-menu">
+                        <h6 class="font-lg-bold mb-10">Toys</h6>
+                        <a routerLink="/Shop">Building blocks</a>
+                        <a routerLink="/Shop">Dolls & plushies</a>
+                        <a routerLink="/Shop">Action figures</a>
+                        <a routerLink="/Shop">Arts & crafts</a>
+                        <a routerLink="/Shop">Educational puzzles</a>
+                        <a routerLink="/Shop">Outdoor toys</a>
+                        <a routerLink="/Shop">Board games</a>
+                        <a routerLink="/Shop">Musical toys</a>
+                      </div>
+                      <div class="col-menu">
+                        <h6 class="font-lg-bold mb-10">Accessories</h6>
+                        <a routerLink="/Shop">Jewelry & watches</a>
+                        <a routerLink="/Shop">Bags & purses</a>
+                        <a routerLink="/Shop">Hats & caps</a>
+                        <a routerLink="/Shop">Scarves & wraps</a>
+                        <a routerLink="/Shop">Belts & buckles</a>
+                        <a routerLink="/Shop">Sunglasses & eyewear</a><a href="#">Gloves & mittens</a>
+                        <a routerLink="/Shop">Hair accessories</a>
+                      </div>
+                      <div class="col-menu-2"><img src="/assets/imgs/template/menupic.jpeg" alt="GraceCreations"></div>
+                    </div>
+                  </div>
+                </li>
+                <li><a routerLink="/About">About</a></li>
+                <li class="has-mega-menu"><a routerLink="/Shop">Shop</a>
+                  <div class="sub-menu">
+                    <div class="menu-inner">
+                      <div class="col-menu">
+                        <h6 class="font-lg-bold mb-10">Shop layouts</h6>
+                        <a routerLink="/Shop">Product Listing 1</a>
+                        <a href="product-list-2.html">Product Listing 2</a>
+                        <a href="product-list-3.html">Product Listing 3</a>
+                        <a href="product-single.html">Product Single 1</a>
+                        <a href="product-single-2.html">Product Single 2</a>
+                        <a href="product-single-3.html">Product Single 3</a>
+                        <a href="cart.html">Shop Cart</a>
+                        <a href="checkout.html">Check Out</a>
+                        <a href="compare.html">Product Compare</a>
+                      </div>
+                      <div class="col-menu">
+                        <h6 class="font-lg-bold mb-10">Fashion</h6><a routerLink="/Shop">Womens</a>
+                        <a href="product-list-2.html">Boys' Clothing</a>
+                        <a routerLink="/Shop">Baby Care</a>
+                        <a routerLink="/Shop">Safety Equipment</a>
+                        <a routerLink="/Shop">Activity & Gear</a>
+                        <a routerLink="/Shop">Baby Shoes</a>
+                        <a routerLink="/Shop">Children's Shoes</a>
+                        <a routerLink="/Shop">Family Outfits</a>
+                      </div>
+                      <div class="col-menu-2"><img src="assets/imgs/template/megamenu.png" alt="GraceCreations"></div>
+                    </div>
+                  </div>
+                </li>
+                <li><a routerLink="/Contact">Contact</a></li>
+              </ul>
+            </nav>
+            <div class="burger-icon burger-icon-white">
+              <span class="burger-icon-top"></span>
+              <span class="burger-icon-mid"></span>
+              <span class="burger-icon-bottom"></span>
+            </div>
+          </div>
+        </div>
+        <div class="header-account">
+          <div class="header-search">
+            <div class="box-formsearch">
+              <form action="#">
+                <input class="form-control" type="text" placeholder="Search">
+                <input class="btn-search" type="submit" value="">
+              </form>
+            </div>
+          </div>
+          <a class="account-icon search" href="#">
+            <svg class="d-inline-flex align-items-center justify-content-center" width="28" height="28"
+              viewbox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_91_73)">
+                <path
+                  d="M20.031 18.617L24.314 22.899L22.899 24.314L18.617 20.031C17.0237 21.3082 15.042 22.0029 13 22C8.032 22 4 17.968 4 13C4 8.032 8.032 4 13 4C17.968 4 22 8.032 22 13C22.0029 15.042 21.3082 17.0237 20.031 18.617ZM18.025 17.875C19.2941 16.5699 20.0029 14.8204 20 13C20 9.132 16.867 6 13 6C9.132 6 6 9.132 6 13C6 16.867 9.132 20 13 20C14.8204 20.0029 16.5699 19.2941 17.875 18.025L18.025 17.875Z">
+                </path>
+              </g>
+              <defs>
+                <clippath id="clip0_91_73">
+                  <rect width="24" height="24" fill="white" transform="translate(2 2)"></rect>
+                </clippath>
+              </defs>
             </svg>
           </a>
-        }
+          <a class="account-icon account" href="#">
+            <svg class="d-inline-flex align-items-center justify-content-center" width="28" height="28"
+              viewbox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_116_451)">
+                <path
+                  d="M6 24C6 21.8783 6.84285 19.8434 8.34315 18.3431C9.84344 16.8429 11.8783 16 14 16C16.1217 16 18.1566 16.8429 19.6569 18.3431C21.1571 19.8434 22 21.8783 22 24H20C20 22.4087 19.3679 20.8826 18.2426 19.7574C17.1174 18.6321 15.5913 18 14 18C12.4087 18 10.8826 18.6321 9.75736 19.7574C8.63214 20.8826 8 22.4087 8 24H6ZM14 15C10.685 15 8 12.315 8 9C8 5.685 10.685 3 14 3C17.315 3 20 5.685 20 9C20 12.315 17.315 15 14 15ZM14 13C16.21 13 18 11.21 18 9C18 6.79 16.21 5 14 5C11.79 5 10 6.79 10 9C10 11.21 11.79 13 14 13Z">
+                </path>
+              </g>
+              <defs>
+                <clippath id="clip0_116_451">
+                  <rect width="24" height="24" fill="white" transform="translate(2 2)"></rect>
+                </clippath>
+              </defs>
+            </svg>
+          </a>
+          <a class="account-icon wishlist" href="compare.html">
+            <span class="number-tag">3</span>
+            <svg class="d-inline-flex align-items-center justify-content-center" width="28" height="28"
+              viewbox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_116_452)">
+                <path
+                  d="M14.001 6.52898C16.35 4.41998 19.98 4.48998 22.243 6.75698C24.505 9.02498 24.583 12.637 22.479 14.993L13.999 23.485L5.52101 14.993C3.41701 12.637 3.49601 9.01898 5.75701 6.75698C8.02201 4.49298 11.645 4.41698 14.001 6.52898ZM20.827 8.16998C19.327 6.66798 16.907 6.60698 15.337 8.01698L14.002 9.21498L12.666 8.01798C11.091 6.60598 8.67601 6.66798 7.17201 8.17198C5.68201 9.66198 5.60701 12.047 6.98001 13.623L14 20.654L21.02 13.624C22.394 12.047 22.319 9.66498 20.827 8.16998Z">
+                </path>
+              </g>
+              <defs>
+                <clippath id="clip0_116_452">
+                  <rect width="24" height="24" fill="white" transform="translate(2 2)"></rect>
+                </clippath>
+              </defs>
+            </svg>
+          </a>
+          <a class="account-icon cart" href="#">
+            <span class="number-tag">5</span>
+            <svg width="28" height="28" viewbox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_116_450)">
+                <path
+                  d="M9 10V8C9 6.67392 9.52678 5.40215 10.4645 4.46447C11.4021 3.52678 12.6739 3 14 3C15.3261 3 16.5979 3.52678 17.5355 4.46447C18.4732 5.40215 19 6.67392 19 8V10H22C22.2652 10 22.5196 10.1054 22.7071 10.2929C22.8946 10.4804 23 10.7348 23 11V23C23 23.2652 22.8946 23.5196 22.7071 23.7071C22.5196 23.8946 22.2652 24 22 24H6C5.73478 24 5.48043 23.8946 5.29289 23.7071C5.10536 23.5196 5 23.2652 5 23V11C5 10.7348 5.10536 10.4804 5.29289 10.2929C5.48043 10.1054 5.73478 10 6 10H9ZM9 12H7V22H21V12H19V14H17V12H11V14H9V12ZM11 10H17V8C17 7.20435 16.6839 6.44129 16.1213 5.87868C15.5587 5.31607 14.7956 5 14 5C13.2044 5 12.4413 5.31607 11.8787 5.87868C11.3161 6.44129 11 7.20435 11 8V10Z">
+                </path>
+              </g>
+              <defs>
+                <clippath id="clip0_116_450">
+                  <rect width="24" height="24" transform="translate(2 2)"></rect>
+                </clippath>
+              </defs>
+            </svg>
+          </a>
+        </div>
       </div>
-      <div class="social-links">
-        <a
-          href="https://github.com/angular/angular"
-          aria-label="Github"
-          target="_blank"
-          rel="noopener"
-        >
-          <svg
-            width="25"
-            height="24"
-            viewBox="0 0 25 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            alt="Github"
-          >
-            <path
-              d="M12.3047 0C5.50634 0 0 5.50942 0 12.3047C0 17.7423 3.52529 22.3535 8.41332 23.9787C9.02856 24.0946 9.25414 23.7142 9.25414 23.3871C9.25414 23.0949 9.24389 22.3207 9.23876 21.2953C5.81601 22.0377 5.09414 19.6444 5.09414 19.6444C4.53427 18.2243 3.72524 17.8449 3.72524 17.8449C2.61064 17.082 3.81137 17.0973 3.81137 17.0973C5.04697 17.1835 5.69604 18.3647 5.69604 18.3647C6.79321 20.2463 8.57636 19.7029 9.27978 19.3881C9.39052 18.5924 9.70736 18.0499 10.0591 17.7423C7.32641 17.4347 4.45429 16.3765 4.45429 11.6618C4.45429 10.3185 4.9311 9.22133 5.72065 8.36C5.58222 8.04931 5.16694 6.79833 5.82831 5.10337C5.82831 5.10337 6.85883 4.77319 9.2121 6.36459C10.1965 6.09082 11.2424 5.95546 12.2883 5.94931C13.3342 5.95546 14.3801 6.09082 15.3644 6.36459C17.7023 4.77319 18.7328 5.10337 18.7328 5.10337C19.3942 6.79833 18.9789 8.04931 18.8559 8.36C19.6403 9.22133 20.1171 10.3185 20.1171 11.6618C20.1171 16.3888 17.2409 17.4296 14.5031 17.7321C14.9338 18.1012 15.3337 18.8559 15.3337 20.0084C15.3337 21.6552 15.3183 22.978 15.3183 23.3779C15.3183 23.7009 15.5336 24.0854 16.1642 23.9623C21.0871 22.3484 24.6094 17.7341 24.6094 12.3047C24.6094 5.50942 19.0999 0 12.3047 0Z"
-            />
-          </svg>
-        </a>
-        <a
-          href="https://twitter.com/angular"
-          aria-label="Twitter"
-          target="_blank"
-          rel="noopener"
-        >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            alt="Twitter"
-          >
-            <path
-              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-            />
-          </svg>
-        </a>
-        <a
-          href="https://www.youtube.com/channel/UCbn1OgGei-DV7aSRo_HaAiw"
-          aria-label="Youtube"
-          target="_blank"
-          rel="noopener"
-        >
-          <svg
-            width="29"
-            height="20"
-            viewBox="0 0 29 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            alt="Youtube"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M27.4896 1.52422C27.9301 1.96749 28.2463 2.51866 28.4068 3.12258C29.0004 5.35161 29.0004 10 29.0004 10C29.0004 10 29.0004 14.6484 28.4068 16.8774C28.2463 17.4813 27.9301 18.0325 27.4896 18.4758C27.0492 18.9191 26.5 19.2389 25.8972 19.4032C23.6778 20 14.8068 20 14.8068 20C14.8068 20 5.93586 20 3.71651 19.4032C3.11363 19.2389 2.56449 18.9191 2.12405 18.4758C1.68361 18.0325 1.36732 17.4813 1.20683 16.8774C0.613281 14.6484 0.613281 10 0.613281 10C0.613281 10 0.613281 5.35161 1.20683 3.12258C1.36732 2.51866 1.68361 1.96749 2.12405 1.52422C2.56449 1.08095 3.11363 0.76113 3.71651 0.596774C5.93586 0 14.8068 0 14.8068 0C14.8068 0 23.6778 0 25.8972 0.596774C26.5 0.76113 27.0492 1.08095 27.4896 1.52422ZM19.3229 10L11.9036 5.77905V14.221L19.3229 10Z"
-            />
-          </svg>
-        </a>
+    </div>
+  </header>
+  <!--------------------------------------------------------------CONTENT---------------------------------------------------------------------------->
+  <!------------------------------------------------------------------------------------------------------------------------------------------------->
+  <!------------------------------------------------------------------------------------------------------------------------------------------------->
+  <!------------------------------------------------------------------------------------------------------------------------------------------------->
+  <main class="content">
+    <router-outlet></router-outlet>
+    <div class="section block-section block-section-gallery block-section-instagram-5">
+      <div class="container">
+        <div class="top-head top-head-abs justify-content-center">
+          <p class="font-md-bold text-uppercase brand-1 wow fadeInDown">FOLLOW US ON INSTAGRAM</p><a class="GraceCreations-icon"
+            href="#">GraceCreations.com</a>
+        </div>
+      </div>
+      <div class="box-gallery-instagram">
+        <div class="box-gallery-instagram-inner">
+          <div class="gallery-item wow fadeInLeft"><img src="assets/imgs/page/homepage4/insta.png" alt="GraceCreations"></div>
+          <div class="gallery-item wow fadeInUp"><img src="assets/imgs/page/homepage4/insta2.png" alt="GraceCreations"></div>
+          <div class="gallery-item wow fadeInUp"><img src="assets/imgs/page/homepage4/insta3.png" alt="GraceCreations"></div>
+          <div class="gallery-item wow fadeInUp"><img src="assets/imgs/page/homepage4/insta4.png" alt="GraceCreations"></div>
+          <div class="gallery-item wow fadeInRight"><img src="assets/imgs/page/homepage4/insta5.png" alt="GraceCreations"></div>
+          <div class="gallery-item wow fadeInRight"><img src="assets/imgs/page/homepage4/insta6.png" alt="GraceCreations"></div>
+          <div class="gallery-item wow fadeInRight d-md-block d-none"><img src="assets/imgs/page/homepage4/insta7.png"
+              alt="GraceCreations"></div>
+          <div class="gallery-item wow fadeInRight d-md-block d-none"><img src="assets/imgs/page/homepage4/insta8.png"
+              alt="GraceCreations"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!--------------------------------------------------------------FOOTER----------------------------------------------------------------------------->
+  <!------------------------------------------------------------------------------------------------------------------------------------------------->
+  <!------------------------------------------------------------------------------------------------------------------------------------------------->
+  <!------------------------------------------------------------------------------------------------------------------------------------------------->
+  <footer class="footer footer-style-4">
+    <div class="footer-1">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-30">
+            <p class="font-2xl-bold neutral-900">Receive an exclusive<span class="brand-1">20%</span>discount code when
+              you signup.</p>
+            <div class="box-form-subscribe box-form-subscribe-white">
+              <form class="form-sub" action="#" method="POST">
+                <input class="form-control" type="text" placeholder="Enter your email">
+                <input class="btn btn-subscribe" type="submit" value="Subscribe">
+              </form>
+            </div>
+          </div>
+          <div class="col-lg-8 mb-30">
+            <div class="row">
+              <div class="col-lg-3 col-md-6 mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
+                <h5 class="neutral-900 text-uppercase mb-30">Company</h5>
+                <ul class="menu-footer">
+                  <li><a href="about.html">About us</a></li>
+                  <li><a href="#">Our Experts</a></li>
+                  <li><a href="#">Services & Price</a></li>
+                  <li><a href="blog-2.html">Latest News</a></li>
+                  <li><a href="#">Support Center</a></li>
+                </ul>
+              </div>
+              <div class="col-lg-3 col-md-6 mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
+                <h5 class="neutral-900 text-uppercase mb-30">Customers</h5>
+                <ul class="menu-footer">
+                  <li><a href="contact.html">Contact us</a></li>
+                  <li><a href="#">Payment & Tax</a></li>
+                  <li><a href="#">Bonus Point</a></li>
+                  <li><a href="#">Supply Chain</a></li>
+                  <li><a href="#">Student Discount</a></li>
+                </ul>
+              </div>
+              <div class="col-lg-3 col-md-6 mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
+                <h5 class="neutral-900 text-uppercase mb-30">SUPPORT</h5>
+                <ul class="menu-footer">
+                  <li><a href="#">Shipping Info</a></li>
+                  <li><a href="#">Returns</a></li>
+                  <li><a href="#">Refund</a></li>
+                  <li><a href="#">How To Order</a></li>
+                  <li><a href="#">How To Track</a></li>
+                </ul>
+              </div>
+              <div class="col-lg-3 col-md-6 mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
+                <h5 class="neutral-900 text-uppercase mb-30">social</h5>
+                <ul class="menu-footer">
+                  <li><a class="facebook" href="#">Facebook</a></li>
+                  <li><a class="twitter" href="#">Twitter</a></li>
+                  <li><a class="instagram" href="#">Instagram</a></li>
+                  <li><a class="pinterest" href="#">Pinterest</a></li>
+                  <li><a class="youtube" href="#">Youtube</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-2">
+      <div class="container">
+        <div class="footer-bottom">
+          <div class="box-container-footer">
+            <div class="row align-items-center">
+              <div class="col-lg-4 col-md-12 text-center text-lg-start mb-20">
+                <a href="index.html"><img src="assets/imgs/template/logo-footer.svg" alt="GraceCreations"></a>
+              </div>
+              <div class="col-lg-4 col-md-12 text-center mb-20">
+                <span class="body-p1 neutral-900 mr-5">©2023</span><a href="#">GraceCreations</a>. All rights reserved
+              </div>
+              <div class="col-lg-4 col-md-12 text-center text-lg-end mb-20">
+                <div class="d-flex justify-content-center justify-content-lg-end align-items-center box-all-payments">
+                  <div class="d-inline-block box-payments">
+                    <img src="assets/imgs/template/icons/mastercard.svg" alt="GraceCreations">
+                    <img src="assets/imgs/template/icons/googlepay.svg" alt="GraceCreations">
+                    <img src="assets/imgs/template/icons/payoneer.svg" alt="GraceCreations">
+                    <img src="assets/imgs/template/icons/applepay.svg" alt="GraceCreations">
+                    <img src="assets/imgs/template/icons/paypal.svg" alt="GraceCreations">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+<!------------------------------------------------------SEARCH------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
+  <div class="box-popup-search perfect-scrollbar">
+      <div class="box-search-overlay"></div>
+      <div class="box-search-wrapper"><a class="btn-close-popup" href="#">
+          <svg class="icon-16 d-inline-flex align-items-center justify-content-center" fill="#111111" stroke="#111111"
+            width="24" height="24" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg></a>
+        <h5 class="mb-15">Search products</h5>
+        <form action="#">
+          <div class="form-group">
+            <input class="form-control search-icon" type="text" placeholder="Enter keyword">
+          </div>
+        </form>
+        <div class="box-quick-search"><span class="text-17 neutral-medium-dark mr-5">Quick search:</span><a class="text-17"
+            href="#">T-Shirt</a><a class="text-17" href="#">Jeans</a><a class="text-17" href="#">Mens</a></div>
+        <h5 class="mb-15 mt-30">Category</h5>
+        <form action="#">
+          <div class="form-group">
+            <select class="form-control arrow-select">
+              <option>All Categories</option>
+              <option>Animals & Pet Supplies</option>
+              <option>Baby & Toddler</option>
+              <option>Boys' Clothing</option>
+              <option>Baby Care</option>
+              <option>Safety Equipment</option>
+              <option>Activity & Gear</option>
+              <option>Baby Shoes</option>
+              <option>Children's Shoes</option>
+              <option>Family Outfits</option>
+              <option>Womens</option>
+            </select>
+          </div>
+        </form>
+        <div class="block-filter mt-30">
+          <h5 class="item-collapse">Price</h5>
+          <div class="box-collapse">
+            <div class="box-slider-range mt-20 mb-25">
+              <div class="row mb-20">
+                <div class="col-sm-12">
+                  <div id="slider-range-popup"></div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="lb-slider font-sm neutral-500 mr-5">Price Range:</label><span
+                    class="min-value-money font-sm neutral-900"></span>
+                  <label class="lb-slider font-sm neutral-900"></label>-<span
+                    class="max-value-money font-sm neutral-900"></span>
+                </div>
+                <div class="col-lg-12">
+                  <input class="form-control min-value" type="hidden" name="min-value" value="">
+                  <input class="form-control max-value" type="hidden" name="max-value" value="">
+                </div>
+              </div>
+            </div>
+            <ul class="list-filter-checkbox">
+              <li>
+                <label class="cb-container">
+                  <input type="checkbox"><span class="text-small">$100 - $200</span><span class="checkmark"></span>
+                </label><span class="number-item">12</span>
+              </li>
+              <li>
+                <label class="cb-container">
+                  <input type="checkbox"><span class="text-small">$200 - $400</span><span class="checkmark"></span>
+                </label><span class="number-item">24</span>
+              </li>
+              <li>
+                <label class="cb-container">
+                  <input type="checkbox"><span class="text-small">$400 - $600</span><span class="checkmark"></span>
+                </label><span class="number-item">54</span>
+              </li>
+              <li>
+                <label class="cb-container">
+                  <input type="checkbox"><span class="text-small">$600 - $800</span><span class="checkmark"></span>
+                </label><span class="number-item">78</span>
+              </li>
+              <li>
+                <label class="cb-container">
+                  <input type="checkbox"><span class="text-small">Over $1000</span><span class="checkmark"></span>
+                </label><span class="number-item">125</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="block-filter mt-30">
+          <h5 class="item-collapse">Size</h5>
+          <div class="box-collapse">
+            <div class="block-size">
+              <div class="list-sizes"><span class="item-size">XS</span><span class="item-size active">S</span><span
+                  class="item-size">M</span><span class="item-size">XL</span><span class="item-size">XXL</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="block-filter mt-30">
+          <h5 class="item-collapse mb-5">Colors</h5>
+          <div class="box-collapse">
+            <ul class="list-color">
+              <li class="active"><span class="box-circle-color"><a class="color-red active" href="#"></a></span><span
+                  class="font-xs">Red</span></li>
+              <li><span class="box-circle-color"><a class="color-green" href="#"></a></span><span
+                  class="font-xs">Green</span></li>
+              <li><span class="box-circle-color"><a class="color-orange" href="#"></a></span><span
+                  class="font-xs">Orange</span></li>
+              <li><span class="box-circle-color"><a class="color-yellow" href="#"></a></span><span
+                  class="font-xs">Yellow</span></li>
+              <li><span class="box-circle-color"><a class="color-blue" href="#"></a></span><span class="font-xs">Blue</span>
+              </li>
+              <li><span class="box-circle-color"><a class="color-gray" href="#"></a></span><span class="font-xs">Gray</span>
+              </li>
+              <li><span class="box-circle-color"><a class="color-brown" href="#"></a></span><span
+                  class="font-xs">Brown</span></li>
+              <li><span class="box-circle-color"><a class="color-cyan" href="#"></a></span><span class="font-xs">Cyan</span>
+              </li>
+              <li><span class="box-circle-color"><a class="color-cyan-2" href="#"></a></span><span class="font-xs">Cyan
+                  2</span></li>
+              <li><span class="box-circle-color"><a class="color-purple" href="#"></a></span><span
+                  class="font-xs">Purple</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="block-filter mt-30">
+          <h5 class="item-collapse mb-15">Brand</h5>
+          <div class="box-collapse">
+            <ul class="list-filter-checkbox">
+              <li>
+                <label class="cb-container">
+                  <input type="checkbox"><span class="text-small">Seraphine</span><span class="checkmark"></span>
+                </label><span class="number-item">136</span>
+              </li>
+              <li>
+                <label class="cb-container">
+                  <input type="checkbox"><span class="text-small">Monica + Andy</span><span class="checkmark"></span>
+                </label><span class="number-item">136</span>
+              </li>
+              <li>
+                <label class="cb-container">
+                  <input type="checkbox"><span class="text-small">Maisonette</span><span class="checkmark"></span>
+                </label><span class="number-item">136</span>
+              </li>
+              <li>
+                <label class="cb-container">
+                  <input type="checkbox"><span class="text-small">Pink Chicken</span><span class="checkmark"></span>
+                </label><span class="number-item">136</span>
+              </li>
+              <li>
+                <label class="cb-container">
+                  <input type="checkbox"><span class="text-small">Hanna Andersson</span><span class="checkmark"></span>
+                </label><span class="number-item">136</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+<!------------------------------------------------------ACCOUNT------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
+  <div class="box-popup-account">
+    <div class="box-account-overlay"></div>
+    <div class="box-account-wrapper"><a class="btn-close-popup btn-close-popup-account" href="#">
+        <svg class="icon-16 d-inline-flex align-items-center justify-content-center" fill="#111111" stroke="#111111"
+          width="24" height="24" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg></a>
+      <div class="box-banner-popup"></div>
+      <div class="form-account-info"><a class="button-tab btn-for-login active" href="#">Login</a><a
+          class="button-tab btn-for-signup" href="#">Sign up</a>
+        <div class="form-login">
+          <div class="form-group">
+            <input class="form-control" type="text" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="password" placeholder="Password">
+          </div>
+          <div class="form-group"><a class="brand-1 font-sm buttun-forgotpass" href="#">Forgot your password?</a></div>
+          <div class="form-group">
+            <button class="btn btn-login d-block">Login</button>
+          </div>
+          <div class="form-group mt-100 text-center"><a class="font-sm" href="#">Privacy & Terms</a></div>
+        </div>
+        <div class="form-register">
+          <div class="form-group">
+            <input class="form-control" type="text" placeholder="First Name">
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" placeholder="Last Name">
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="password" placeholder="Password">
+          </div>
+          <div class="form-group">
+            <label class="d-flex align-items-start">
+              <input class="cb-agree" type="checkbox"><span class="text-agree body-p2">Join for Free and start earning
+                points today. Benefits include 15% off your first purchase,</span>
+            </label>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-login d-block">Create my account</button>
+          </div>
+          <div class="text-center">
+            <p class="body-p2 neutral-medium-dark">Already have an account?<a class="neutral-dark login-now"
+                href="#">Login Now</a></p>
+          </div>
+          <div class="form-group mt-100 text-center"><a class="font-sm" href="#">Privacy & Terms</a></div>
+        </div>
+      </div>
+      <div class="form-password-info">
+        <h5>Recover password</h5>
+        <div class="form-login">
+          <div class="form-group">
+            <input class="form-control" type="text" placeholder="Enter your email">
+          </div>
+          <div class="form-group">
+            <button class="btn btn-login d-block">Recover</button>
+          </div>
+          <div class="text-center">
+            <p class="body-p2 neutral-medium-dark">Already have an account?<a class="neutral-dark login-now"
+                href="#">Login Now</a></p>
+          </div>
+          <div class="form-group mt-100 text-center"><a class="font-sm" href="#">Privacy & Terms</a></div>
+        </div>
       </div>
     </div>
   </div>
-</main>
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-
-<router-outlet />
+<!------------------------------------------------------YOUR CART--------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
+  <div class="box-popup-cart perfect-scrollbar">
+    <div class="box-cart-overlay"></div>
+    <div class="box-cart-wrapper"><a class="btn-close-popup" href="#">
+        <svg class="icon-16 d-inline-flex align-items-center justify-content-center" fill="#111111" stroke="#111111"
+          width="24" height="24" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg></a>
+      <h5 class="mb-15 mt-50">Your Cart</h5>
+      <div class="list-product-4 mb-50">
+        <div class="cardProduct cardProduct4">
+          <div class="cardImage"><a href="product-single.html"><img src="assets/imgs/page/homepage1/product24.png"
+                alt="kidify"></a></div>
+          <div class="cardInfo"><a href="product-single.html">
+              <h6 class="font-md-bold cardTitle">Toddler Tutu Dress</h6>
+            </a>
+            <div class="rating"><img src="assets/imgs/template/icons/star.svg" alt="kidify"><img
+                src="assets/imgs/template/icons/star.svg" alt="kidify"><img src="assets/imgs/template/icons/star.svg"
+                alt="kidify"><img src="assets/imgs/template/icons/star.svg" alt="kidify"><img
+                src="assets/imgs/template/icons/star.svg" alt="kidify"></div>
+            <div class="product-price-bottom">
+              <p class="font-lg cardDesc">$185.00</p>
+              <p class="font-lg neutral-500 cardPriceSale">$196.00</p>
+            </div>
+          </div>
+        </div>
+        <div class="cardProduct cardProduct4">
+          <div class="cardImage"><a href="product-single.html"><img src="assets/imgs/page/homepage1/product25.png"
+                alt="kidify"></a></div>
+          <div class="cardInfo"><a href="product-single.html">
+              <h6 class="font-md-bold cardTitle">Baby Bear Hoodie</h6>
+            </a>
+            <div class="rating"><img src="assets/imgs/template/icons/star.svg" alt="kidify"><img
+                src="assets/imgs/template/icons/star.svg" alt="kidify"><img src="assets/imgs/template/icons/star.svg"
+                alt="kidify"><img src="assets/imgs/template/icons/star.svg" alt="kidify"><img
+                src="assets/imgs/template/icons/star.svg" alt="kidify"></div>
+            <div class="product-price-bottom">
+              <p class="font-lg cardDesc">$185.00</p>
+              <p class="font-lg neutral-500 cardPriceSale">$196.00</p>
+            </div>
+          </div>
+        </div>
+        <div class="cardProduct cardProduct4">
+          <div class="cardImage"><a href="product-single.html"><img src="assets/imgs/page/homepage1/product26.png"
+                alt="kidify"></a></div>
+          <div class="cardInfo"><a href="product-single.html">
+              <h6 class="font-md-bold cardTitle">Petite Pinafore Dress</h6>
+            </a>
+            <div class="rating"><img src="assets/imgs/template/icons/star.svg" alt="kidify"><img
+                src="assets/imgs/template/icons/star.svg" alt="kidify"><img src="assets/imgs/template/icons/star.svg"
+                alt="kidify"><img src="assets/imgs/template/icons/star.svg" alt="kidify"><img
+                src="assets/imgs/template/icons/star.svg" alt="kidify"></div>
+            <div class="product-price-bottom">
+              <p class="font-lg cardDesc">$185.00</p>
+              <p class="font-lg neutral-500 cardPriceSale">$196.00</p>
+            </div>
+          </div>
+        </div>
+      </div><a class="btn btn-brand-1-xl-bold w-100 font-md-bold" href="cart.html">View your cart
+        <svg class="icon-16 ml-5" fill="none" stroke="#ffffff" stroke-width="1.5" viewbox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"></path>
+        </svg></a>
+    </div>
+  </div>
+<!------------------------------------------------------SCRIPTS----------------------------------------------------------------------------------->
+  <script src="../../assets/js/vendors/modernizr-3.6.0.min.js"></script>
+  <script src="../../assets/js/vendors/jquery-3.6.0.min.js"></script>
+  <script src="../../assets/js/vendors/jquery-migrate-3.3.0.min.js"></script>
+  <script src="../../assets/js/vendors/bootstrap.bundle.min.js"></script>
+  <script src="../../assets/js/vendors/waypoints.js"></script>
+  <script src="../../assets/js/vendors/wow.js"></script>
+  <script src="../../assets/js/vendors/magnific-popup.js"></script>
+  <script src="../../assets/js/vendors/perfect-scrollbar.min.js"></script>
+  <script src="../../assets/js/vendors/select2.min.js"></script>
+  <script src="../../assets/js/vendors/isotope.js"></script>
+  <script src="../../assets/js/vendors/scrollup.js"></script>
+  <script src="../../assets/js/vendors/swiper-bundle.min.js"></script>
+  <script src="../../assets/js/vendors/noUISlider.js"></script>
+  <script src="../../assets/js/vendors/slider.js"></script>
+  <!-- Count down-->
+  <script src="../../assets/js/vendors/counterup.js"></script>
+  <script src="../../assets/js/vendors/jquery.countdown.min.js"></script>
+  <!-- Count down-->
+  <script src="../../assets/js/vendors/jquery.elevatezoom.js"></script>
+  <script src="../../assets/js/vendors/slick.js"></script>
+  <script src="../../assets/js/vendors/jquery-ui.js"></script>
+  <script src="../../assets/js/vendors/jquery.timepicker.min.js"></script>
+  <script src="../../assets/js/vendors/glightbox.min.js"></script>
+  <script src="../../assets/js/main.js?v=1.0.0"></script>
+</body>
