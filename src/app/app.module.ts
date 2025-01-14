@@ -9,6 +9,7 @@ import { ShopComponent } from './shop/shop.component';
 import { ProductComponent } from './product/product.component';
 import { AccountComponent } from './account/account.component';
 import { ContactComponent } from './contact/contact.component';
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 
 
 
@@ -25,10 +26,11 @@ import { ContactComponent } from './contact/contact.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [
     provideClientHydration()
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import url(https://fonts.bunny.net/css?family=lobster-two:400,700|dm-sans:400,500,700|mulish:400,700|jost:400);
+@import url(https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css);
 @import url(assets/css/vendors/normalize.css);
 @import url(assets/css/vendors/bootstrap.min.css);
 @import url(assets/css/vendors/uicons-regular-rounded.css);
@@ -1746,6 +1747,7 @@ body {
   left: -24px;
   height: 28px;
   width: 28px;
+  display: none;
 }
 .btn.btn-search svg {
   height: 24px;
@@ -2410,8 +2412,11 @@ a.follow-vendor {
   margin-bottom: 40px;
 }
 .cardProduct.cardProduct6 .cardImage {
-  height: 290px;
+  height: 250px;
+  width: 250px;
   line-height: 280px;
+  margin-right: 50px;
+  
 }
 .cardProduct.cardProduct6 .cardInfo .cardDesc {
   margin-bottom: 0px;
@@ -2423,6 +2428,8 @@ a.follow-vendor {
 }
 .cardProduct.cardProduct6 .cardInfo .product-info-bottom .rating img {
   margin-left: 2px;
+  max-width: 100%;
+  max-height: 100%;
 }
 .cardProduct.cardProduct6 .cardInfo .product-info-bottom .cardPriceSale {
   text-decoration: line-through;
@@ -3516,7 +3523,7 @@ a.follow-vendor {
 }
 .header .main-header .header-account {
   width: auto;
-  min-width: 190px;
+  min-width: 200px;
   text-align: right;
 }
 .header .main-header .header-account .account-icon {
@@ -3534,6 +3541,70 @@ a.follow-vendor {
   color: #9F86D9 !important;
   fill: #9F86D9 !important;
 }
+.tab-content form {
+  padding: 20px 30px;
+}
+
+.form-label {
+  font-weight: bold;
+  color: #111111;
+}
+
+.form-control {
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding: 10px 15px;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #7f56d9;
+}
+
+.text-muted {
+  color: #7f56d9 !important;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.text-muted:hover {
+  text-decoration: underline;
+}
+
+/* Boutons */
+.btn-primary {
+  background-color: #7f56d9;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 15px;
+}
+
+.btn-primary:hover {
+  background-color: #6e48c9;
+}
+
+.btn-success {
+  background-color: #3a7f57;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 15px;
+}
+
+.btn-success:hover {
+  background-color: #2d6544;
+}
+
+.btn-secondary {
+  border-radius: 10px;
+}
+
+/* Footer */
+.modal-footer {
+  border-top: none;
+  text-align: center;
+  padding: 15px;
+}
+
 .header .nav-main-menu {
   width: auto;
   padding: 0px 0px 0px 10px;
@@ -3814,28 +3885,16 @@ a.follow-vendor {
 .header .top-header .lang-currency .dropdown:last-child .btn.btn-line-bottom {
   padding-right: 0px;
 }
-.header .header-search {
+/*.header .header-search {
   min-width: 345px;
-}
+}*/
 .header .header-search .box-formsearch {
   width: 100%;
-  border: 1px solid #DBE2E5;
+  border: none;
   border-radius: 4px;
   position: relative;
   height: 42px;
-}
-.header .header-search .box-formsearch form {
-  display: flex;
-  width: 100%;
-}
-.header .header-search .box-formsearch form .form-control {
-  border: 0px;
-  width: 100%;
-  height: 40px;
-  background-color: #ffffff;
-  color: #1C1D1D;
-  font-size: 16px;
-  line-height: 16px;
+  min-width: 345px;
 }
 .header .header-search .box-formsearch form .btn-search {
   background-color: transparent;
@@ -10460,32 +10519,3 @@ h5.item-collapse.collapsed-item {
 
 
 
-
-
-
-/* NO NEED */
-/*.heading-banner {
-  position: relative;
-}
-.heading-banner .text-up {
-  font-size: 116px;
-  line-height: 116px;
-  color: #9F86D9;
-  font-family: "Lobster Two", display;
-  position: relative;
-  text-transform: uppercase;
-  z-index: 2;
-  font-weight: 700;
-}
-.heading-banner .text-under {
-  text-transform: uppercase;
-  font-size: 116px;
-  line-height: 116px;
-  font-weight: 700;
-  color: #ffffff;
-  position: absolute;
-  top: 5px;
-  left: -5px;
-  z-index: 1;
-  font-family: "Lobster Two", display;
-}*/

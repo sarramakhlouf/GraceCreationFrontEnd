@@ -1,139 +1,226 @@
+<!--slides des images-->
+<style>
+    /* Style global du carousel */
+    .carousel-inner {
+    border-radius: 10px; /* Bord arrondi pour le carousel */
+    overflow: hidden;
+    width: 96%;    
+    margin-left: 2%;
+    }
+    /* Style des images du carousel */
+    .carousel-item img {
+    object-fit: cover; /* Permet aux images de couvrir toute la zone sans déformation */
+    height: 600px;     /* Taille fixe pour les images */
+    }
+    /* Style des points de navigation */
+    .carousel-indicators {
+    position: absolute;
+    bottom: 1px;
+    left: 35%;
+    transform: translateX(-50%);
+    z-index: 10;
+    }
+    .carousel-indicators button {
+    background-color: #f7ddb5;
+    border: 2px solid rgb(253, 182, 101);
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    margin: 0 5px;
+    opacity: 0.7;
+   /* transition: background-color 0.2s ease, transform 0.2s ease;*/
+    }
+    .carousel-indicators .active {
+    background-color: rgb(253, 182, 101); /* Bleu pour l'indicateur actif */
+    transform: scale(1.2); /* Augmente la taille de l'indicateur actif */
+    }
+    /* Effet au survol des indicateurs */
+    .carousel-indicators button:hover {
+    opacity: 1;
+    background-color: rgb(253, 182, 101);
+    }
+</style>
+<!--slides des categories-->
+<style>
+/* Styles pour le conteneur des cartes */
+    .cardCategory {
+        text-align: center;
+        margin: 15px auto;
+    }
+
+    /* Styles pour l'image circulaire */
+    .cardCategory .cardImage {
+    width: 120px; 
+    height: 120px;
+    border: none; 
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    }
+
+    .cardCategory .cardImage img {
+    width: 100%; 
+    height: 100%;
+    object-fit: cover; 
+}
+
+    .cardCategory .cardImage img:hover {
+        transform: scale(1.1); /* Zoom léger au survol */
+    }
+
+    /* Styles pour le texte en dessous des images */
+    .cardCategory .cardInfo a {
+        font-size: 16px;
+        color: #333; /* Couleur du texte */
+        font-weight: 500;
+        text-decoration: none; /* Supprimer le soulignement */
+        display: block;
+        margin-top: 10px;
+        transition: color 0.3s ease; /* Animation au survol */
+    }
+
+    /* Styles pour le carrousel */
+    .carousel {
+        padding: 10px 0;
+    }
+
+    /* Styles pour aligner les éléments dans chaque slide */
+    .carousel-inner .row {
+        justify-content: center; /* Centrer les éléments */
+        gap: 15px; /* Espacement entre les colonnes */
+    }
+
+</style>
 <body>
     <main class="main">
-        <!------------------------------------------------------SECTION BANNER----------------------------------------------------------------------------->
-        <!------------------------------------------------------------------------------------------------------------------------------------------------->
-        <!------------------------------------------------------------------------------------------------------------------------------------------------->
-        <!------------------------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------SECTION BANNER----------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
         <section class="section banner-homepage1 banner-homepage4">
-            <div id="carouselExampleIndicators" class="carousel slide">
-                <!-- Indicateurs -->
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                </div>
-                <!-- Slides -->
+            <div id="carouselExampleAutoplaying" class="carousel slide"  data-bs-ride="carousel" data-bs-interval="3000">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <div class="box-cover-image wow fadeInUp"
-                            style="background-image:url(../../assets/imgs/page/homepage4/slide1.jpeg); height: 400px;">
-                        </div>
+                        <img src="assets/imgs/page/homepage4/Slide002.png" class="d-block w-100" alt="First slide">
                     </div>
                     <div class="carousel-item">
-                        <div class="box-cover-image wow fadeInUp"
-                            style="background-image:url(../../assets/imgs/page/homepage4/banner.png); height: 400px;">
-                        </div>
+                        <img src="assets/imgs/page/homepage4/Slide004.png" class="d-block w-100" alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="assets/imgs/page/homepage4/Slide003.png" class="d-block w-100" alt="Third slide">
                     </div>
                 </div>
-            </div>      
-            <!--<div class="container">
-                <div class="box-swiper block-new-arrivals">
-                    <div class="swiper-container swiper-banner pb-0">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="box-cover-image wow fadeInUp"
-                                    style="background-image:url(../../assets/imgs//page/homepage4/slide1.jpeg)">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="box-cover-image wow fadeInUp"
-                                    style="background-image:url(../../assets/imgs/page/homepage4/slide1.jpeg)">
-                                </div>    
-                            </div>
-                        </div>
-                    </div>
-                    <div class="box-pagination-button box-button-right-left">
-                        <div class="swiper-button-prev swiper-button-prev-banner btn-prev-style-1"></div>
-                        <div class="swiper-button-next swiper-button-next-banner btn-next-style-1"></div>
-                    </div>
+                <!-- Points de navigation -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
-            </div>-->
+            </div>              
         </section>
-        <!-------------------------------------------------------CATEGORIES SLIDER------------------------------------------------------------------------->
-        <!------------------------------------------------------------------------------------------------------------------------------------------------->
-        <!------------------------------------------------------------------------------------------------------------------------------------------------->
-        <!------------------------------------------------------------------------------------------------------------------------------------------------->
+<!-------------------------------------------------------CATEGORIES SLIDER------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
         <div class="section block-section block-section-categories-slider wow animate__animated animate__fadeIn">
             <div class="container">
-                <div class="box-swiper">
-                    <div class="swiper-container swiper-9-items pb-0">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="cardCategory">
-                                    <div class="cardImage"><a href="#"><img src="assets/imgs/page/homepage3/cat.png"
-                                                alt="GraceCreations"></a></div>
-                                    <div class="cardInfo"><a href="#">Kids Toys</a></div>
+                <div id="categoriesCarousel" class="carousel slide"  data-bs-ride="carousel" data-bs-interval="3000">
+                    <div class="carousel-inner text-center">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <div class="col-2">
+                                    <div class="cardCategory">
+                                        <div class="cardImage">
+                                            <a href="#"><img src="assets/imgs/page/homepage3/cat.png" class="d-block w-100" alt="Kids Toys"></a>
+                                        </div>
+                                        <div class="cardInfo"><a href="#">Kids Toys</a></div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="cardCategory">
+                                        <div class="cardImage">
+                                            <a href="#"><img src="assets/imgs/page/homepage3/cat2.png" class="d-block w-100" alt="Teddy Bear"></a>
+                                        </div>
+                                        <div class="cardInfo"><a href="#">Teddy Bear</a></div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="cardCategory">
+                                        <div class="cardImage">
+                                            <a href="#"><img src="assets/imgs/page/homepage3/cat3.png" class="d-block w-100" alt="Boys"></a>
+                                        </div>
+                                        <div class="cardInfo"><a href="#">Boys</a></div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="cardCategory">
+                                        <div class="cardImage">
+                                            <a href="#"><img src="assets/imgs/page/homepage3/cat4.png" class="d-block w-100" alt="Shoes"></a>
+                                        </div>
+                                        <div class="cardInfo"><a href="#">Shoes</a></div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="cardCategory">
+                                        <div class="cardImage">
+                                            <a href="#"><img src="assets/imgs/page/homepage3/cat5.png" class="d-block w-100" alt="Cribs"></a>
+                                        </div>
+                                        <div class="cardInfo"><a href="#">Cribs</a></div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="swiper-slide">
-                                <div class="cardCategory">
-                                    <div class="cardImage"><a href="#"><img src="assets/imgs/page/homepage3/cat2.png"
-                                                alt="GraceCreations"></a></div>
-                                    <div class="cardInfo"><a href="#">Teddy Bear</a></div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col-2">
+                                    <div class="cardCategory">
+                                        <div class="cardImage">
+                                            <a href="#"><img src="assets/imgs/page/homepage3/cat6.png" class="d-block w-100" alt="Wood Toys"></a>
+                                        </div>
+                                        <div class="cardInfo"><a href="#">Wood Toys</a></div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="cardCategory">
-                                    <div class="cardImage"><a href="#"><img src="assets/imgs/page/homepage3/cat3.png"
-                                                alt="GraceCreations"></a></div>
-                                    <div class="cardInfo"><a href="#">Boys</a></div>
+                                <div class="col-2">
+                                    <div class="cardCategory">
+                                        <div class="cardImage">
+                                            <a href="#"><img src="assets/imgs/page/homepage3/cat7.png" class="d-block w-100" alt="Moms"></a>
+                                        </div>
+                                        <div class="cardInfo"><a href="#">Moms</a></div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="cardCategory">
-                                    <div class="cardImage"><a href="#"><img src="assets/imgs/page/homepage3/cat4.png"
-                                                alt="GraceCreations"></a></div>
-                                    <div class="cardInfo"><a href="#">Shoes</a></div>
+                                <div class="col-2">
+                                    <div class="cardCategory">
+                                        <div class="cardImage">
+                                            <a href="#"><img src="assets/imgs/page/homepage3/cat8.png" class="d-block w-100" alt="Baby"></a>
+                                        </div>
+                                        <div class="cardInfo"><a href="#">Baby</a></div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="cardCategory">
-                                    <div class="cardImage"><a href="#"><img src="assets/imgs/page/homepage3/cat5.png"
-                                                alt="GraceCreations"></a></div>
-                                    <div class="cardInfo"><a href="#">Cribs</a></div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="cardCategory">
-                                    <div class="cardImage"><a href="#"><img src="assets/imgs/page/homepage3/cat6.png"
-                                                alt="GraceCreations"></a></div>
-                                    <div class="cardInfo"><a href="#">Wood Toys</a></div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="cardCategory">
-                                    <div class="cardImage"><a href="#"><img src="assets/imgs/page/homepage3/cat7.png"
-                                                alt="GraceCreations"></a></div>
-                                    <div class="cardInfo"><a href="#">Moms</a></div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="cardCategory">
-                                    <div class="cardImage"><a href="#"><img src="assets/imgs/page/homepage3/cat8.png"
-                                                alt="GraceCreations"></a></div>
-                                    <div class="cardInfo"><a href="#">Baby</a></div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="cardCategory">
-                                    <div class="cardImage"><a href="#"><img src="assets/imgs/page/homepage3/cat9.png"
-                                                alt="GraceCreations"></a></div>
-                                    <div class="cardInfo"><a href="#">Cute Collection</a></div>
+                                <div class="col-2">
+                                    <div class="cardCategory">
+                                        <div class="cardImage">
+                                            <a href="#"><img src="assets/imgs/page/homepage3/cat9.png" class="d-block w-100" alt="Cute Collection"></a>
+                                        </div>
+                                        <div class="cardInfo"><a href="#">Cute Collection</a></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="box-pagination-button">
-                        <div class="swiper-pagination swiper-pagination-center-bottom swiper-pagination-items-9"></div>
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#categoriesCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#categoriesCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
                     </div>
                 </div>
             </div>
         </div>
-        <!------------------------------------------------------FEATURED PRODUCT--------------------------------------------------------------------------->
-        <!------------------------------------------------------------------------------------------------------------------------------------------------->
-        <!------------------------------------------------------------------------------------------------------------------------------------------------->
-        <!------------------------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------FEATURED PRODUCT--------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
         <section class="section block-section block-section-features-product">
             <div class="container">
                 <div class="row">
@@ -499,114 +586,10 @@
                 </div>
             </div>
         </section>
-        <!--------------------------------------------------------------SHOP BY CATEGORIES----------------------------------------------------------------->
-        <!------------------------------------------------------------------------------------------------------------------------------------------------->
-        <!------------------------------------------------------------------------------------------------------------------------------------------------->
-        <!------------------------------------------------------------------------------------------------------------------------------------------------->
-        <!--<section class="section block-section block-section-shop-cat">
-            <div class="container">
-                <div class="top-head">
-                    <h4 class="text-uppercase brand-1">Shop by categories</h4><a class="btn btn-arrow-right"
-                        href="#">View All<img src="assets/imgs/template/icons/arrow.svg" alt="GraceCreations"></a>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="cardCategory2">
-                            <div class="cardImage"><a href="#"><img src="assets/imgs/page/homepage4/cat.png"
-                                        alt="GraceCreations"></a></div>
-                            <div class="cardInfo">
-                                <a href="#">
-                                    <h4 class="font-md-bold cardTitle">Baby</h4>
-                                </a>
-                                <p class="font-sm neutral-500 cardDesc">176 products</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="cardCategory2">
-                        <div class="cardImage"><a href="#"><img src="assets/imgs/page/homepage4/cat2.png"
-                                    alt="GraceCreations"></a></div>
-                        <div class="cardInfo">
-                            <a href="#">
-                                <h4 class="font-md-bold cardTitle">Toddler Boys</h4>
-                            </a>
-                            <p class="font-sm neutral-500 cardDesc">176 products</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="cardCategory2">
-                    <div class="cardImage"><a href="#"><img src="assets/imgs/page/homepage4/cat3.png" alt="GraceCreations"></a>
-                    </div>
-                    <div class="cardInfo"><a href="#">
-                            <h4 class="font-md-bold cardTitle">Toddler Girls</h4>
-                        </a>
-                        <p class="font-sm neutral-500 cardDesc">176 products</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="cardCategory2">
-                    <div class="cardImage"><a href="#"><img src="assets/imgs/page/homepage4/cat4.png" alt="GraceCreations"></a>
-                    </div>
-                    <div class="cardInfo"><a href="#">
-                            <h4 class="font-md-bold cardTitle">Bags</h4>
-                        </a>
-                        <p class="font-sm neutral-500 cardDesc">176 products</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="cardCategory2">
-                    <div class="cardImage"><a href="#"><img src="assets/imgs/page/homepage4/cat5.png" alt="GraceCreations"></a>
-                    </div>
-                    <div class="cardInfo"><a href="#">
-                            <h4 class="font-md-bold cardTitle">Shoes</h4>
-                        </a>
-                        <p class="font-sm neutral-500 cardDesc">176 products</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="cardCategory2">
-                    <div class="cardImage"><a href="#"><img src="assets/imgs/page/homepage4/cat6.png" alt="GraceCreations"></a>
-                    </div>
-                    <div class="cardInfo"><a href="#">
-                            <h4 class="font-md-bold cardTitle">Family Outfits</h4>
-                        </a>
-                        <p class="font-sm neutral-500 cardDesc">176 products</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="cardCategory2">
-                    <div class="cardImage"><a href="#"><img src="assets/imgs/page/homepage4/cat7.png" alt="GraceCreations"></a>
-                    </div>
-                    <div class="cardInfo"><a href="#">
-                            <h4 class="font-md-bold cardTitle">Little Ladybug Overalls</h4>
-                        </a>
-                        <p class="font-sm neutral-500 cardDesc">176 products</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="cardCategory2">
-                    <div class="cardImage"><a href="#"><img src="assets/imgs/page/homepage4/cat8.png" alt="GraceCreations"></a>
-                    </div>
-                    <div class="cardInfo"><a href="#">
-                            <h4 class="font-md-bold cardTitle">Junior Jean Skirt</h4>
-                        </a>
-                        <p class="font-sm neutral-500 cardDesc">176 products</p>
-                    </div>
-                </div>
-            </div>
-        </section>-->
-        <!-------------------------------------------------------------DEAL OF THE DAY -------------------------------------------------------------------->
-        <!------------------------------------------------------------------------------------------------------------------------------------------------->
-        <!------------------------------------------------------------------------------------------------------------------------------------------------->
-        <!------------------------------------------------------------------------------------------------------------------------------------------------->
+<!-------------------------------------------------------------DEAL OF THE DAY -------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
         <section class="section block-section block-section-deal-day-4">
             <div class="container">
                 <div class="row">
@@ -994,10 +977,10 @@
                 </div>
             </div>
         </section>
-        <!------------------------------------------------------------NEW IN STORE------------------------------------------------------------------------->
-        <!------------------------------------------------------------------------------------------------------------------------------------------------->
-        <!------------------------------------------------------------------------------------------------------------------------------------------------->
-        <!------------------------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------NEW IN STORE------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
         <section class="section block-section-1">
             <div class="container">
                 <div class="text-center">
