@@ -98,7 +98,7 @@
               "zone.js/testing"
             ],
             "tsConfig": "tsconfig.spec.json",
-            "assets": [
+            "src/app/assets": [
               {
                 "glob": "**/*",
                 "input": "public"

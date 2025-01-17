@@ -1,31 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../services/api.service'; 
+import { ProductService } from '../services/product.service';
+import { Product } from '../model/Product.model';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
-  
+  styleUrls: ['./home.component.css'],
+  standalone: false,
 })
-export class HomeComponent implements OnInit{
-  products: any[] = [];
-  categories: any[] = [];
-  subCategories: any[] = [];
+export class HomeComponent implements OnInit {
+  products!: Product[];
 
-  constructor(private apiService: ApiService) { }
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    // Appeler l'API pour récupérer les produits
-    this.apiService.getProducts().subscribe((data) => {
-      this.products = data;  // Assigner la réponse aux produits
-    });
+    this.loadProducts();
+  }
 
-    this.apiService.getCategories().subscribe((data) => {
-      this.categories = data;
-    });
-
-    this.apiService.getSubCategories().subscribe((data) => {
-      this.subCategories = data;
+  loadProducts(): void {
+    this.productService.listeProducts().subscribe((data: Product[]) => {
+      this.products = data;
     });
   }
-} 
-
+}

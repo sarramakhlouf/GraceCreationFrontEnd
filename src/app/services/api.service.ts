@@ -14,6 +14,9 @@ export class ApiService {
   getProducts(): Observable<any> {
     return this.http.get(`${this.baseUrl}/products`);
   }
+  getProductsWithFields() {
+    return this.http.get<{ fields: any[]; data: any[] }>(`${this.baseUrl}/products-with-fields`);
+  }
 
   // Méthode pour obtenir les catégories
   getCategories(): Observable<any> {
