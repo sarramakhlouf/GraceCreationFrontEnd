@@ -1,11 +1,9 @@
-import { SubCategory } from "./SubCategory.model";
-
 export class Product {
     id!: number;
     name!: string;
     description!: string;
     price!: number;
-    subCategoryId!: SubCategory;
+    subCategoryId!: number;
     image!: string;
     available!: boolean;
     feaured!: boolean;

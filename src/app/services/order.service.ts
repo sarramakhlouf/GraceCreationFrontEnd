@@ -11,7 +11,7 @@ export class OrderService {
   constructor(private http: HttpClient) {}
 
   // Méthode pour soumettre la commande
-  placeOrder(order: any): Observable<any> {
-    return this.http.post('/api/orders', order);  // Remplacez '/api/orders' par l'URL de votre API
+  submitOrder(order: any): Observable<any> {
+    return this.http.post(this.apiUrl, order);
   }
 }

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PopupService } from './popup.service';
+import { CategoryService } from './category.service';
 
-describe('PopupService', () => {
-  let service: PopupService;
+describe('CategoryService', () => {
+  let service: CategoryService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PopupService);
+    service = TestBed.inject(CategoryService);
   });
 
   it('should be created', () => {

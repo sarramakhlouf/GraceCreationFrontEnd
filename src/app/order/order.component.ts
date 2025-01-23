@@ -1,39 +1,55 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CartService } from '../services/cart.service';
 import { OrderService } from '../services/order.service';
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
-  styleUrl: './order.component.css',
-  standalone: false,
+  styleUrls: ['./order.component.css']
 })
-export class OrderComponent {
-  orderResponse: any; 
-  order = {
-    product_id: 1,
-    client_name: '',
-    client_email: '',
-    quantity: 1,
-    total_price: 100,
-    order_date: new Date().toISOString(),
-  };
+export class OrderComponent implements OnInit {
+  cart: any[] = [];
+  currentDate: string = new Date().toISOString().split('T')[0];
 
-  constructor(private orderService: OrderService) {}
+  constructor(
+    private cartService: CartService,
+    private orderService: OrderService
+  ) {}
 
-  // Méthode pour passer la commande
-  placeOrder() {
-    // Appelez le service pour soumettre la commande
-    this.orderService.placeOrder(this.order).subscribe(
-      response => {
-        // Assignez la réponse du backend à la propriété orderResponse
-        this.orderResponse = response;
-        console.log('Commande passée avec succès!', response);
+  ngOnInit() {
+    this.cart = this.cartService.getCartItems();
+  }
+
+  getTotal() {
+    return this.cart.reduce((sum, item) => sum + item.quantity * item.price, 0).toFixed(2);
+  }
+
+  getCartDetails() {
+    // Format des détails du panier
+    return this.cart
+      .map(product => `${product.name} (x${product.quantity})`)
+      .join(', ');
+  }
+
+  submitOrder(orderData: any) {
+    const order = {
+      ...orderData,
+      products: JSON.stringify(this.cart), // Convertir les produits en JSON
+      date: this.currentDate,
+      total: this.getTotal(),
+    };
+    console.log('Order being submitted:', order); // Debugging log
+
+    this.orderService.submitOrder(order).subscribe({
+      next: (response) => {
+        console.log('Order submitted successfully:', response);
+        alert('Your order has been submitted!');
+        this.cartService.clearCart(); // Vider le panier après la commande
       },
-      error => {
-        // Gérez l'erreur
-        console.error('Erreur lors de la commande', error);
-        this.orderResponse = { success: false };
+      error: (error) => {
+        console.error('Error submitting order:', error);
+        alert('There was an error submitting your order.');
       }
-    );
+    });
   }
 }

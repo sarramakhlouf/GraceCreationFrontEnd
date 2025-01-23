@@ -43,7 +43,27 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              "src/assets/js/main.js",
+              "src/assets/js/vendors/modernizr-3.6.0.min.js",
+              "src/assets/js/vendors/jquery-3.6.0.min.js",
+              "src/assets/js/vendors/jquery-migrate-3.3.0.min.js",
+              "src/assets/js/vendors/waypoints.js",
+              "src/assets/js/vendors/wow.js",
+              "src/assets/js/vendors/magnific-popup.js",
+              "src/assets/js/vendors/perfect-scrollbar.min.js",
+              "src/assets/js/vendors/select2.min.js",
+              "src/assets/js/vendors/isotope.js",
+              "src/assets/js/vendors/scrollup.js",
+              "src/assets/js/vendors/swiper-bundle.min.js",
+              "src/assets/js/vendors/noUISlider.js",
+              "src/assets/js/vendors/slider.js",
+              "src/assets/js/vendors/counterup.js",
+              "src/assets/js/vendors/jquery.countdown.min.js",
+              "src/assets/js/vendors/jquery.elevatezoom.js",
+              "src/assets/js/vendors/slick.js",
+              "src/assets/js/vendors/jquery-ui.js",
+              "src/assets/js/vendors/jquery.timepicker.min.js",
+              "src/assets/js/vendors/glightbox.min.js"
             ],
             "server": "src/main.server.ts",
             "prerender": true,

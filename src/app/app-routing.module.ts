@@ -12,7 +12,7 @@ import { ShopCartComponent } from './shop-cart/shop-cart.component';
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'About', component: AboutComponent},
-  { path: 'Shop', component: ShopComponent},
+  { path: 'Shop/:id', component: ShopComponent},
   { path: 'Product', component: ProductComponent},
   { path: 'Account', component: AccountComponent},
   { path: 'Contact', component: ContactComponent},

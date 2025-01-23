@@ -16,6 +16,7 @@ export class ProductService {
 
   // L'URL de l'API Laravel pour les produits
   private apiURL: string = 'http://localhost:8000/api/products';
+  private baseUrl: string = 'http://localhost:8000/api/';
 
   constructor(private http: HttpClient) {}
 
@@ -29,8 +30,19 @@ export class ProductService {
     );
   }
 
+  getProductsByCategory(categoryId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/categories/${categoryId}/products`);
+  }
+
+  getProductsBySubCategory(subCategoryId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/subcategories/${subCategoryId}/products`);
+  }
   
 
+  getFilteredProducts(filters: any): Observable<any[]> {
+    return this.http.post<any[]>(`${this.apiURL}/filter`, filters);
+  }
+  
   // Ajouter un produit
   ajouterProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(this.apiURL, product, httpOptions);
