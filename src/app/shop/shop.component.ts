@@ -6,6 +6,7 @@ import { Options } from '@angular-slider/ngx-slider';
 import { randomUUID } from 'crypto';
 import { CartService } from '../services/cart.service';
 import { ActivatedRoute } from '@angular/router';
+import { FilterService } from '../services/filter.service';
 
 @Component({
   selector: 'app-shop',
@@ -16,41 +17,38 @@ import { ActivatedRoute } from '@angular/router';
 export class ShopComponent {
   product: Product | null = null;
   products!: Product[];
-  isLoading = true;
-  paginatedProducts: any[] = []; // Produits affichés dans la page actuelle
-  currentPage: number = 1; // Page actuelle
-  itemsPerPage: number = 9; // Nombre d'éléments par page
-  totalProducts: number = 0; // Nombre total de produits
+  filters: any[] = [];
   categories: any[] = [];
-
-
-  filteredProducts: any[] = [];
+  baseUrl: string = 'http://localhost:8000/storage/';
 
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService,
     private cartService: CartService,
+    private filterService: FilterService,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.loadProducts();
     this.loadCategories();
-    this.route.params.subscribe((params) => {
-      const subCategoryId = params['id']; // Récupère l'ID de la sous-catégorie depuis l'URL
-      if (subCategoryId) {
-        this.loadProductsBySubCategory(subCategoryId);
+    this.loadFilteredProducts();
+    this.loadFilters();
+    this.route.params.subscribe(params => {
+      const categoryId = params['categoryId'];
+      const subCategoryId = params['subCategoryId'];
+      console.log(categoryId,subCategoryId);
+      if (categoryId && !subCategoryId) {
+        this.getProductsByCategory(categoryId);
+      } else if (subCategoryId) {
+        this.getProductsBySubCategory(subCategoryId);
       }
     });
   }
 
   loadProducts(): void {
-    this.isLoading = true;
     this.productService.listeProducts().subscribe((data: Product[]) => {
       this.products = data;
     });
-    this.totalProducts = this.products.length;
-    this.updatePaginatedProducts();
-    this.isLoading = false;
   }
 
   loadCategories(): void {
@@ -59,40 +57,40 @@ export class ShopComponent {
     });
   }
 
-  // Ajouter un produit au panier
   addToCart(product: any) {
-    this.cartService.addToCart(product); // Utiliser le service pour ajouter au panier
-    alert(`${product.name} a été ajouté au panier.`);
+    this.cartService.addToCart(product);
   }
 
-  loadProductsBySubCategory(subCategoryId: number): void {
-    this.isLoading = true;
-    this.productService.getProductsBySubCategory(subCategoryId).subscribe(
+  getProductsByCategory(categoryId: number): void {
+    this.productService.getProductsByCategory(categoryId).subscribe({
+      next: (data) => {
+        this.products = data;
+      },
+    });
+  }
+
+  getProductsBySubCategory(subCategoryId: number): void {
+    this.productService.getProductsBySubCategory(subCategoryId).subscribe({
+      next: (data) => {
+        this.products = data;
+      },
+    });
+  }
+
+  loadFilteredProducts(): void {
+    this.productService.getFiltredProducts().subscribe(
       (data) => {
         this.products = data;
-        this.isLoading = false;
       },
-      (error) => {
-        console.error('Error fetching products', error);
-        this.isLoading = false;
-      }
     );
-  }
-  // Mettre à jour les produits affichés en fonction de la page actuelle
-  updatePaginatedProducts(): void {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    this.paginatedProducts = this.products.slice(startIndex, endIndex);
-  }
-
-  // Changer de page
-  changePage(page: number): void {
-    if (page > 0 && page <= Math.ceil(this.totalProducts / this.itemsPerPage)) {
-      this.currentPage = page;
-      this.updatePaginatedProducts();
-    }
   }
   
 
-
+  loadFilters(): void {
+    this.filterService.getFiltersForColor().subscribe(
+      (data) => {
+        this.filters = data;
+      },
+    );
+  }
 }

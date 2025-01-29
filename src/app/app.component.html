@@ -19,10 +19,10 @@
                     <div class="menu-inner">
                       <!-- Affichage des catégories -->
                       <div class="col-menu" *ngFor="let category of categories">
-                        <h6 class="font-lg-bold mb-10" ><a [routerLink]="['/Shop', category.id]">{{ category.name }}</a></h6>
+                        <h6 class="font-lg-bold mb-10" ><a [routerLink]="['/Shop', category.id]"> {{ category.name }} </a></h6>
                         <!-- Affichage des sous-catégories pour chaque catégorie -->
                         <div *ngIf="subcategories[category.id] && subcategories[category.id].length > 0">
-                          <a *ngFor="let subcategory of subcategories[category.id]" [routerLink]="['/Shop', subcategory.id]">
+                          <a *ngFor="let subcategory of subcategories[category.id]" [routerLink]="['/Shop', category.id, subcategory.id]">
                             {{ subcategory.name }}
                           </a>
                         </div>
@@ -131,56 +131,19 @@
     <div class="footer-1">
       <div class="container">
         <div class="row">
-          <div class="col-lg-4 col-md-6 mb-30">
-            <p class="font-2xl-bold neutral-900">Receive an exclusive<span class="brand-1">20%</span>discount code when
-              you signup.</p>
-            <div class="box-form-subscribe box-form-subscribe-white">
-              <form class="form-sub" action="#" method="POST">
-                <input class="form-control" type="text" placeholder="Enter your email">
-                <input class="btn btn-subscribe" type="submit" value="Subscribe">
-              </form>
-            </div>
+          <div class="col-lg-3 col-md-6 order-lg-1 order-md-2 mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".0s">
+            <h5 class="neutral-900 text-uppercase mb-30">CONTACT</h5>
+            <p class="neutral-900 font-lg desc-company">Monday to Friday 8 a.m - 5 p.m</p>
+            <p class="neutral-900 font-lg phone-footer">+01 456 789</p>
+            <p class="neutral-900 font-lg email-footer">contact&#64;kidify.com</p>
           </div>
           <div class="col-lg-8 mb-30">
             <div class="row">
               <div class="col-lg-3 col-md-6 mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
-                <h5 class="neutral-900 text-uppercase mb-30">Company</h5>
-                <ul class="menu-footer">
-                  <li><a href="about.html">About us</a></li>
-                  <li><a href="#">Our Experts</a></li>
-                  <li><a href="#">Services & Price</a></li>
-                  <li><a href="blog-2.html">Latest News</a></li>
-                  <li><a href="#">Support Center</a></li>
-                </ul>
-              </div>
-              <div class="col-lg-3 col-md-6 mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
-                <h5 class="neutral-900 text-uppercase mb-30">Customers</h5>
-                <ul class="menu-footer">
-                  <li><a href="contact.html">Contact us</a></li>
-                  <li><a href="#">Payment & Tax</a></li>
-                  <li><a href="#">Bonus Point</a></li>
-                  <li><a href="#">Supply Chain</a></li>
-                  <li><a href="#">Student Discount</a></li>
-                </ul>
-              </div>
-              <div class="col-lg-3 col-md-6 mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
-                <h5 class="neutral-900 text-uppercase mb-30">SUPPORT</h5>
-                <ul class="menu-footer">
-                  <li><a href="#">Shipping Info</a></li>
-                  <li><a href="#">Returns</a></li>
-                  <li><a href="#">Refund</a></li>
-                  <li><a href="#">How To Order</a></li>
-                  <li><a href="#">How To Track</a></li>
-                </ul>
-              </div>
-              <div class="col-lg-3 col-md-6 mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
                 <h5 class="neutral-900 text-uppercase mb-30">social</h5>
                 <ul class="menu-footer">
                   <li><a class="facebook" href="#">Facebook</a></li>
-                  <li><a class="twitter" href="#">Twitter</a></li>
                   <li><a class="instagram" href="#">Instagram</a></li>
-                  <li><a class="pinterest" href="#">Pinterest</a></li>
-                  <li><a class="youtube" href="#">Youtube</a></li>
                 </ul>
               </div>
             </div>
@@ -354,7 +317,32 @@
     </div>
   </div>
 <!------------------------------------------------------SCRIPTS----------------------------------------------------------------------------------->
-  <script>
+<script src="../../assets/js/vendors/modernizr-3.6.0.min.js"></script>
+<script src="../../assets/js/vendors/jquery-3.6.0.min.js"></script>
+<script src="../../assets/js/vendors/jquery-migrate-3.3.0.min.js"></script>
+<script src="../../assets/js/vendors/bootstrap.bundle.min.js"></script>
+<script src="../../assets/js/vendors/waypoints.js"></script>
+<script src="../../assets/js/vendors/wow.js"></script>
+<script src="../../assets/js/vendors/magnific-popup.js"></script>
+<script src="../../assets/js/vendors/perfect-scrollbar.min.js"></script>
+<script src="../../assets/js/vendors/select2.min.js"></script>
+<script src="../../assets/js/vendors/isotope.js"></script>
+<script src="../../assets/js/vendors/scrollup.js"></script>
+<script src="../../assets/js/vendors/swiper-bundle.min.js"></script>
+<script src="../../assets/js/vendors/noUISlider.js"></script>
+<script src="../../assets/js/vendors/slider.js"></script>
+<!-- Count down-->
+<script src="../../assets/js/vendors/counterup.js"></script>
+<script src="../../assets/js/vendors/jquery.countdown.min.js"></script>
+<!-- Count down-->
+<script src="../../assets/js/vendors/jquery.elevatezoom.js"></script>
+<script src="../../assets/js/vendors/slick.js"></script>
+<script src="../../assets/js/vendors/jquery-ui.js"></script>
+<script src="../../assets/js/vendors/jquery.timepicker.min.js"></script>
+<script src="../../assets/js/vendors/glightbox.min.js"></script>
+<script src="../../assets/js/main.js?v=1.0.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+ <script>
     // Sélectionner l'icône et le popup
     const accountIcon = document.querySelector('.account-icon account');
     const popupAccount = document.querySelector('.box-popup-account');
@@ -376,6 +364,6 @@
     document.querySelector('.box-account-overlay').addEventListener('click', function () {
         popupAccount.style.display = 'none'; // Masquer le popup si on clique sur l'overlay
     });
-
+  
   </script>
 </body>

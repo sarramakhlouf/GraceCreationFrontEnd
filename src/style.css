@@ -2274,148 +2274,15 @@ a.follow-vendor {
   left: -6px;
   top: -6px;
 }
-
-.cardProduct {
-  display: inline-block;
-  width: 100%;
-  margin-bottom: 40px;
-}
-.cardProduct a {
-  text-decoration: none;
-}
-.cardProduct .cardImage {
-  position: relative;
-  margin-bottom: 20px;
-  background-color: #EFF2F3;
-  text-align: center;
-  overflow: hidden;
-}
-.cardProduct .cardImage img {
-  max-height: 100%;
-  vertical-align: middle;
-  max-width: 100%;
-}
-.cardProduct .cardInfo {
-  position: relative;
-}
-.cardProduct .cardInfo .cardTitle {
-  margin-bottom: 8px;
-  color: #1C1D1D;
-}
-.cardProduct .cardInfo .cardTitle:hover {
-  color: #9F86D9;
-}
-.cardProduct .cardInfo .cardDesc {
-  margin-bottom: 12px;
-  color: #9F86D9;
-}
-
-.cardProduct.cardProduct2 .cardInfo .cardDesc {
-  margin-bottom: 0px;
-}
-.cardProduct.cardProduct2 .cardInfo .product-info-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.cardProduct.cardProduct2 .cardInfo .product-info-bottom .rating img {
-  margin-left: 2px;
-}
-.cardProduct.cardProduct3 {
-  border: 1px solid #DBE2E5;
-  padding: 20px;
-}
-.cardProduct.cardProduct3 .cardImage {
-  height: 274px;
-  line-height: 264px;
-  background-color: #ffffff;
-}
-.cardProduct.cardProduct3 .cardImage .lbl-hot {
-  top: 0px;
-  left: 0px;
-}
-.cardProduct.cardProduct3 .cardInfo .cardDesc {
-  margin-bottom: 0px;
-}
-.cardProduct.cardProduct3 .cardInfo .product-info-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.cardProduct.cardProduct3 .cardInfo .product-info-bottom .rating img {
-  margin-left: 2px;
-}
-.cardProduct.cardProduct4 {
-  margin-bottom: 24px;
-  display: flex;
-  width: 100%;
-  align-items: center;
-}
-.cardProduct.cardProduct4 .cardImage {
-  height: 158px;
-  line-height: 158px;
-  width: 158px;
-  background-color: #ffffff;
-  border: 1px solid #DBE2E5;
-  margin-right: 26px;
-  margin-bottom: 0px;
-}
-.cardProduct.cardProduct4 .cardImage img {
-  display: block;
-}
-.cardProduct.cardProduct4 .cardInfo .rating {
-  margin-bottom: 15px;
-}
-.cardProduct.cardProduct4 .cardInfo .rating img {
-  margin-right: 2px;
-}
-.cardProduct.cardProduct4 .cardInfo .product-price-bottom {
-  display: flex;
-}
-.cardProduct.cardProduct4 .cardInfo .product-price-bottom .cardDesc {
-  margin-bottom: 0px;
-  margin-right: 15px;
-}
-.cardProduct.cardProduct4 .cardInfo .product-price-bottom .cardPriceSale {
-  text-decoration: line-through;
-}
-.cardProduct.cardProduct5 {
-  margin-bottom: 40px;
-}
-.cardProduct.cardProduct5 .cardImage {
-  height: 290px;
-  line-height: 280px;
-  background-color: #ffffff;
-  border: 1px solid #DBE2E5;
-}
-.cardProduct.cardProduct5 .cardInfo .cardDesc {
-  margin-bottom: 0px;
-}
-.cardProduct.cardProduct5 .cardInfo .product-info-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.cardProduct.cardProduct5 .cardInfo .product-info-bottom .rating img {
-  margin-left: 2px;
-}
-.cardProduct.cardProduct5 .cardInfo .product-info-bottom .cardPriceSale {
-  text-decoration: line-through;
-  color: #646667;
-  font-size: 18px;
-  line-height: 30px;
-}
-.cardProduct.cardProduct5 .cardInfo .cardProductDesc {
-  margin-top: 10px;
-}
 .cardProduct.cardProduct6 {
   margin-bottom: 40px;
 }
 .cardProduct.cardProduct6 .cardImage {
-  height: 250px;
-  width: 250px;
+  height: 100%;
+  width: 100%;
   line-height: 280px;
   margin-right: 50px;
+  border-radius: 20px;
   
 }
 .cardProduct.cardProduct6 .cardInfo .cardDesc {
@@ -2439,33 +2306,6 @@ a.follow-vendor {
 }
 .cardProduct.cardProduct6 .cardInfo .cardProductDesc {
   margin-top: 10px;
-}
-.cardProduct.cardProduct7 {
-  margin-bottom: 40px;
-}
-.cardProduct.cardProduct7 .cardImage {
-  height: 290px;
-  line-height: 280px;
-}
-.cardProduct.cardProduct7 .cardInfo .cardDesc {
-  margin-bottom: 0px;
-}
-.cardProduct.cardProduct7 .cardInfo .product-info-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.cardProduct.cardProduct7 .cardInfo .product-info-bottom .rating img {
-  margin-left: 2px;
-}
-.cardProduct.cardProduct7 .cardInfo .product-info-bottom .cardPriceSale {
-  text-decoration: line-through;
-  color: #646667;
-  font-size: 18px;
-  line-height: 30px;
-}
-.cardProduct.cardProduct7 .cardInfo .cardProgressBar {
-  margin-top: 18px;
 }
 
 .cardProductStyle3, .cardProductStyle2, .cardProduct, .cardProductSmall {
@@ -10502,6 +10342,170 @@ h5.item-collapse.collapsed-item {
 .page-content p {
   margin-bottom: 15px;
 }
+
+
+/****************************************************NO NEED*************************************************/
+
+/*.cardProduct {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 40px;
+}
+.cardProduct a {
+  text-decoration: none;
+}
+.cardProduct .cardImage {
+  position: relative;
+  margin-bottom: 20px;
+  background-color: #EFF2F3;
+  text-align: center;
+  overflow: hidden;
+}
+.cardProduct .cardImage img {
+  max-height: 100%;
+  vertical-align: middle;
+  max-width: 100%;
+}
+.cardProduct .cardInfo {
+  position: relative;
+}
+.cardProduct .cardInfo .cardTitle {
+  margin-bottom: 8px;
+  color: #1C1D1D;
+}
+.cardProduct .cardInfo .cardTitle:hover {
+  color: #9F86D9;
+}
+.cardProduct .cardInfo .cardDesc {
+  margin-bottom: 12px;
+  color: #9F86D9;
+}
+
+.cardProduct.cardProduct2 .cardInfo .cardDesc {
+  margin-bottom: 0px;
+}
+.cardProduct.cardProduct2 .cardInfo .product-info-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cardProduct.cardProduct2 .cardInfo .product-info-bottom .rating img {
+  margin-left: 2px;
+}
+.cardProduct.cardProduct3 {
+  border: 1px solid #DBE2E5;
+  padding: 20px;
+}
+.cardProduct.cardProduct3 .cardImage {
+  height: 274px;
+  line-height: 264px;
+  background-color: #ffffff;
+}
+.cardProduct.cardProduct3 .cardImage .lbl-hot {
+  top: 0px;
+  left: 0px;
+}
+.cardProduct.cardProduct3 .cardInfo .cardDesc {
+  margin-bottom: 0px;
+}
+.cardProduct.cardProduct3 .cardInfo .product-info-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cardProduct.cardProduct3 .cardInfo .product-info-bottom .rating img {
+  margin-left: 2px;
+}
+.cardProduct.cardProduct4 {
+  margin-bottom: 24px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.cardProduct.cardProduct4 .cardImage {
+  height: 158px;
+  line-height: 158px;
+  width: 158px;
+  background-color: #ffffff;
+  border: 1px solid #DBE2E5;
+  margin-right: 26px;
+  margin-bottom: 0px;
+}
+.cardProduct.cardProduct4 .cardImage img {
+  display: block;
+}
+.cardProduct.cardProduct4 .cardInfo .rating {
+  margin-bottom: 15px;
+}
+.cardProduct.cardProduct4 .cardInfo .rating img {
+  margin-right: 2px;
+}
+.cardProduct.cardProduct4 .cardInfo .product-price-bottom {
+  display: flex;
+}
+.cardProduct.cardProduct4 .cardInfo .product-price-bottom .cardDesc {
+  margin-bottom: 0px;
+  margin-right: 15px;
+}
+.cardProduct.cardProduct4 .cardInfo .product-price-bottom .cardPriceSale {
+  text-decoration: line-through;
+}
+.cardProduct.cardProduct5 {
+  margin-bottom: 40px;
+}
+.cardProduct.cardProduct5 .cardImage {
+  height: 290px;
+  line-height: 280px;
+  background-color: #ffffff;
+  border: 1px solid #DBE2E5;
+}
+.cardProduct.cardProduct5 .cardInfo .cardDesc {
+  margin-bottom: 0px;
+}
+.cardProduct.cardProduct5 .cardInfo .product-info-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cardProduct.cardProduct5 .cardInfo .product-info-bottom .rating img {
+  margin-left: 2px;
+}
+.cardProduct.cardProduct5 .cardInfo .product-info-bottom .cardPriceSale {
+  text-decoration: line-through;
+  color: #646667;
+  font-size: 18px;
+  line-height: 30px;
+}
+.cardProduct.cardProduct5 .cardInfo .cardProductDesc {
+  margin-top: 10px;
+}*/
+/*.cardProduct.cardProduct7 {
+  margin-bottom: 40px;
+}
+.cardProduct.cardProduct7 .cardImage {
+  height: 290px;
+  line-height: 280px;
+}
+.cardProduct.cardProduct7 .cardInfo .cardDesc {
+  margin-bottom: 0px;
+}
+.cardProduct.cardProduct7 .cardInfo .product-info-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cardProduct.cardProduct7 .cardInfo .product-info-bottom .rating img {
+  margin-left: 2px;
+}
+.cardProduct.cardProduct7 .cardInfo .product-info-bottom .cardPriceSale {
+  text-decoration: line-through;
+  color: #646667;
+  font-size: 18px;
+  line-height: 30px;
+}
+.cardProduct.cardProduct7 .cardInfo .cardProgressBar {
+  margin-top: 18px;
+}*/
 
 
 

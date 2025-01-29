@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Product } from '../model/Product.model';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +11,9 @@ import { Product } from '../model/Product.model';
 })
 export class HomeComponent implements OnInit {
   products!: Product[];
+  baseUrl: string = 'http://localhost:8000/storage/';
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private cartService: CartService) {}
 
   ngOnInit(): void {
     this.loadProducts();
@@ -21,5 +23,9 @@ export class HomeComponent implements OnInit {
     this.productService.listeProducts().subscribe((data: Product[]) => {
       this.products = data;
     });
+  }
+
+  addToCart(product: any) {
+    this.cartService.addToCart(product);
   }
 }

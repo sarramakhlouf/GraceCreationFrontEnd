@@ -28,11 +28,8 @@ export class AppComponent implements OnInit{
     this.loadCategoriesAndSubcategories();// Charger les catégories et sous-catégories
   }
   loadCategoriesAndSubcategories(): void {
-    // Charger les catégories
     this.categoryService.getCategories().subscribe((categories: Category[]) => {
       this.categories = categories;
-
-      // Charger les sous-catégories pour chaque catégorie
       this.categories.forEach((category) => {
         this.subcategoryService
           .getSubcategoriesByCategory(category.id)

@@ -16,7 +16,7 @@ export class ProductService {
 
   // L'URL de l'API Laravel pour les produits
   private apiURL: string = 'http://localhost:8000/api/products';
-  private baseUrl: string = 'http://localhost:8000/api/';
+  private baseUrl: string = 'http://localhost:8000/api';
 
   constructor(private http: HttpClient) {}
 
@@ -30,45 +30,19 @@ export class ProductService {
     );
   }
 
+  getProductById(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/product/${id}`);
+  }
+
   getProductsByCategory(categoryId: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/categories/${categoryId}/products`);
+    return this.http.get(`${this.baseUrl}/products/categories/${categoryId}`);
   }
 
   getProductsBySubCategory(subCategoryId: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/subcategories/${subCategoryId}/products`);
+    return this.http.get(`${this.baseUrl}/products/subcategories/${subCategoryId}`);
   }
   
-
-  getFilteredProducts(filters: any): Observable<any[]> {
-    return this.http.post<any[]>(`${this.apiURL}/filter`, filters);
-  }
-  
-  // Ajouter un produit
-  ajouterProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(this.apiURL, product, httpOptions);
-  }
-
-  // Supprimer un produit
-  supprimerProduct(id: number): Observable<void> {
-    const url = `${this.apiURL}/${id}`;
-    return this.http.delete<void>(url, httpOptions);
-  }
-
-  // Consulter un produit par ID
-  consulterProduct(id: number): Observable<Product> {
-    const url = `${this.apiURL}/${id}`;
-    return this.http.get<Product>(url);
-  }
-
-  // Mettre à jour un produit
-  updateProduct(product: Product): Observable<Product> {
-    const url = `${this.apiURL}/${product.id}`;
-    return this.http.put<Product>(url, product, httpOptions);
-  }
-
-  // Rechercher des produits par nom (par exemple, dans un ShopComponent)
-  rechercherParNom(nom: string): Observable<Product[]> {
-    const url = `${this.apiURL}/search?name=${nom}`;
-    return this.http.get<Product[]>(url);
+  getFiltredProducts(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/filtredproducts`);
   }
 }

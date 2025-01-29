@@ -18,33 +18,33 @@
                     <div class="col-lg-9 order-lg-last">
                         <div class="box-filter-top">
                             <div class="number-product">
-                                <p class="body-p2 neutral-medium-dark">Showing 9 of 18 products</p>
+                                <p class="body-p2 neutral-medium-dark">Showing {{ products.length }} products</p>
                             </div>
                         </div>
-                        <div *ngIf="isLoading" class="text-center">
-                            <p>Loading products...</p>
-                        </div>
-                        <div class="box-product-lists" *ngIf="!isLoading && products.length > 0">
+                        <div class="box-product-lists" *ngIf="products.length > 0">
                             <div class="row">
                                 <div class="col-xl-4 col-sm-6" *ngFor="let product of products">
                                     <div class="cardProduct cardProduct6">
                                         <div class="cardImage">
                                             <label *ngIf="product.promotion" class="lbl-hot">Promo</label>
-                                            <a [routerLink]="'/Product'" [queryParams]="{ id: product.id }">
-                                                <img [src]="product.image" [alt]="product.name" class="product-image" />
+                                            <a  [routerLink]="['/Product', product.id]">
+                                                <img [src]="baseUrl + product.image" [alt]="product.name"
+                                                    class="product-image" />
                                             </a>
                                             <div class="button-select">
-                                                <a routerLink="/shopCart" (click)="addToCart(product)">Add to Cart</a>
+                                                <a routerLink="/shop" (click)="addToCart(product)">Add to Cart</a>
                                             </div>
                                         </div>
                                         <div class="cardInfo">
-                                            <a [routerLink]="'/productCart'" [queryParams]="{ id: product.id }">
+                                            <a  [routerLink]="['/Product', product.id]">
                                                 <h6 class="font-md-bold cardTitle">{{ product.name }}</h6>
                                             </a>
                                             <div class="product-info-bottom">
                                                 <p class="font-lg">
-                                                    <span *ngIf="product.promotion" class="cardDesc mr-15">{{ product.promo_price }} TND</span>
-                                                    <span [class.cardPriceSale]="product.promotion">{{ product.price}} TND</span>
+                                                    <span *ngIf="product.promotion" class="cardDesc mr-15">{{
+                                                        product.promo_price }} TND</span>
+                                                    <span [class.cardPriceSale]="product.promotion">{{ product.price}}
+                                                        TND</span>
                                                 </p>
                                             </div>
                                         </div>
@@ -52,7 +52,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div *ngIf="!isLoading && products.length === 0" class="text-center">
+                        <div *ngIf="products.length === 0" class="text-center">
                             <p>No products found for this category.</p>
                         </div>
                         <nav class="box-pagination">
@@ -92,59 +92,35 @@
                                             <h6 class="item-collapse">Categories</h6>
                                             <div class="box-collapse">
                                                 <ul class="list-filter-checkbox">
-                                                    <li>
-                                                        <label class="cb-container">
-                                                            <input type="checkbox"><span
-                                                                class="text-small">Womens</span><span
-                                                                class="checkmark"></span>
-                                                        </label><span class="number-item">136</span>
-                                                    </li>
-                                                    <li>
-                                                        <label class="cb-container">
-                                                            <input type="checkbox"><span class="text-small">Boys'
-                                                                Clothing</span><span class="checkmark"></span>
-                                                        </label><span class="number-item">125</span>
-                                                    </li>
-                                                    <li>
-                                                        <label class="cb-container">
-                                                            <input type="checkbox"><span class="text-small">Baby
-                                                                Care</span><span class="checkmark"></span>
-                                                        </label><span class="number-item">312</span>
-                                                    </li>
-                                                    <li>
-                                                        <label class="cb-container">
-                                                            <input type="checkbox"><span class="text-small">Safety
-                                                                Equipment</span><span class="checkmark"></span>
-                                                        </label><span class="number-item">325</span>
-                                                    </li>
-                                                    <li>
-                                                        <label class="cb-container">
-                                                            <input type="checkbox"><span class="text-small">Activity &
-                                                                Gear</span><span class="checkmark"></span>
-                                                        </label><span class="number-item">458</span>
-                                                    </li>
-                                                    <li>
-                                                        <label class="cb-container">
-                                                            <input type="checkbox"><span class="text-small">Baby
-                                                                Shoes</span><span class="checkmark"></span>
-                                                        </label><span class="number-item">63</span>
-                                                    </li>
-                                                    <li>
-                                                        <label class="cb-container">
-                                                            <input type="checkbox"><span class="text-small">Children's
-                                                                Shoes</span><span class="checkmark"></span>
-                                                        </label><span class="number-item">985</span>
-                                                    </li>
-                                                    <li>
-                                                        <label class="cb-container">
-                                                            <input type="checkbox"><span class="text-small">Family
-                                                                Outfits</span><span class="checkmark"></span>
-                                                        </label><span class="number-item">56</span>
+                                                    <li *ngFor="let category of categories">
+                                                        <div class="col-menu">
+                                                            <input type="checkbox" id="{{category.id}}">
+                                                            <label for="{{category.id}}"><a  [routerLink]="['/Shop', category.id]"> {{ category.name }}</a></label>
+                                                        </div>
+                                                        <span class="count-badge">{{ category.count }}</span>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>                                    
+                                    <div class="col-lg-12 col-md-6">
+                                        <div class="block-filter">
+                                            <h6 class="item-collapse">Colors</h6>
+                                            <div class="box-collapse">
+                                                <ul class="list-color">
+                                                    <li *ngFor="let filter of filters" class="color-item">
+                                                        <span class="box-circle-color">
+                                                            <!-- Affiche l'icône comme une image -->
+                                                            <a href="#">
+                                                                <img [src]="baseUrl + filter.icon" [alt]="filter.name" class="color-icon" />
+                                                            </a>
+                                                        </span>
+                                                        <span class="font-xs">{{ filter.name }}</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div> 
                                     <div class="col-lg-12 col-md-6">
                                         <div class="block-filter">
                                             <h6 class="title-filter">Price</h6>
@@ -205,123 +181,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-6">
-                                        <div class="block-filter">
-                                            <h6 class="item-collapse">Size</h6>
-                                            <div class="box-collapse">
-                                                <div class="block-size">
-                                                    <div class="list-sizes"><span class="item-size">XS</span><span
-                                                            class="item-size active">S</span><span
-                                                            class="item-size">M</span><span
-                                                            class="item-size">XL</span><span
-                                                            class="item-size">XXL</span></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-6">
-                                        <div class="block-filter">
-                                            <h6 class="item-collapse">Colors</h6>
-                                            <div class="box-collapse">
-                                                <ul class="list-color">
-                                                    <li class="active"><span class="box-circle-color"><a
-                                                                class="color-red active" href="#"></a></span><span
-                                                            class="font-xs">Red</span></li>
-                                                    <li><span class="box-circle-color"><a class="color-green"
-                                                                href="#"></a></span><span class="font-xs">Green</span>
-                                                    </li>
-                                                    <li><span class="box-circle-color"><a class="color-orange"
-                                                                href="#"></a></span><span class="font-xs">Orange</span>
-                                                    </li>
-                                                    <li><span class="box-circle-color"><a class="color-yellow"
-                                                                href="#"></a></span><span class="font-xs">Yellow</span>
-                                                    </li>
-                                                    <li><span class="box-circle-color"><a class="color-blue"
-                                                                href="#"></a></span><span class="font-xs">Blue</span>
-                                                    </li>
-                                                    <li><span class="box-circle-color"><a class="color-gray"
-                                                                href="#"></a></span><span class="font-xs">Gray</span>
-                                                    </li>
-                                                    <li><span class="box-circle-color"><a class="color-brown"
-                                                                href="#"></a></span><span class="font-xs">Brown</span>
-                                                    </li>
-                                                    <li><span class="box-circle-color"><a class="color-cyan"
-                                                                href="#"></a></span><span class="font-xs">Cyan</span>
-                                                    </li>
-                                                    <li><span class="box-circle-color"><a class="color-cyan-2"
-                                                                href="#"></a></span><span class="font-xs">Cyan 2</span>
-                                                    </li>
-                                                    <li><span class="box-circle-color"><a class="color-purple"
-                                                                href="#"></a></span><span class="font-xs">Purple</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-6">
-                                        <div class="block-filter">
-                                            <h6 class="item-collapse">Brand</h6>
-                                            <div class="box-collapse">
-                                                <ul class="list-filter-checkbox">
-                                                    <li>
-                                                        <label class="cb-container">
-                                                            <input type="checkbox"><span
-                                                                class="text-small">Seraphine</span><span
-                                                                class="checkmark"></span>
-                                                        </label><span class="number-item">136</span>
-                                                    </li>
-                                                    <li>
-                                                        <label class="cb-container">
-                                                            <input type="checkbox"><span class="text-small">Monica +
-                                                                Andy</span><span class="checkmark"></span>
-                                                        </label><span class="number-item">136</span>
-                                                    </li>
-                                                    <li>
-                                                        <label class="cb-container">
-                                                            <input type="checkbox"><span
-                                                                class="text-small">Maisonette</span><span
-                                                                class="checkmark"></span>
-                                                        </label><span class="number-item">136</span>
-                                                    </li>
-                                                    <li>
-                                                        <label class="cb-container">
-                                                            <input type="checkbox"><span class="text-small">Pink
-                                                                Chicken</span><span class="checkmark"></span>
-                                                        </label><span class="number-item">136</span>
-                                                    </li>
-                                                    <li>
-                                                        <label class="cb-container">
-                                                            <input type="checkbox"><span class="text-small">Hanna
-                                                                Andersson</span><span class="checkmark"></span>
-                                                        </label><span class="number-item">136</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-6">
-                                        <div class="block-filter">
-                                            <h6 class="item-collapse">Tags</h6>
-                                            <div class="box-collapse"><a class="btn btn-tag mr-10 mb-10"
-                                                    href="product-list-2.html">Top Rated</a><a
-                                                    class="btn btn-tag mr-10 mb-10"
-                                                    href="product-list-2.html">Outfits</a><a
-                                                    class="btn btn-tag mr-10 mb-10"
-                                                    href="product-list-2.html#">T-Shirts</a><a
-                                                    class="btn btn-tag mr-10 mb-10" href="product-list-2.html">Boy
-                                                    Shirts</a><a class="btn btn-tag mr-10 mb-10"
-                                                    href="product-list-2.html">Boy Tanks</a><a
-                                                    class="btn btn-tag mr-10 mb-10"
-                                                    href="product-list-2.html">Shoes</a><a
-                                                    class="btn btn-tag mr-10 mb-10" href="product-list-2.html">Boys
-                                                    Denim</a><a class="btn btn-tag mr-10 mb-10"
-                                                    href="product-list-2.html">Toddler Boys</a><a
-                                                    class="btn btn-tag mr-10 mb-10" href="product-list-2.html">Boy
-                                                    Swimwear</a><a class="btn btn-tag mr-10 mb-10"
-                                                    href="product-list-2.html">Boys Interior</a></div>
-                                        </div>
-                                    </div>
+                                    </div>                                   
                                 </div>
                             </div>
                         </div>

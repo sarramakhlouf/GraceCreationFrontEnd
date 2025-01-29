@@ -10,6 +10,7 @@ import { CartService } from '../services/cart.service';
 export class ShopCartComponent implements OnInit {
 
   cart: any[] = [];
+  baseUrl: string = 'http://localhost:8000/storage/';
 
   constructor(private cartService: CartService) { }
 

@@ -12,4 +12,5 @@ export class Product {
     promo_price!: number;
     pack!: boolean;
     pack_id!: number;
+    
 }

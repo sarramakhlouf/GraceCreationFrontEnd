@@ -2,47 +2,57 @@
 <style>
     /* Style global du carousel */
     .carousel-inner {
-    border-radius: 10px; /* Bord arrondi pour le carousel */
-    overflow: hidden;
-    width: 96%;    
-    margin-left: 2%;
+        border-radius: 10px;
+        /* Bord arrondi pour le carousel */
+        overflow: hidden;
+        width: 96%;
+        margin-left: 2%;
     }
+
     /* Style des images du carousel */
     .carousel-item img {
-    object-fit: cover; /* Permet aux images de couvrir toute la zone sans déformation */
-    height: 600px;     /* Taille fixe pour les images */
+        object-fit: cover;
+        /* Permet aux images de couvrir toute la zone sans déformation */
+        height: 600px;
+        /* Taille fixe pour les images */
     }
+
     /* Style des points de navigation */
     .carousel-indicators {
-    position: absolute;
-    bottom: 1px;
-    left: 35%;
-    transform: translateX(-50%);
-    z-index: 10;
+        position: absolute;
+        bottom: 1px;
+        left: 35%;
+        transform: translateX(-50%);
+        z-index: 10;
     }
+
     .carousel-indicators button {
-    background-color: #f7ddb5;
-    border: 2px solid rgb(253, 182, 101);
-    border-radius: 50%;
-    width: 8px;
-    height: 8px;
-    margin: 0 5px;
-    opacity: 0.7;
-   /* transition: background-color 0.2s ease, transform 0.2s ease;*/
+        background-color: #f7ddb5;
+        border: 2px solid rgb(253, 182, 101);
+        border-radius: 50%;
+        width: 8px;
+        height: 8px;
+        margin: 0 5px;
+        opacity: 0.7;
+        /* transition: background-color 0.2s ease, transform 0.2s ease;*/
     }
+
     .carousel-indicators .active {
-    background-color: rgb(253, 182, 101); /* Bleu pour l'indicateur actif */
-    transform: scale(1.2); /* Augmente la taille de l'indicateur actif */
+        background-color: rgb(253, 182, 101);
+        /* Bleu pour l'indicateur actif */
+        transform: scale(1.2);
+        /* Augmente la taille de l'indicateur actif */
     }
+
     /* Effet au survol des indicateurs */
     .carousel-indicators button:hover {
-    opacity: 1;
-    background-color: rgb(253, 182, 101);
+        opacity: 1;
+        background-color: rgb(253, 182, 101);
     }
 </style>
 <!--slides des categories-->
 <style>
-/* Styles pour le conteneur des cartes */
+    /* Styles pour le conteneur des cartes */
     .cardCategory {
         text-align: center;
         margin: 15px auto;
@@ -50,36 +60,40 @@
 
     /* Styles pour l'image circulaire */
     .cardCategory .cardImage {
-    width: 120px; 
-    height: 120px;
-    border: none; 
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+        width: 120px;
+        height: 120px;
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     .cardCategory .cardImage img {
-    width: 100%; 
-    height: 100%;
-    object-fit: cover; 
-}
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 
     .cardCategory .cardImage img:hover {
-        transform: scale(1.1); /* Zoom léger au survol */
+        transform: scale(1.1);
+        /* Zoom léger au survol */
     }
 
     /* Styles pour le texte en dessous des images */
     .cardCategory .cardInfo a {
         font-size: 16px;
-        color: #333; /* Couleur du texte */
+        color: #333;
+        /* Couleur du texte */
         font-weight: 500;
-        text-decoration: none; /* Supprimer le soulignement */
+        text-decoration: none;
+        /* Supprimer le soulignement */
         display: block;
         margin-top: 10px;
-        transition: color 0.3s ease; /* Animation au survol */
+        transition: color 0.3s ease;
+        /* Animation au survol */
     }
 
     /* Styles pour le carrousel */
@@ -89,11 +103,13 @@
 
     /* Styles pour aligner les éléments dans chaque slide */
     .carousel-inner .row {
-        justify-content: center; /* Centrer les éléments */
-        gap: 15px; /* Espacement entre les colonnes */
+        justify-content: center;
+        /* Centrer les éléments */
+        gap: 15px;
+        /* Espacement entre les colonnes */
     }
-
 </style>
+
 <body>
     <main class="main">
 <!------------------------------------------------------SECTION BANNER----------------------------------------------------------------------------->
@@ -101,7 +117,7 @@
 <!------------------------------------------------------------------------------------------------------------------------------------------------->
 <!------------------------------------------------------------------------------------------------------------------------------------------------->
         <section class="section banner-homepage1 banner-homepage4">
-            <div id="carouselExampleAutoplaying" class="carousel slide"  data-bs-ride="carousel" data-bs-interval="3000">
+            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="30">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img src="assets/imgs/page/homepage4/Slide002.png" class="d-block w-100" alt="First slide">
@@ -115,11 +131,14 @@
                 </div>
                 <!-- Points de navigation -->
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
                 </div>
-            </div>              
+            </div>
         </section>
 <!-------------------------------------------------------CATEGORIES SLIDER------------------------------------------------------------------------->
 <!------------------------------------------------------------------------------------------------------------------------------------------------->
@@ -127,14 +146,15 @@
 <!------------------------------------------------------------------------------------------------------------------------------------------------->
         <div class="section block-section block-section-categories-slider wow animate__animated animate__fadeIn">
             <div class="container">
-                <div id="categoriesCarousel" class="carousel slide"  data-bs-ride="carousel" data-bs-interval="3000">
+                <div id="categoriesCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
                     <div class="carousel-inner text-center">
                         <div class="carousel-item active">
                             <div class="row">
                                 <div class="col-2">
                                     <div class="cardCategory">
                                         <div class="cardImage">
-                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat.png" class="d-block w-100" alt="Kids Toys"></a>
+                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat.png"
+                                                    class="d-block w-100" alt="Kids Toys"></a>
                                         </div>
                                         <div class="cardInfo"><a routerLink="/Shop">Kids Toys</a></div>
                                     </div>
@@ -142,7 +162,8 @@
                                 <div class="col-2">
                                     <div class="cardCategory">
                                         <div class="cardImage">
-                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat2.png" class="d-block w-100" alt="Teddy Bear"></a>
+                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat2.png"
+                                                    class="d-block w-100" alt="Teddy Bear"></a>
                                         </div>
                                         <div class="cardInfo"><a routerLink="/Shop">Teddy Bear</a></div>
                                     </div>
@@ -150,7 +171,8 @@
                                 <div class="col-2">
                                     <div class="cardCategory">
                                         <div class="cardImage">
-                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat3.png" class="d-block w-100" alt="Boys"></a>
+                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat3.png"
+                                                    class="d-block w-100" alt="Boys"></a>
                                         </div>
                                         <div class="cardInfo"><a routerLink="/Shop">Boys</a></div>
                                     </div>
@@ -158,7 +180,8 @@
                                 <div class="col-2">
                                     <div class="cardCategory">
                                         <div class="cardImage">
-                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat4.png" class="d-block w-100" alt="Shoes"></a>
+                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat4.png"
+                                                    class="d-block w-100" alt="Shoes"></a>
                                         </div>
                                         <div class="cardInfo"><a routerLink="/Shop">Shoes</a></div>
                                     </div>
@@ -166,7 +189,8 @@
                                 <div class="col-2">
                                     <div class="cardCategory">
                                         <div class="cardImage">
-                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat5.png" class="d-block w-100" alt="Cribs"></a>
+                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat5.png"
+                                                    class="d-block w-100" alt="Cribs"></a>
                                         </div>
                                         <div class="cardInfo"><a routerLink="/Shop">Cribs</a></div>
                                     </div>
@@ -178,7 +202,8 @@
                                 <div class="col-2">
                                     <div class="cardCategory">
                                         <div class="cardImage">
-                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat6.png" class="d-block w-100" alt="Wood Toys"></a>
+                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat6.png"
+                                                    class="d-block w-100" alt="Wood Toys"></a>
                                         </div>
                                         <div class="cardInfo"><a href="#">Wood Toys</a></div>
                                     </div>
@@ -186,7 +211,8 @@
                                 <div class="col-2">
                                     <div class="cardCategory">
                                         <div class="cardImage">
-                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat7.png" class="d-block w-100" alt="Moms"></a>
+                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat7.png"
+                                                    class="d-block w-100" alt="Moms"></a>
                                         </div>
                                         <div class="cardInfo"><a routerLink="/Shop">Moms</a></div>
                                     </div>
@@ -194,7 +220,8 @@
                                 <div class="col-2">
                                     <div class="cardCategory">
                                         <div class="cardImage">
-                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat8.png" class="d-block w-100" alt="Baby"></a>
+                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat8.png"
+                                                    class="d-block w-100" alt="Baby"></a>
                                         </div>
                                         <div class="cardInfo"><a href="#">Baby</a></div>
                                     </div>
@@ -202,7 +229,8 @@
                                 <div class="col-2">
                                     <div class="cardCategory">
                                         <div class="cardImage">
-                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat9.png" class="d-block w-100" alt="Cute Collection"></a>
+                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat9.png"
+                                                    class="d-block w-100" alt="Cute Collection"></a>
                                         </div>
                                         <div class="cardInfo"><a routerLink="/Shop">Cute Collection</a></div>
                                     </div>
@@ -211,8 +239,10 @@
                         </div>
                     </div>
                     <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#categoriesCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#categoriesCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#categoriesCarousel" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#categoriesCarousel" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
                     </div>
                 </div>
             </div>
@@ -230,70 +260,37 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-content">
-                    <div class="tab-pane fade show active" id="girls2" role="tabpanel" aria-labelledby="girls2-tab">
-                        <div class="list-product-5-col">
-                            <div class="cardProduct cardProduct6" *ngFor="let product of products">
+                <div class="box-product-lists" *ngIf="products.length > 0">
+                    <div class="row">
+                        <div class="col-xl-4 col-sm-6" *ngFor="let product of products">
+                            <div class="cardProduct cardProduct6">
                                 <div class="cardImage">
-                                    <label *ngIf="product.promotion === true " class="lbl-hot">Promo</label>
-                                    <a [routerLink]="'/Product'" [queryParams]="{ id: product.id }">
-                                        <img [src]="product.image" [alt]="product.name" class="product-image"/>
+                                    <label *ngIf="product.promotion" class="lbl-hot">Promo</label>
+                                    <a [routerLink]="['/Product', product.id]">
+                                        <img [src]="baseUrl + product.image" [alt]="product.name" class="product-image" />
                                     </a>
-                                    <div class="box-quick-button">
-                                        <!-- Bouton pour afficher une vue rapide dans une fenêtre modale -->
-                                        <a class="btn" aria-label="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal">
-                                            <svg class="d-inline-flex align-items-center justify-content-center" fill="none" stroke="currentColor"
-                                                stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z">
-                                                </path>
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                            </svg>
-                                        </a>
-                                        <!-- Bouton pour ajouter un produit au panier -->
-                                        <a class="btn" href="#">
-                                            <svg class="d-inline-flex align-items-center justify-content-center" width="18" height="18"
-                                                viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M14.25 3.75L15.75 5.25M15.75 5.25L14.25 6.75M15.75 5.25H5.25" stroke="#294646"
-                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                <path d="M3.75 14.25L2.25 12.75M2.25 12.75L3.75 11.25M2.25 12.75L12.75 12.75" stroke="#294646"
-                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                <path d="M2.25 8.25C2.25 6.59315 3.59315 5.25 5.25 5.25" stroke="#294646" stroke-width="1.5"
-                                                    stroke-linecap="round"></path>
-                                                <path d="M15.75 9.75C15.75 11.4069 14.4069 12.75 12.75 12.75" stroke="#294646" stroke-width="1.5"
-                                                    stroke-linecap="round"></path>
-                                            </svg>
-                                        </a>
-                                        <!-- Bouton pour ajouter un produit aux favoris -->
-                                        <a class="btn" href="#">
-                                            <svg class="d-inline-flex align-items-center justify-content-center" fill="none" stroke="currentColor"
-                                                stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z">
-                                                </path>
-                                            </svg>
-                                        </a>
+                                    <div class="button-select">
+                                        <a routerLink="/" (click)="addToCart(product)">Add to Cart</a>
                                     </div>
                                 </div>
                                 <div class="cardInfo">
-                                    <!-- Affiche le nom du produit avec un lien vers la page détaillée -->
-                                    <a [routerLink]="'/productCart? id=' + product.id">
+                                    <a [routerLink]="['/Product', product.id]">
                                         <h6 class="font-md-bold cardTitle">{{ product.name }}</h6>
                                     </a>
-                            
-                                    <!-- Informations supplémentaires sur le produit -->
                                     <div class="product-info-bottom">
                                         <p class="font-lg">
-                                            <!-- Affiche le prix promotionnel s'il y a une promotion, sinon affiche le prix normal -->
-                                            <span *ngIf="product.promotion === true" class="cardDesc mr-15">{{ product.promo_price | currency
-                                                }}</span>
-                                            <span [class.cardPriceSale]="product.promotion === true">{{ product.price | currency }}</span>
+                                            <span *ngIf="product.promotion" class="cardDesc mr-15">{{
+                                                product.promo_price }} TND</span>
+                                            <span [class.cardPriceSale]="product.promotion">{{ product.price}}TND</span>
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div *ngIf="products.length === 0" class="text-center">
+                    <p>No products found for this category.</p>
                 </div>
             </div>
         </section>
@@ -361,7 +358,8 @@
                                     <div class="deals-countdown" data-countdown="2023/12/25 00:00:00"></div>
                                 </div>
                                 <div class="mt-20">
-                                    <div class="button-select"><a class="btn btn-add-cart" routerLink="/productCart">Add to Cart</a></div>
+                                    <div class="button-select"><a class="btn btn-add-cart" routerLink="/productCart">Add
+                                            to Cart</a></div>
                                 </div>
                             </div>
                         </div>
@@ -420,7 +418,8 @@
                                     <div class="deals-countdown" data-countdown="2023/12/25 00:00:00"></div>
                                 </div>
                                 <div class="mt-20">
-                                    <div class="button-select"><a class="btn btn-add-cart" routerLink="/productCart">Add to Cart</a></div>
+                                    <div class="button-select"><a class="btn btn-add-cart" routerLink="/productCart">Add
+                                            to Cart</a></div>
                                 </div>
                             </div>
                         </div>
@@ -715,70 +714,37 @@
                         </ul>
                     </div>
                 </div>
-                <div class="tab-content">
-                    <div class="tab-pane fade show active" id="girls2" role="tabpanel" aria-labelledby="girls2-tab">
-                        <div class="list-product-5-col">
-                            <div class="cardProduct cardProduct6" *ngFor="let product of products">
+                <div class="box-product-lists" *ngIf="products.length > 0">
+                    <div class="row">
+                        <div class="col-xl-4 col-sm-6" *ngFor="let product of products">
+                            <div class="cardProduct cardProduct6">
                                 <div class="cardImage">
-                                    <label *ngIf="product.promotion === true " class="lbl-hot">Promo</label>
-                                    <a [routerLink]="'/Product'" [queryParams]="{ id: product.id }">
-                                        <img [src]="product.image" [alt]="product.name" class="product-image"/>
+                                    <label *ngIf="product.promotion" class="lbl-hot">Promo</label>
+                                    <a [routerLink]="['/Product', product.id]">
+                                        <img [src]="baseUrl + product.image" [alt]="product.name" class="product-image" />
                                     </a>
-                                    <div class="box-quick-button">
-                                        <!-- Bouton pour afficher une vue rapide dans une fenêtre modale -->
-                                        <a class="btn" aria-label="Quick view" data-bs-toggle="modal" data-bs-target="#quickViewModal">
-                                            <svg class="d-inline-flex align-items-center justify-content-center" fill="none" stroke="currentColor"
-                                                stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z">
-                                                </path>
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                            </svg>
-                                        </a>
-                                        <!-- Bouton pour ajouter un produit au panier -->
-                                        <a class="btn" href="#">
-                                            <svg class="d-inline-flex align-items-center justify-content-center" width="18" height="18"
-                                                viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M14.25 3.75L15.75 5.25M15.75 5.25L14.25 6.75M15.75 5.25H5.25" stroke="#294646"
-                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                <path d="M3.75 14.25L2.25 12.75M2.25 12.75L3.75 11.25M2.25 12.75L12.75 12.75" stroke="#294646"
-                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                <path d="M2.25 8.25C2.25 6.59315 3.59315 5.25 5.25 5.25" stroke="#294646" stroke-width="1.5"
-                                                    stroke-linecap="round"></path>
-                                                <path d="M15.75 9.75C15.75 11.4069 14.4069 12.75 12.75 12.75" stroke="#294646" stroke-width="1.5"
-                                                    stroke-linecap="round"></path>
-                                            </svg>
-                                        </a>
-                                        <!-- Bouton pour ajouter un produit aux favoris -->
-                                        <a class="btn" href="#">
-                                            <svg class="d-inline-flex align-items-center justify-content-center" fill="none" stroke="currentColor"
-                                                stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z">
-                                                </path>
-                                            </svg>
-                                        </a>
+                                    <div class="button-select">
+                                        <a routerLink="/" (click)="addToCart(product)">Add to Cart</a>
                                     </div>
                                 </div>
                                 <div class="cardInfo">
-                                    <!-- Affiche le nom du produit avec un lien vers la page détaillée -->
-                                    <a [routerLink]="'/productCart? id=' + product.id">
+                                    <a [routerLink]="['/Product', product.id]">
                                         <h6 class="font-md-bold cardTitle">{{ product.name }}</h6>
                                     </a>
-                            
-                                    <!-- Informations supplémentaires sur le produit -->
                                     <div class="product-info-bottom">
                                         <p class="font-lg">
-                                            <!-- Affiche le prix promotionnel s'il y a une promotion, sinon affiche le prix normal -->
-                                            <span *ngIf="product.promotion === true" class="cardDesc mr-15">{{ product.promo_price | currency
-                                                }}</span>
-                                            <span [class.cardPriceSale]="product.promotion === true">{{ product.price | currency }}</span>
+                                            <span *ngIf="product.promotion" class="cardDesc mr-15">{{
+                                                product.promo_price }} TND</span>
+                                            <span [class.cardPriceSale]="product.promotion">{{ product.price}}TND</span>
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div *ngIf="products.length === 0" class="text-center">
+                    <p>No products found for this category.</p>
                 </div>
             </div>
         </section>
@@ -849,5 +815,5 @@
             </div>
         </section>
     </main>
-    <!------------------------------------------------------SCRIPTS----------------------------------------------------------------------------------->
+
 </body>

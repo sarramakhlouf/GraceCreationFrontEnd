@@ -10,3 +10,80 @@
     display: flex;
     justify-content: center;
   }*/
+  .color-icon {
+    width: 30px; /* Ajustez la taille de l'icône */
+    height: 30px;
+    object-fit: cover;
+}
+
+.box-circle-color {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+/* Style du conteneur du filtre */
+.block-filter {
+  margin-top: 10px;
+}
+
+/* Style du titre */
+h5 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Style du sous-titre */
+h6.item-collapse {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Liste des catégories */
+.list-filter-checkbox {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-filter-checkbox li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Conteneur du label et de la checkbox */
+.col-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espace entre la checkbox et le texte */
+}
+
+/* Style des checkboxes */
+.col-menu input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #a855f7; /* Couleur violette */
+  cursor: pointer;
+}
+
+/* Style des labels */
+.col-menu label a{
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Style du badge du nombre de produits */
+.count-badge {
+  background-color: #eee;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+}
+

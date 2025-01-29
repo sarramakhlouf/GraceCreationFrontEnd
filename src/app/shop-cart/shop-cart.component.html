@@ -18,7 +18,6 @@
           <table class="table table-striped table-cart">
             <thead>
               <tr>
-                <th></th>
                 <th class="text-start">Product</th>
                 <th>Unit Price</th>
                 <th>Quantity</th>
@@ -28,22 +27,24 @@
             </thead>
             <tbody>
               <tr *ngFor="let product of cart">
-                <td><input type="checkbox"></td>
                 <td>
                   <div class="box-product-cart">
-                    <a class="image-product-cart" href="#"><img [src]="product.imageUrl" alt="product"></a>
-                    <a class="title-product-cart" href="product-single.html">{{ product.name }}</a>
+                    <a class="image-product-cart" [routerLink]="['/Product', product.id]"><img [src]="baseUrl + product.image" alt="product"></a>
+                    <a class="title-product-cart" [routerLink]="['/Product', product.id]">{{ product.name }}</a>
                   </div>
                 </td>
                 <td><span class="brand-1">{{ product.price | currency }}</span></td>
                 <td>
-                  <button (click)="decreaseQuantity(product)">-</button>
-                  <input class="input-quantity border-0 text-center" type="number" [(ngModel)]="product.quantity" readonly min=1 >
-                  <button (click)="increaseQuantity(product)">+</button>
+                  <div class="quantity-controls">
+                    <button (click)="decreaseQuantity(product)">-</button>
+                    <input class="input-quantity border-0 text-center" type="number" [(ngModel)]="product.quantity"
+                      readonly min=1>
+                    <button (click)="increaseQuantity(product)">+</button>
+                  </div>
                 </td>
                 <td><span class="brand-1">{{ product.quantity * product.price | currency }}</span></td>
                 <td>
-                  <a href="#" (click)="removeProduct(product.id)">
+                  <a routerLink="/shopCart" (click)="removeProduct(product.id)">
                     <svg class="d-inline-flex align-items-center justify-content-center" width="12" height="12"
                       viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
