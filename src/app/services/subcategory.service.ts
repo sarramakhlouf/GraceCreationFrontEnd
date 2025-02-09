@@ -13,6 +13,11 @@ export class SubcategoryService {
 
   // Récupérer les sous-catégories d'une catégorie spécifique
   getSubcategoriesByCategory(categoryId: number): Observable<SubCategory[]> {
-    return this.http.get<SubCategory[]>(`${this.apiUrl}/${categoryId}`);
+    return this.http.get<SubCategory[]>(`${'/api/subcategories'}/${categoryId}`);
+  }
+
+  getSubCategories(): Observable<any> {
+    return this.http.get('/api/subcategories');
+    
   }
 }

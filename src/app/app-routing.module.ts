@@ -6,8 +6,8 @@ import { ShopComponent } from './shop/shop.component';
 import { ProductComponent } from './product/product.component';
 import { AccountComponent } from './account/account.component';
 import { ContactComponent } from './contact/contact.component';
-import { OrderComponent } from './order/order.component';
 import { ShopCartComponent } from './shop-cart/shop-cart.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -18,8 +18,9 @@ const routes: Routes = [
   { path: 'Product/:id', component: ProductComponent},
   { path: 'Account', component: AccountComponent},
   { path: 'Contact', component: ContactComponent},
-  { path: 'Order', component: OrderComponent},
   { path: 'shopCart', component: ShopCartComponent},
+  { path: 'search-results', component: SearchComponent}
+
 ];
 
 @NgModule({

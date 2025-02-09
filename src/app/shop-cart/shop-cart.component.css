@@ -1,19 +1,145 @@
-.quantity-controls {
-    display: flex;
-    align-items: center;
-  }
-  
-  .quantity-controls button {
-    width: 30px;
-    height: 30px;
-    border: 1px solid #ccc;
-    background: #f5f5f5;
-    cursor: pointer;
-  }
-  
-  .quantity-controls input {
-    width: 50px;
-    text-align: center;
-    margin: 0px 5px;
+/* Style global */
+body {
+  font-family: 'Poppins', sans-serif;
+  color: #111;
 }
-  
+
+h2 {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.breadcrumbs ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.breadcrumbs li {
+  margin-right: 5px;
+}
+
+.breadcrumbs a {
+  text-decoration: none;
+}
+
+/* Tableau du panier */
+.table-cart {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-cart th {
+  background-color: #9E84C8;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.table-cart td {
+  padding: 15px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.box-product-cart {
+  display: flex;
+  align-items: center;
+}
+
+.image-product-cart img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  margin-right: 15px;
+  border-radius: 5px;
+}
+
+.title-product-cart {
+  font-size: 14px;
+  color: #111;
+  text-decoration: none;
+}
+
+/* Boutons de quantité */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*gap: 5px;*/
+}
+
+.quantity-controls button {
+  /*background-color: #9E84C8;*/
+  border: none;
+  color: black;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.quantity-controls input {
+  width: 40px;
+  text-align: center;
+  /*border: 1px solid #ccc;*/
+  border-radius: 3px;
+}
+
+/* Section de calcul du total */
+.box-cart-total {
+  /*background: #f9f9f9;*/
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.item-total {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 16px;
+}
+
+.btn-brand-1-xl-bold {
+  /*background-color: #9E84C8;*/
+  color: white;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* Boutons d'action */
+.btn {
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background-color: #9E84C8;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.block-order {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px; 
+  width: 100%;
+}
+
+.block-order form {
+  margin: 0 auto 0 300px; 
+}
+
+
+

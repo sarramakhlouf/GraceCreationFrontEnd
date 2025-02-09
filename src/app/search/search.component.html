@@ -1,0 +1,5 @@
+<div class="search-results" *ngIf="searchResults.length > 0">
+    <ul>
+      <li *ngFor="let product of searchResults">{{ product.name }}</li>
+    </ul>
+  </div>

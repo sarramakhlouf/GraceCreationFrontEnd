@@ -2,27 +2,29 @@
   <header class="header sticky-bar header-style-4">
     <div class="container">
       <div class="main-header">
-        <div class="header-logo">
+        <div class="header-logo" *ngIf="logoSlide">
           <a class="d-flex" routerLink="">
-            <img alt="GraceCreations" src="assets/imgs/template/logo.svg">
+            <img [src]="baseUrl + logoSlide.image" alt="GraceCreations">
           </a>
-        </div>
+        </div>        
         <div class="header-menu">
           <div class="header-nav">
             <nav class="nav-main-menu d-none d-xl-block">
               <ul class="main-menu">
-                <li class="has-mega-menu"><a class="active" routerLink="">Home</a></li>
-                <li><a routerLink="/About">About</a></li>
+                <li class="has-mega-menu"><a class="active" routerLink="">Acceuil</a></li>
+                <li><a routerLink="/About">A propos</a></li>
                 <li class="has-mega-menu">
-                  <a routerLink="/Shop">Shop</a>
+                  <a routerLink="/Shop">Nos produits</a>
                   <div class="sub-menu">
                     <div class="menu-inner">
                       <!-- Affichage des catégories -->
                       <div class="col-menu" *ngFor="let category of categories">
-                        <h6 class="font-lg-bold mb-10" ><a [routerLink]="['/Shop', category.id]"> {{ category.name }} </a></h6>
+                        <h6 class="font-lg-bold mb-10"><a [routerLink]="['/Shop', category.id]"> {{ category.name }}
+                          </a></h6>
                         <!-- Affichage des sous-catégories pour chaque catégorie -->
                         <div *ngIf="subcategories[category.id] && subcategories[category.id].length > 0">
-                          <a *ngFor="let subcategory of subcategories[category.id]" [routerLink]="['/Shop', category.id, subcategory.id]">
+                          <a *ngFor="let subcategory of subcategories[category.id]"
+                            [routerLink]="['/Shop', category.id, subcategory.id]">
                             {{ subcategory.name }}
                           </a>
                         </div>
@@ -32,14 +34,14 @@
                           <p>No subcategories available</p>
                         </div>
                       </div>
-                
+
                       <!-- Section d'image -->
                       <div class="col-menu-2">
                         <img src="assets/imgs/template/megamenu.png" alt="GraceCreations">
                       </div>
                     </div>
                   </div>
-                </li>                
+                </li>
                 <li><a routerLink="/Contact">Contact</a></li>
               </ul>
             </nav>
@@ -48,25 +50,20 @@
         <div class="header-account">
           <div class="header-search">
             <div class="box-formsearch">
-              <form (ngSubmit)="onSearch()">
-                <input
-                  class="form-control"
-                  type="text"
-                  placeholder="Search"
-                  [(ngModel)]="searchTerm"
-                  name="search"
-                  required
-                />
-                <button class="btn-search" type="submit">
-                  <i class="icon-search"></i>
-                </button>
+              <form (submit)="onSearch($event)">
+                <input class="form-control" type="text" [(ngModel)]="searchQuery" name="search"
+                  (input)="onInputChange()" placeholder="Search">
+                <input class="btn-search" type="submit" value="">
               </form>
             </div>
           </div>
-          <a class="account-icon account" href="#">
-            <svg class="d-inline-flex align-items-center justify-content-center" width="28" height="28" viewbox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+          <!--<a class="account-icon account" routerLink="/search-results">
+            <svg class="d-inline-flex align-items-center justify-content-center" width="28" height="28"
+              viewbox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
               <g clip-path="url(#clip0_116_451)">
-                <path d="M6 24C6 21.8783 6.84285 19.8434 8.34315 18.3431C9.84344 16.8429 11.8783 16 14 16C16.1217 16 18.1566 16.8429 19.6569 18.3431C21.1571 19.8434 22 21.8783 22 24H20C20 22.4087 19.3679 20.8826 18.2426 19.7574C17.1174 18.6321 15.5913 18 14 18C12.4087 18 10.8826 18.6321 9.75736 19.7574C8.63214 20.8826 8 22.4087 8 24H6ZM14 15C10.685 15 8 12.315 8 9C8 5.685 10.685 3 14 3C17.315 3 20 5.685 20 9C20 12.315 17.315 15 14 15ZM14 13C16.21 13 18 11.21 18 9C18 6.79 16.21 5 14 5C11.79 5 10 6.79 10 9C10 11.21 11.79 13 14 13Z"></path>
+                <path
+                  d="M6 24C6 21.8783 6.84285 19.8434 8.34315 18.3431C9.84344 16.8429 11.8783 16 14 16C16.1217 16 18.1566 16.8429 19.6569 18.3431C21.1571 19.8434 22 21.8783 22 24H20C20 22.4087 19.3679 20.8826 18.2426 19.7574C17.1174 18.6321 15.5913 18 14 18C12.4087 18 10.8826 18.6321 9.75736 19.7574C8.63214 20.8826 8 22.4087 8 24H6ZM14 15C10.685 15 8 12.315 8 9C8 5.685 10.685 3 14 3C17.315 3 20 5.685 20 9C20 12.315 17.315 15 14 15ZM14 13C16.21 13 18 11.21 18 9C18 6.79 16.21 5 14 5C11.79 5 10 6.79 10 9C10 11.21 11.79 13 14 13Z">
+                </path>
               </g>
               <defs>
                 <clippath id="clip0_116_451">
@@ -74,10 +71,10 @@
                 </clippath>
               </defs>
             </svg>
-          </a>        
-          <a class="account-icon cart" href="#">
-            <span class="number-tag">5</span>
-            <svg width="28" height="28" viewbox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+          </a>-->
+          <a class="account-icon cart" routerLink="/shopCart">
+            <span class="number-tag">{{ cartItemCount }}</span>
+            <svg width="28" height="28" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
               <g clip-path="url(#clip0_116_450)">
                 <path
                   d="M9 10V8C9 6.67392 9.52678 5.40215 10.4645 4.46447C11.4021 3.52678 12.6739 3 14 3C15.3261 3 16.5979 3.52678 17.5355 4.46447C18.4732 5.40215 19 6.67392 19 8V10H22C22.2652 10 22.5196 10.1054 22.7071 10.2929C22.8946 10.4804 23 10.7348 23 11V23C23 23.2652 22.8946 23.5196 22.7071 23.7071C22.5196 23.8946 22.2652 24 22 24H6C5.73478 24 5.48043 23.8946 5.29289 23.7071C5.10536 23.5196 5 23.2652 5 23V11C5 10.7348 5.10536 10.4804 5.29289 10.2929C5.48043 10.1054 5.73478 10 6 10H9ZM9 12H7V22H21V12H19V14H17V12H11V14H9V12ZM11 10H17V8C17 7.20435 16.6839 6.44129 16.1213 5.87868C15.5587 5.31607 14.7956 5 14 5C13.2044 5 12.4413 5.31607 11.8787 5.87868C11.3161 6.44129 11 7.20435 11 8V10Z">
@@ -89,7 +86,7 @@
                 </clippath>
               </defs>
             </svg>
-          </a>
+          </a>                            
         </div>
       </div>
     </div>
@@ -103,24 +100,17 @@
     <div class="section block-section block-section-gallery block-section-instagram-5">
       <div class="container">
         <div class="top-head top-head-abs justify-content-center">
-          <p class="font-md-bold text-uppercase brand-1 wow fadeInDown">FOLLOW US ON INSTAGRAM</p><a class="GraceCreations-icon"
-            href="#">GraceCreations.com</a>
+          <p class="font-md-bold text-uppercase brand-1 wow fadeInDown">FOLLOW US ON INSTAGRAM</p>
+          <a class="GraceCreations-icon" href="https://www.instagram.com/gracecreations.art/" target="_blank">GraceCreations.com</a>
         </div>
       </div>
       <div class="box-gallery-instagram">
         <div class="box-gallery-instagram-inner">
-          <div class="gallery-item wow fadeInLeft"><img src="assets/imgs/page/homepage4/insta.png" alt="GraceCreations"></div>
-          <div class="gallery-item wow fadeInUp"><img src="assets/imgs/page/homepage4/insta2.png" alt="GraceCreations"></div>
-          <div class="gallery-item wow fadeInUp"><img src="assets/imgs/page/homepage4/insta3.png" alt="GraceCreations"></div>
-          <div class="gallery-item wow fadeInUp"><img src="assets/imgs/page/homepage4/insta4.png" alt="GraceCreations"></div>
-          <div class="gallery-item wow fadeInRight"><img src="assets/imgs/page/homepage4/insta5.png" alt="GraceCreations"></div>
-          <div class="gallery-item wow fadeInRight"><img src="assets/imgs/page/homepage4/insta6.png" alt="GraceCreations"></div>
-          <div class="gallery-item wow fadeInRight d-md-block d-none"><img src="assets/imgs/page/homepage4/insta7.png"
-              alt="GraceCreations"></div>
-          <div class="gallery-item wow fadeInRight d-md-block d-none"><img src="assets/imgs/page/homepage4/insta8.png"
-              alt="GraceCreations"></div>
+          <div *ngFor="let slide of instagramSlide" class="gallery-item wow fadeInLeft">
+            <img [src]="baseUrl + slide.image" alt="GraceCreations" width="500px" height="200px">
+          </div>
         </div>
-      </div>
+      </div>      
     </div>
   </main>
   <!--------------------------------------------------------------FOOTER----------------------------------------------------------------------------->
@@ -131,47 +121,42 @@
     <div class="footer-1">
       <div class="container">
         <div class="row">
-          <div class="col-lg-3 col-md-6 order-lg-1 order-md-2 mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".0s">
+          <!-- Contact -->
+          <div class="col-lg-3 col-md-6 order-lg-1 order-md-2 mb-30 wow animate__animated animate__fadeIn"
+            data-wow-delay=".0s">
             <h5 class="neutral-900 text-uppercase mb-30">CONTACT</h5>
             <p class="neutral-900 font-lg desc-company">Monday to Friday 8 a.m - 5 p.m</p>
             <p class="neutral-900 font-lg phone-footer">+01 456 789</p>
             <p class="neutral-900 font-lg email-footer">contact&#64;kidify.com</p>
           </div>
-          <div class="col-lg-8 mb-30">
-            <div class="row">
-              <div class="col-lg-3 col-md-6 mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
-                <h5 class="neutral-900 text-uppercase mb-30">social</h5>
-                <ul class="menu-footer">
-                  <li><a class="facebook" href="#">Facebook</a></li>
-                  <li><a class="instagram" href="#">Instagram</a></li>
-                </ul>
-              </div>
-            </div>
+
+          <!-- Logo -->
+          <div class="col-lg-2 col-md-6 footer-logo-container mb-30 wow animate__animated animate__fadeIn"
+            data-wow-delay=".05s">
+            <a href="index.html">
+              <img src="assets/imgs/template/logo-footer.svg" alt="GraceCreations" class="footer-logo">
+            </a>
+          </div>
+
+          <!-- Social Media -->
+          <div class="col-lg-3 col-md-6 mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
+            <h5 class="neutral-900 text-uppercase mb-30">SOCIAL</h5>
+            <ul class="menu-footer">
+              <li><a class="facebook" href="#">Facebook</a></li>
+              <li><a class="instagram" href="#">Instagram</a></li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
+
     <div class="footer-2">
       <div class="container">
         <div class="footer-bottom">
           <div class="box-container-footer">
             <div class="row align-items-center">
-              <div class="col-lg-4 col-md-12 text-center text-lg-start mb-20">
-                <a href="index.html"><img src="assets/imgs/template/logo-footer.svg" alt="GraceCreations"></a>
-              </div>
               <div class="col-lg-4 col-md-12 text-center mb-20">
                 <span class="body-p1 neutral-900 mr-5">©2023</span><a href="#">GraceCreations</a>. All rights reserved
-              </div>
-              <div class="col-lg-4 col-md-12 text-center text-lg-end mb-20">
-                <div class="d-flex justify-content-center justify-content-lg-end align-items-center box-all-payments">
-                  <div class="d-inline-block box-payments">
-                    <img src="assets/imgs/template/icons/mastercard.svg" alt="GraceCreations">
-                    <img src="assets/imgs/template/icons/googlepay.svg" alt="GraceCreations">
-                    <img src="assets/imgs/template/icons/payoneer.svg" alt="GraceCreations">
-                    <img src="assets/imgs/template/icons/applepay.svg" alt="GraceCreations">
-                    <img src="assets/imgs/template/icons/paypal.svg" alt="GraceCreations">
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -179,18 +164,21 @@
       </div>
     </div>
   </footer>
-<!------------------------------------------------------ACCOUNT------------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
+
+  <!------------------------------------------------------ACCOUNT------------------------------------------------------------------------------------->
+  <!------------------------------------------------------------------------------------------------------------------------------------------------->
+  <!------------------------------------------------------------------------------------------------------------------------------------------------->
+  <!------------------------------------------------------------------------------------------------------------------------------------------------->
   <div class="box-popup-account">
     <div class="box-account-overlay"></div>
     <div class="box-account-wrapper"><a class="btn-close-popup btn-close-popup-account" href="#">
-        <svg class="icon-16 d-inline-flex align-items-center justify-content-center" fill="#111111" stroke="#111111" width="24" height="24" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg class="icon-16 d-inline-flex align-items-center justify-content-center" fill="#111111" stroke="#111111"
+          width="24" height="24" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg></a>
       <div class="box-banner-popup"></div>
-      <div class="form-account-info"><a class="button-tab btn-for-login active" href="#">Login</a><a class="button-tab btn-for-signup" href="#">Sign up</a>
+      <div class="form-account-info"><a class="button-tab btn-for-login active" href="#">Login</a><a
+          class="button-tab btn-for-signup" href="#">Sign up</a>
         <div class="form-login">
           <div class="form-group">
             <input class="form-control" type="text" placeholder="Email">
@@ -219,14 +207,16 @@
           </div>
           <div class="form-group">
             <label class="d-flex align-items-start">
-              <input class="cb-agree" type="checkbox"><span class="text-agree body-p2">Join for Free and start earning points today. Benefits include 15% off your first purchase,</span>
+              <input class="cb-agree" type="checkbox"><span class="text-agree body-p2">Join for Free and start earning
+                points today. Benefits include 15% off your first purchase,</span>
             </label>
           </div>
           <div class="form-group">
             <button class="btn btn-login d-block">Create my account</button>
           </div>
           <div class="text-center">
-            <p class="body-p2 neutral-medium-dark">Already have an account?<a class="neutral-dark login-now" href="#">Login Now</a></p>
+            <p class="body-p2 neutral-medium-dark">Already have an account?<a class="neutral-dark login-now"
+                href="#">Login Now</a></p>
           </div>
           <div class="form-group mt-100 text-center"><a class="font-sm" href="#">Privacy & Terms</a></div>
         </div>
@@ -241,17 +231,18 @@
             <button class="btn btn-login d-block">Recover</button>
           </div>
           <div class="text-center">
-            <p class="body-p2 neutral-medium-dark">Already have an account?<a class="neutral-dark login-now" href="#">Login Now</a></p>
+            <p class="body-p2 neutral-medium-dark">Already have an account?<a class="neutral-dark login-now"
+                href="#">Login Now</a></p>
           </div>
           <div class="form-group mt-100 text-center"><a class="font-sm" href="#">Privacy & Terms</a></div>
         </div>
       </div>
     </div>
   </div>
-<!------------------------------------------------------YOUR CART--------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
+  <!------------------------------------------------------YOUR CART--------------------------------------------------------------------------------->
+  <!------------------------------------------------------------------------------------------------------------------------------------------------->
+  <!------------------------------------------------------------------------------------------------------------------------------------------------->
+  <!------------------------------------------------------------------------------------------------------------------------------------------------->
   <div class="box-popup-cart perfect-scrollbar">
     <div class="box-cart-overlay"></div>
     <div class="box-cart-wrapper"><a class="btn-close-popup" href="#">
@@ -316,33 +307,9 @@
         </svg></a>
     </div>
   </div>
-<!------------------------------------------------------SCRIPTS----------------------------------------------------------------------------------->
-<script src="../../assets/js/vendors/modernizr-3.6.0.min.js"></script>
-<script src="../../assets/js/vendors/jquery-3.6.0.min.js"></script>
-<script src="../../assets/js/vendors/jquery-migrate-3.3.0.min.js"></script>
-<script src="../../assets/js/vendors/bootstrap.bundle.min.js"></script>
-<script src="../../assets/js/vendors/waypoints.js"></script>
-<script src="../../assets/js/vendors/wow.js"></script>
-<script src="../../assets/js/vendors/magnific-popup.js"></script>
-<script src="../../assets/js/vendors/perfect-scrollbar.min.js"></script>
-<script src="../../assets/js/vendors/select2.min.js"></script>
-<script src="../../assets/js/vendors/isotope.js"></script>
-<script src="../../assets/js/vendors/scrollup.js"></script>
-<script src="../../assets/js/vendors/swiper-bundle.min.js"></script>
-<script src="../../assets/js/vendors/noUISlider.js"></script>
-<script src="../../assets/js/vendors/slider.js"></script>
-<!-- Count down-->
-<script src="../../assets/js/vendors/counterup.js"></script>
-<script src="../../assets/js/vendors/jquery.countdown.min.js"></script>
-<!-- Count down-->
-<script src="../../assets/js/vendors/jquery.elevatezoom.js"></script>
-<script src="../../assets/js/vendors/slick.js"></script>
-<script src="../../assets/js/vendors/jquery-ui.js"></script>
-<script src="../../assets/js/vendors/jquery.timepicker.min.js"></script>
-<script src="../../assets/js/vendors/glightbox.min.js"></script>
-<script src="../../assets/js/main.js?v=1.0.0"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
- <script>
+  <!------------------------------------------------------SCRIPTS----------------------------------------------------------------------------------->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <!--<script>
     // Sélectionner l'icône et le popup
     const accountIcon = document.querySelector('.account-icon account');
     const popupAccount = document.querySelector('.box-popup-account');
@@ -365,5 +332,5 @@
         popupAccount.style.display = 'none'; // Masquer le popup si on clique sur l'overlay
     });
   
-  </script>
+  </script>-->
 </body>

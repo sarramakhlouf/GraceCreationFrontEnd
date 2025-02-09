@@ -1,115 +1,3 @@
-<!--slides des images-->
-<style>
-    /* Style global du carousel */
-    .carousel-inner {
-        border-radius: 10px;
-        /* Bord arrondi pour le carousel */
-        overflow: hidden;
-        width: 96%;
-        margin-left: 2%;
-    }
-
-    /* Style des images du carousel */
-    .carousel-item img {
-        object-fit: cover;
-        /* Permet aux images de couvrir toute la zone sans déformation */
-        height: 600px;
-        /* Taille fixe pour les images */
-    }
-
-    /* Style des points de navigation */
-    .carousel-indicators {
-        position: absolute;
-        bottom: 1px;
-        left: 35%;
-        transform: translateX(-50%);
-        z-index: 10;
-    }
-
-    .carousel-indicators button {
-        background-color: #f7ddb5;
-        border: 2px solid rgb(253, 182, 101);
-        border-radius: 50%;
-        width: 8px;
-        height: 8px;
-        margin: 0 5px;
-        opacity: 0.7;
-        /* transition: background-color 0.2s ease, transform 0.2s ease;*/
-    }
-
-    .carousel-indicators .active {
-        background-color: rgb(253, 182, 101);
-        /* Bleu pour l'indicateur actif */
-        transform: scale(1.2);
-        /* Augmente la taille de l'indicateur actif */
-    }
-
-    /* Effet au survol des indicateurs */
-    .carousel-indicators button:hover {
-        opacity: 1;
-        background-color: rgb(253, 182, 101);
-    }
-</style>
-<!--slides des categories-->
-<style>
-    /* Styles pour le conteneur des cartes */
-    .cardCategory {
-        text-align: center;
-        margin: 15px auto;
-    }
-
-    /* Styles pour l'image circulaire */
-    .cardCategory .cardImage {
-        width: 120px;
-        height: 120px;
-        border: none;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .cardCategory .cardImage img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .cardCategory .cardImage img:hover {
-        transform: scale(1.1);
-        /* Zoom léger au survol */
-    }
-
-    /* Styles pour le texte en dessous des images */
-    .cardCategory .cardInfo a {
-        font-size: 16px;
-        color: #333;
-        /* Couleur du texte */
-        font-weight: 500;
-        text-decoration: none;
-        /* Supprimer le soulignement */
-        display: block;
-        margin-top: 10px;
-        transition: color 0.3s ease;
-        /* Animation au survol */
-    }
-
-    /* Styles pour le carrousel */
-    .carousel {
-        padding: 10px 0;
-    }
-
-    /* Styles pour aligner les éléments dans chaque slide */
-    .carousel-inner .row {
-        justify-content: center;
-        /* Centrer les éléments */
-        gap: 15px;
-        /* Espacement entre les colonnes */
-    }
-</style>
-
 <body>
     <main class="main">
 <!------------------------------------------------------SECTION BANNER----------------------------------------------------------------------------->
@@ -117,26 +5,20 @@
 <!------------------------------------------------------------------------------------------------------------------------------------------------->
 <!------------------------------------------------------------------------------------------------------------------------------------------------->
         <section class="section banner-homepage1 banner-homepage4">
-            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="30">
+            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="assets/imgs/page/homepage4/Slide002.png" class="d-block w-100" alt="First slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/imgs/page/homepage4/Slide004.png" class="d-block w-100" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/imgs/page/homepage4/Slide003.png" class="d-block w-100" alt="Third slide">
+                    <div *ngFor="let slide of filteredSlides; let i = index" class="carousel-item" [class.active]="i === 0">
+                        <a *ngIf="slide.category_id && slide.subcategory_id" [routerLink]="['/Shop', slide.category_id, slide.subcategory_id]">
+                            <img [src]="baseUrl + slide.image" class="d-block w-100" [alt]="'Slide ' + (i + 1)">
+                        </a>
                     </div>
                 </div>
+            
                 <!-- Points de navigation -->
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="0"
-                        class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
+                    <button *ngFor="let slide of filteredSlides; let i = index" type="button" data-bs-target="#carouselExampleAutoplaying"
+                        [attr.data-bs-slide-to]="i" [class.active]="i === 0" [attr.aria-label]="'Slide ' + (i - 1)">
+                    </button>
                 </div>
             </div>
         </section>
@@ -148,101 +30,32 @@
             <div class="container">
                 <div id="categoriesCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
                     <div class="carousel-inner text-center">
-                        <div class="carousel-item active">
+                        <div *ngFor="let chunk of getSubCategoryChunks(); let i = index" class="carousel-item" [class.active]="i === 0">
                             <div class="row">
-                                <div class="col-2">
+                                <div *ngFor="let subcategory of chunk" class="col-2">
                                     <div class="cardCategory">
                                         <div class="cardImage">
-                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat.png"
-                                                    class="d-block w-100" alt="Kids Toys"></a>
+                                            <a [routerLink]="['/Shop', subcategory.categoryId, subcategory.id]">
+                                                <img [src]="baseUrl + subcategory.image" class="d-block w-100" [alt]="subcategory.name">
+                                            </a>
                                         </div>
-                                        <div class="cardInfo"><a routerLink="/Shop">Kids Toys</a></div>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="cardCategory">
-                                        <div class="cardImage">
-                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat2.png"
-                                                    class="d-block w-100" alt="Teddy Bear"></a>
+                                        <div class="cardInfo">
+                                            <a [routerLink]="['/Shop', subcategory.categoryId, subcategory.id]">{{ subcategory.name }}</a>
                                         </div>
-                                        <div class="cardInfo"><a routerLink="/Shop">Teddy Bear</a></div>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="cardCategory">
-                                        <div class="cardImage">
-                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat3.png"
-                                                    class="d-block w-100" alt="Boys"></a>
-                                        </div>
-                                        <div class="cardInfo"><a routerLink="/Shop">Boys</a></div>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="cardCategory">
-                                        <div class="cardImage">
-                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat4.png"
-                                                    class="d-block w-100" alt="Shoes"></a>
-                                        </div>
-                                        <div class="cardInfo"><a routerLink="/Shop">Shoes</a></div>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="cardCategory">
-                                        <div class="cardImage">
-                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat5.png"
-                                                    class="d-block w-100" alt="Cribs"></a>
-                                        </div>
-                                        <div class="cardInfo"><a routerLink="/Shop">Cribs</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="row">
-                                <div class="col-2">
-                                    <div class="cardCategory">
-                                        <div class="cardImage">
-                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat6.png"
-                                                    class="d-block w-100" alt="Wood Toys"></a>
-                                        </div>
-                                        <div class="cardInfo"><a href="#">Wood Toys</a></div>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="cardCategory">
-                                        <div class="cardImage">
-                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat7.png"
-                                                    class="d-block w-100" alt="Moms"></a>
-                                        </div>
-                                        <div class="cardInfo"><a routerLink="/Shop">Moms</a></div>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="cardCategory">
-                                        <div class="cardImage">
-                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat8.png"
-                                                    class="d-block w-100" alt="Baby"></a>
-                                        </div>
-                                        <div class="cardInfo"><a href="#">Baby</a></div>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="cardCategory">
-                                        <div class="cardImage">
-                                            <a routerLink="/Shop"><img src="assets/imgs/page/homepage3/cat9.png"
-                                                    class="d-block w-100" alt="Cute Collection"></a>
-                                        </div>
-                                        <div class="cardInfo"><a routerLink="/Shop">Cute Collection</a></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Points de navigation -->
                     <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#categoriesCarousel" data-bs-slide-to="0" class="active"
-                            aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#categoriesCarousel" data-bs-slide-to="1"
-                            aria-label="Slide 2"></button>
+                        <button *ngFor="let chunk of getSubCategoryChunks(); let i = index" type="button" 
+                                data-bs-target="#categoriesCarousel"
+                                [attr.data-bs-slide-to]="i"
+                                [class.active]="i === 0"
+                                [attr.aria-label]="'Slide ' + (i + 1)">
+                        </button>
                     </div>
                 </div>
             </div>
@@ -251,49 +64,51 @@
 <!------------------------------------------------------------------------------------------------------------------------------------------------->
 <!------------------------------------------------------------------------------------------------------------------------------------------------->
 <!------------------------------------------------------------------------------------------------------------------------------------------------->
-        <section class="section block-section block-section-features-product">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-5">
-                        <div class="top-head">
-                            <h4 class="text-uppercase brand-1">Featured Product</h4>
-                        </div>
-                    </div>
+<section class="section block-section block-section-features-product">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="top-head">
+                    <h4 class="text-uppercase brand-1">Produits Phares</h4>
                 </div>
-                <div class="box-product-lists" *ngIf="products.length > 0">
-                    <div class="row">
-                        <div class="col-xl-4 col-sm-6" *ngFor="let product of products">
-                            <div class="cardProduct cardProduct6">
-                                <div class="cardImage">
-                                    <label *ngIf="product.promotion" class="lbl-hot">Promo</label>
-                                    <a [routerLink]="['/Product', product.id]">
-                                        <img [src]="baseUrl + product.image" [alt]="product.name" class="product-image" />
-                                    </a>
-                                    <div class="button-select">
-                                        <a routerLink="/" (click)="addToCart(product)">Add to Cart</a>
-                                    </div>
+            </div>
+        </div>
+        <div class="box-product-lists" *ngIf="products.length > 0">
+            <div class="row">
+                <ng-container *ngFor="let product of products">
+                    <div class="col-xl-4 col-sm-6" *ngIf="product.featured">
+                        <div class="cardProduct cardProduct6">
+                            <div class="cardImage">
+                                <label *ngIf="product.promotion" class="lbl-hot">Promo</label>
+                                <a [routerLink]="['/Product', product.id]">
+                                    <img [src]="baseUrl + product.image" [alt]="product.name" class="product-image" />
+                                </a>
+                                <div class="button-select">
+                                    <a routerLink="/" (click)="addToCart(product)">Add to Cart</a>
                                 </div>
-                                <div class="cardInfo">
-                                    <a [routerLink]="['/Product', product.id]">
-                                        <h6 class="font-md-bold cardTitle">{{ product.name }}</h6>
-                                    </a>
-                                    <div class="product-info-bottom">
-                                        <p class="font-lg">
-                                            <span *ngIf="product.promotion" class="cardDesc mr-15">{{
-                                                product.promo_price }} TND</span>
-                                            <span [class.cardPriceSale]="product.promotion">{{ product.price}}TND</span>
-                                        </p>
-                                    </div>
+                            </div>
+                            <div class="cardInfo">
+                                <a [routerLink]="['/Product', product.id]">
+                                    <h6 class="font-md-bold cardTitle">{{ product.name }}</h6>
+                                </a>
+                                <div class="product-info-bottom">
+                                    <p class="font-lg">
+                                        <span *ngIf="product.promotion" class="cardDesc mr-15">{{ product.promo_price }} TND</span>
+                                        <span [class.cardPriceSale]="product.promotion">{{ product.price }} TND</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div *ngIf="products.length === 0" class="text-center">
-                    <p>No products found for this category.</p>
-                </div>
+                </ng-container>
             </div>
-        </section>
+        </div>
+        <div *ngIf="products.length === 0" class="text-center">
+            <p>No products found for this category.</p>
+        </div>
+    </div>
+</section>
+
 <!-------------------------------------------------------------DEAL OF THE DAY -------------------------------------------------------------------->
 <!------------------------------------------------------------------------------------------------------------------------------------------------->
 <!------------------------------------------------------------------------------------------------------------------------------------------------->
@@ -692,55 +507,38 @@
         <section class="section block-section-1">
             <div class="container">
                 <div class="text-center">
-                    <p class="font-xl brand-2 wow animate__animated animate__fadeIn"><span class="rounded-text">NEW IN
-                            STORE</span></p>
-                    <div class="box-tabs wow animate__animated animate__fadeIn">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="girls-tab" data-bs-toggle="tab"
-                                    data-bs-target="#girls" type="button" role="tab" aria-controls="girls"
-                                    aria-selected="true">Girls' Clothing</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="boys-tab" data-bs-toggle="tab" data-bs-target="#boys"
-                                    type="button" role="tab" aria-controls="boys" aria-selected="false">Boys'
-                                    Clothing</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="accessories-tab" data-bs-toggle="tab"
-                                    data-bs-target="#accessories" type="button" role="tab" aria-controls="accessories"
-                                    aria-selected="false">Accessories</button>
-                            </li>
-                        </ul>
-                    </div>
+                    <p class="font-xl brand-2 wow animate__animated animate__fadeIn"><span class="rounded-text">NOS NOUVEAUTÉS</span></p>
                 </div>
                 <div class="box-product-lists" *ngIf="products.length > 0">
                     <div class="row">
-                        <div class="col-xl-4 col-sm-6" *ngFor="let product of products">
-                            <div class="cardProduct cardProduct6">
-                                <div class="cardImage">
-                                    <label *ngIf="product.promotion" class="lbl-hot">Promo</label>
-                                    <a [routerLink]="['/Product', product.id]">
-                                        <img [src]="baseUrl + product.image" [alt]="product.name" class="product-image" />
-                                    </a>
-                                    <div class="button-select">
-                                        <a routerLink="/" (click)="addToCart(product)">Add to Cart</a>
+                        <ng-container *ngFor="let product of products">
+                            <div class="col-xl-4 col-sm-6" *ngIf="product.new">
+                                <div class="cardProduct cardProduct6">
+                                    <div class="cardImage">
+                                        <label *ngIf="product.promotion" class="lbl-hot">Promo</label>
+                                        <a [routerLink]="['/Product', product.id]">
+                                            <img [src]="baseUrl + product.image" [alt]="product.name" class="product-image" />
+                                        </a>
+                                        <div class="button-select">
+                                            <a routerLink="/" (click)="addToCart(product)">Add to Cart</a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="cardInfo">
-                                    <a [routerLink]="['/Product', product.id]">
-                                        <h6 class="font-md-bold cardTitle">{{ product.name }}</h6>
-                                    </a>
-                                    <div class="product-info-bottom">
-                                        <p class="font-lg">
-                                            <span *ngIf="product.promotion" class="cardDesc mr-15">{{
-                                                product.promo_price }} TND</span>
-                                            <span [class.cardPriceSale]="product.promotion">{{ product.price}}TND</span>
-                                        </p>
+                                    <div class="cardInfo">
+                                        <a [routerLink]="['/Product', product.id]">
+                                            <h6 class="font-md-bold cardTitle">{{ product.name }}</h6>
+                                        </a>
+                                        <div class="product-info-bottom">
+                                            <p class="font-lg">
+                                                <span *ngIf="product.promotion" class="cardDesc mr-15">{{
+                                                    product.promo_price }} TND</span>
+                                                <span [class.cardPriceSale]="product.promotion">{{ product.price}}TND</span>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </ng-container>
+                        
                     </div>
                 </div>
                 <div *ngIf="products.length === 0" class="text-center">
@@ -759,9 +557,8 @@
                         <div class="cardTrending cardTrendingRight"
                             style="background-image: url(assets/imgs/page/homepage5/bg-latest.png)">
                             <div class="cardInfo">
-                                <h4 class="heading-4 mb-15">Latest Trending</h4>
-                                <p class="font-2xl mb-30">Holiday Deals On Fashion Clothes</p><a class="btn btn-brand-1"
-                                    href="#">Shop NOW</a>
+                                <h4 class="heading-4 mb-15">Dernières tendances</h4>
+                                <p class="font-2xl mb-30">Offres de la Saint-Valentin</p><a class="btn btn-brand-1" routerLink="/Shop">Achetez maintenant</a>
                             </div>
                         </div>
                     </div>
@@ -778,36 +575,8 @@
                         <div class="cardTrending"
                             style="background-image: url(assets/imgs/page/homepage5/bg-comfortable.png)">
                             <div class="cardInfo">
-                                <h4 class="heading-4 mb-15">Comfortable Clothees</h4>
-                                <p class="font-2xl mb-30">Practical Clothes For Your Kids</p><a class="btn btn-brand-1"
-                                    href="#">Shop NOW</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-<!-------------------------------------------------------get up to 25%--------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
-        <section class="section block-section block-subscriber block-subscriber-2">
-            <div class="container">
-                <div class="box-subscriber-2 box-subscriber-3">
-                    <div class="row align-items-end">
-                        <div class="col-lg-1"> </div>
-                        <div class="col-lg-5">
-                            <h4 class="heading-4 brand-2 mb-20">Sing up and get up to <span class="brand-3">25%
-                                </span>off <br class="d-none d-lg-block">your first purchase </h4>
-                            <p class="font-md neutral-500">Receive offter, product alerts, styling inspiration and more.
-                                By signing up, you agree to our Privace Policy</p>
-                        </div>
-                        <div class="col-lg-5">
-                            <div class="box-form-newsletter">
-                                <form action="#">
-                                    <input class="form-control" type="text" placeholder="Enter your email">
-                                    <button class="btn btn-brand-1">Subscriber </button>
-                                </form>
+                                <h4 class="heading-4 mb-15">Des sacs confortables</h4>
+                                <p class="font-2xl mb-30">Des sacs pratiques pour vos enfants</p><a class="btn btn-brand-1" routerLink="/Shop">Achetez maintenant</a>
                             </div>
                         </div>
                     </div>

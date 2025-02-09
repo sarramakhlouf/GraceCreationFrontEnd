@@ -40,7 +40,17 @@
     min-width: 488px;
     display: flex;
     align-items: center;
+
 }
 .header-style-4 .account-icon.search {
     display: none;
+}
+.col-menu{
+    width: 100px;
+    align-items: center;
+}
+.main-menu .col-menu h6 {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #333;
 }

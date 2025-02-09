@@ -1,75 +1,107 @@
-/*.box-product-lists {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    background-color: #f6f1eb;
-}
-
-/*.cardProduct6 {
-    background: #fff;
-    border-radius: 12px;
+/* Style global du carousel */
+.carousel-inner {
+    border-radius: 10px;
+    /* Bord arrondi pour le carousel */
     overflow: hidden;
-    text-align: center;
-    padding: 15px;
-    transition: transform 0.3s ease-in-out;
+    width: 96%;
+    margin-left: 2%;
 }
 
-.cardProduct6:hover {
-    transform: scale(1.05);
-}
-
-.cardImage {
-    position: relative;
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.product-image {
-    width: 100%;
-    height: 100%;
+/* Style des images du carousel */
+.carousel-item img {
     object-fit: cover;
-    border-radius: 8px;
+    /* Permet aux images de couvrir toute la zone sans déformation */
+    height: 600px;
+    /* Taille fixe pour les images */
 }
 
-.cardInfo {
-    padding: 10px 0;
+/* Style des points de navigation */
+.carousel-indicators {
+    position: absolute;
+    bottom: 1px;
+    left: 35%;
+    transform: translateX(-50%);
+    z-index: 10;
 }
 
-.cardTitle {
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-    text-transform: capitalize;
-    margin-bottom: 5px;
+.carousel-indicators button {
+    background-color: #f7ddb5;
+    border: 2px solid rgb(253, 182, 101);
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    margin: 0 5px;
+    opacity: 0.7;
+    /* transition: background-color 0.2s ease, transform 0.2s ease;*/
 }
 
-.product-info-bottom {
-    font-size: 14px;
-    color: #666;
+.carousel-indicators .active {
+    background-color: rgb(253, 182, 101);
+    /* Bleu pour l'indicateur actif */
+    transform: scale(1.2);
+    /* Augmente la taille de l'indicateur actif */
 }
 
-.button-select a {
-    display: inline-block;
-    background: #c0a080;
-    padding: 12px 20px;
-    margin-top: 10px;
-    border-radius: 8px;
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    transition: background 0.3s, transform 0.2s;
+/* Effet au survol des indicateurs */
+.carousel-indicators button:hover {
+    opacity: 1;
+    background-color: rgb(253, 182, 101);
+}
+
+/*******************************************************************************************/
+/* Styles pour le conteneur des cartes */
+.cardCategory {
     text-align: center;
-    width: 100%;
+    margin: 15px auto;
+}
+
+/* Styles pour l'image circulaire */
+.cardCategory .cardImage {
+    width: 120px;
+    height: 120px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.button-select a:hover {
-    background: #a07a50;
-    transform: translateY(-2px);
+.cardCategory .cardImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
-*/
-/*******************************************************************************************************************************************/
 
+.cardCategory .cardImage img:hover {
+    transform: scale(1.1);
+    /* Zoom léger au survol */
+}
+
+/* Styles pour le texte en dessous des images */
+.cardCategory .cardInfo a {
+    font-size: 16px;
+    color: #333;
+    /* Couleur du texte */
+    font-weight: 500;
+    text-decoration: none;
+    /* Supprimer le soulignement */
+    display: block;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+    /* Animation au survol */
+}
+
+/* Styles pour le carrousel */
+.carousel {
+    padding: 10px 0;
+}
+
+/* Styles pour aligner les éléments dans chaque slide */
+.carousel-inner .row {
+    justify-content: center;
+    /* Centrer les éléments */
+    gap: 15px;
+    /* Espacement entre les colonnes */
+}

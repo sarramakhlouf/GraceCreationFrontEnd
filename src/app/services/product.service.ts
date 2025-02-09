@@ -2,11 +2,9 @@ import { Injectable } from '@angular/core';
 import { Product } from '../model/Product.model';
 import { catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,35 +12,31 @@ const httpOptions = {
 export class ProductService {
   products!: Product[];
 
-  // L'URL de l'API Laravel pour les produits
-  private apiURL: string = 'http://localhost:8000/api/products';
-  private baseUrl: string = 'http://localhost:8000/api';
-
   constructor(private http: HttpClient) {}
 
   // Récupérer la liste des produits
-  listeProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.apiURL).pipe(
-      catchError((err) => {
-        console.error('Erreur lors de la récupération des produits', err);
-        return of([]);
-      })
-    );
+  listeProducts(page: number = 1): Observable<any> {
+    return this.http.get<any>(`/api/products?page=${page}`);
   }
 
   getProductById(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/product/${id}`);
+    return this.http.get(`/api/product/${id}`);
   }
 
   getProductsByCategory(categoryId: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/products/categories/${categoryId}`);
+    return this.http.get(`/api/products/categories/${categoryId}`);
   }
 
   getProductsBySubCategory(subCategoryId: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/products/subcategories/${subCategoryId}`);
+    return this.http.get(`/api/products/subcategories/${subCategoryId}`);
   }
   
-  getFiltredProducts(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/filtredproducts`);
-  }
+  /*getFilteredProducts(categories: number[], filters: number[]): Observable<any> {
+    return this.http.get(`${this.baseUrl}/GetFiltredProducts`, {
+      params: {
+        categories: categories.join(','), // Convertit en chaîne
+        filters: filters.join(',')
+      }
+    });
+  }*/
 }

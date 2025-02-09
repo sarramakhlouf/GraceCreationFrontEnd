@@ -20,26 +20,27 @@ export class ProductComponent implements OnInit{
     private productService: ProductService) {}
 
   ngOnInit(): void {
+    this.cart = this.cartService.getCartItems();
     const productId = this.route.snapshot.params['id']; // Récupère l'id dans l'URL
     this.productService.getProductById(productId).subscribe({
       next: (data) => (this.product = data),
-      error: (err) => console.error('Error fetching product details:', err),
     });
-    this.cart = this.cartService.getCartItems();
   }
 
   addToCart() {
     this.cartService.addToCart(this.product);
   }
   increaseQuantity(product: any) {
-    product.quantity += 1;
-    this.updateCart(); // Met à jour le localStorage après la modification
+    if (!product.quantity) {
+      product.quantity = 1;
+    } else {
+      product.quantity++;
+    }
   }
 
   decreaseQuantity(product: any) {
     if (product.quantity > 1) {
       product.quantity -= 1;
-      this.updateCart(); // Met à jour le localStorage après la modification
     }
   }
   updateCart() {

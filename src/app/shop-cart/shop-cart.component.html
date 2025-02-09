@@ -18,22 +18,29 @@
           <table class="table table-striped table-cart">
             <thead>
               <tr>
-                <th class="text-start">Product</th>
-                <th>Unit Price</th>
-                <th>Quantity</th>
-                <th>Subtotal</th>
-                <th>Remove</th>
+                <th class="text-start">Produit</th>
+                <th>Prix ​​unitaire</th>
+                <th>Quantité</th>
+                <th>Sous-total</th>
+                <th>Supprimer</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let product of cart">
                 <td>
                   <div class="box-product-cart">
-                    <a class="image-product-cart" [routerLink]="['/Product', product.id]"><img [src]="baseUrl + product.image" alt="product"></a>
+                    <a class="image-product-cart" [routerLink]="['/Product', product.id]"><img
+                        [src]="baseUrl + product.image" alt="product"></a>
                     <a class="title-product-cart" [routerLink]="['/Product', product.id]">{{ product.name }}</a>
                   </div>
                 </td>
-                <td><span class="brand-1">{{ product.price | currency }}</span></td>
+                <td>
+                  <p class="font-lg">
+                    <span *ngIf="product.promotion" class="cardDesc mr-15">{{
+                        product.promo_price }} TND</span>
+                    <span [class.cardPriceSale]="product.promotion">{{ product.price}}TND</span>
+                  </p>
+                </td>
                 <td>
                   <div class="quantity-controls">
                     <button (click)="decreaseQuantity(product)">-</button>
@@ -42,7 +49,7 @@
                     <button (click)="increaseQuantity(product)">+</button>
                   </div>
                 </td>
-                <td><span class="brand-1">{{ product.quantity * product.price | currency }}</span></td>
+                <td><span class="brand-1">{{ product.quantity * product.price }}TND</span></td>
                 <td>
                   <a routerLink="/shopCart" (click)="removeProduct(product.id)">
                     <svg class="d-inline-flex align-items-center justify-content-center" width="12" height="12"
@@ -57,18 +64,63 @@
             </tbody>
           </table>
         </div>
-        <div class="row">
-          <div class="col-lg-4 mb-30">
-            <div class="box-cart-total">
-              <div class="item-total border-0">
-                <span class="font-sm">Total</span>
-                <span class="font-xl-bold">{{ calculateTotal() | currency }}</span>
+      </div>
+    </div>
+  </section>
+  <section class="section block-order">
+    <form #orderForm="ngForm" (ngSubmit)="orderForm.valid && submitOrder(orderForm.value)">
+      <div class="row">
+        <div class="col-lg-5 mb-30">
+          <div class="box-calc-shipping">
+            <h6 class="font-md-bold mb-10">Formulaire de commande</h6>
+            <p class="mb-5 font-sm">Veuillez remplir ce formulaire</p>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <input class="form-control" type="text" name="name" placeholder="Nom & prénom du client" ngModel
+                    required>
+                </div>
               </div>
-              <a class="btn btn-brand-1-xl-bold w-100 font-sm-bold" href="/Order">Proceed To CheckOut</a>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <input class="form-control" type="email" name="email" placeholder="Email du client" ngModel required>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <input class="form-control" type="text" name="address" placeholder="Adresse du client" ngModel
+                    required>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <input class="form-control" type="tel" name="phone" placeholder="Téléphone du client" ngModel
+                    required>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <div class="col-lg-4 mb-30">
+          <div class="box-cart-total">
+            <div class="item-total">
+              <span class="font-sm">Sous-total</span>
+              <span class="font-md-bold">{{ calculateSubTotal() }} TND</span>
+            </div>
+            <div class="item-total">
+              <span class="font-sm">Livraison</span>
+              <span class="font-md-bold">7 TND</span>
+            </div>
+            <div class="item-total border-0">
+              <span class="font-sm">Total</span>
+              <span class="font-xl-bold">{{ calculateTotal() }} TND</span>
+            </div>
+            <button type="submit" class="btn btn-brand-1-xl-bold w-100 font-sm-bold" [disabled]="!orderForm.valid">
+              Valider la commande
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
+    </form>
   </section>
 </main>

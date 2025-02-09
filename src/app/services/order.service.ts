@@ -6,12 +6,28 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class OrderService {
-  private apiUrl = 'http://localhost:8000/api/orders'; // URL de votre backend Laravel
 
   constructor(private http: HttpClient) {}
 
   // Méthode pour soumettre la commande
-  submitOrder(order: any): Observable<any> {
-    return this.http.post(this.apiUrl, order);
+  submitOrder(order: any, products:any) : Observable<any> {
+    const body = {
+      name: order.name,
+      email: order.email,
+      address: order.address,
+      phone: order.phone,
+      total: order.total,
+      products: products.map((product: any) => ({
+        id: product.id,
+        quantity: product.quantity,
+        price: product.price
+      }))
+    };
+    return this.http.post('/api/orders', body);
   }
+
+  getOrderStatus(orderId: number) {
+    return this.http.get<{ status: number }>(`/api/orders/${orderId}/status`);
+  }
+  
 }

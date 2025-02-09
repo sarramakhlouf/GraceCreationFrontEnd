@@ -17,8 +17,12 @@ import { FilterService } from '../services/filter.service';
 export class ShopComponent {
   product: Product | null = null;
   products!: Product[];
+  currentPage!: number;
+  lastPage!: number;
   filters: any[] = [];
   categories: any[] = [];
+  /*selectedCategories: number[] = [];
+  selectedFilters: number[] = [];*/
   baseUrl: string = 'http://localhost:8000/storage/';
 
   constructor(
@@ -31,7 +35,7 @@ export class ShopComponent {
   ngOnInit(): void {
     this.loadProducts();
     this.loadCategories();
-    this.loadFilteredProducts();
+    //this.loadFilteredProducts();
     this.loadFilters();
     this.route.params.subscribe(params => {
       const categoryId = params['categoryId'];
@@ -45,10 +49,21 @@ export class ShopComponent {
     });
   }
 
-  loadProducts(): void {
-    this.productService.listeProducts().subscribe((data: Product[]) => {
-      this.products = data;
+  loadProducts(page: number = 1): void {
+    this.productService.listeProducts(page).subscribe((data) => {
+      console.log("Loaded products:", data);
+      this.products = data.data; // On prend uniquement les produits
+      this.currentPage = data.current_page;
+      this.lastPage = data.last_page;
     });
+  }
+  
+
+  changePage(page: number): void {
+    if (page >= 1 && page <= this.lastPage) {
+      this.currentPage = page;
+      this.loadProducts();
+    }
   }
 
   loadCategories(): void {
@@ -77,20 +92,40 @@ export class ShopComponent {
     });
   }
 
-  loadFilteredProducts(): void {
-    this.productService.getFiltredProducts().subscribe(
-      (data) => {
-        this.products = data;
-      },
-    );
-  }
-  
-
   loadFilters(): void {
-    this.filterService.getFiltersForColor().subscribe(
-      (data) => {
+    this.filterService.getFiltersForColor().subscribe((data) => {
         this.filters = data;
       },
     );
   }
+
+
+  /*loadFilteredProducts(): void {
+    this.productService.getFilteredProducts(this.selectedCategories, this.selectedFilters)
+      .subscribe((data) => {
+        this.products = data;
+      });
+  }
+  onCategoryChange(categoryId: number, event: any) {
+    if (event.target.checked) {
+      this.selectedCategories.push(categoryId);
+    } else {
+      this.selectedCategories = this.selectedCategories.filter(id => id !== categoryId);
+    }
+    this.loadProducts();
+  }
+
+  onFilterChange(filterId: number, event: any) {
+    if (event.target.checked) {
+      this.selectedFilters.push(filterId);
+    } else {
+      this.selectedFilters = this.selectedFilters.filter(id => id !== filterId);
+    }
+    this.loadProducts();
+  }*/
+
+
 }
+
+
+

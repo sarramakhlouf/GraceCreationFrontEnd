@@ -1,46 +1,57 @@
-// cart.service.ts
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID, EventEmitter } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+  private isBrowser: boolean;
+  cartUpdated: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor() { }
+  constructor(@Inject(PLATFORM_ID) private platformId: any) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
 
-  // Ajouter un produit au panier dans le localStorage
   addToCart(product: any) {
-    let cart = this.getCartItems();
-
-    // Vérifie si le produit existe déjà dans le panier
-    const existingProduct = cart.find((item: any) => item.id === product.id);
-    if (existingProduct) {
-      // Si le produit existe, augmente sa quantité
-      existingProduct.quantity += product.quantity ?? 1;
-    } else {
-      // Sinon, ajoute le produit avec une quantité par défaut de 1
-      product.quantity = product.quantity ?? 1;
-      cart.push(product);
+    if (this.isBrowser) {
+      let cart = this.getCartItems();
+      const existingProduct = cart.find((item: any) => item.id === product.id);
+      if (existingProduct) {
+        existingProduct.quantity += product.quantity ?? 1;
+      } else {
+        product.quantity = product.quantity ?? 1;
+        cart.push(product);
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      this.cartUpdated.emit();
     }
-
-    localStorage.setItem('cart', JSON.stringify(cart));
   }
 
-  // Récupérer les produits du panier
   getCartItems() {
-    const cart = localStorage.getItem('cart');
-    return cart ? JSON.parse(cart) : [];
+    if (this.isBrowser) {
+      const cart = localStorage.getItem('cart');
+      return cart ? JSON.parse(cart) : [];
+    }
+    return [];
   }
 
-  // Supprimer un produit du panier
+  getCartCount(): number {
+    return this.getCartItems().reduce((sum: number, item: any) => sum + item.quantity, 0);
+  }
+
   removeFromCart(productId: string) {
-    let cart = this.getCartItems();
-    cart = cart.filter((product: any) => product.id !== productId);
-    localStorage.setItem('cart', JSON.stringify(cart));
+    if (this.isBrowser) {
+      let cart = this.getCartItems();
+      cart = cart.filter((product: any) => product.id !== productId);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      this.cartUpdated.emit();
+    }
   }
 
-  // Vider le panier
   clearCart() {
-    localStorage.removeItem('cart');
+    if (this.isBrowser) {
+      localStorage.removeItem('cart');
+      this.cartUpdated.emit();
+    }
   }
 }

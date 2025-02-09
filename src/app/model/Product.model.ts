@@ -6,7 +6,7 @@ export class Product {
     subCategoryId!: number;
     image!: string;
     available!: boolean;
-    feaured!: boolean;
+    featured!: boolean;
     new!: boolean;
     promotion!: boolean;
     promo_price!: number;

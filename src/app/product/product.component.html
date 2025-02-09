@@ -17,7 +17,6 @@
                     <div class="col-lg-6">
                         <div class="detail-gallery">
                             <div class="box-main-gallery big">
-                                <a class="zoom-image glightbox" href="baseUrl + product.image"></a>
                                 <div class="product-image-slider">
                                     <figure class="border-radius-10">
                                         <a class="glightbox" href="baseUrl + product.image">
@@ -32,8 +31,8 @@
                         <div class="box-product-info">
                             <h2 class="font-2xl-bold">{{ product.name }}</h2>
                             <div class="block-price">
-                                <span class="price-main">${{ product.price }}</span>
-                                <span class="price-line" *ngIf="product.old_price">${{ product.old_price }}</span>
+                                <span class="price-main">{{ product.price }}TND</span>
+                                <span class="price-line" *ngIf="product.old_price">{{ product.old_price }}TND</span>
                             </div>
                             <div class="block-view">
                                 <p class="font-md neutral-900">{{ product.description }}</p>

@@ -9,11 +9,12 @@ import { ShopComponent } from './shop/shop.component';
 import { ProductComponent } from './product/product.component';
 import { AccountComponent } from './account/account.component';
 import { ContactComponent } from './contact/contact.component';
-import { OrderComponent } from './order/order.component';
 import { FormsModule } from '@angular/forms';
 import { ShopCartComponent } from './shop-cart/shop-cart.component';  // N'oubliez pas d'importer FormsModule
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { SearchComponent } from './search/search.component';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +25,9 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     ProductComponent,
     AccountComponent,
     ContactComponent,
-    OrderComponent,
-    ShopCartComponent
+    ShopCartComponent,
+    SearchComponent,
+    BreadcrumbComponent,
   ],
   imports: [
     BrowserModule,
