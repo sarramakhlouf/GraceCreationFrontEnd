@@ -3,7 +3,7 @@ import { CategoryService } from './services/category.service';
 import { SubcategoryService } from './services/subcategory.service';
 import { Category } from './model/Category.model';
 import { SubCategory } from './model/SubCategory.model';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from './services/product.service';
 import { SearchService } from './services/search.service';
 import { HttpClient } from '@angular/common/http';
@@ -21,13 +21,15 @@ import { Subscription } from 'rxjs';
 export class AppComponent implements OnInit {
   title = 'graceCreations';
   slides!: Slide[];
+  products: any[] = [];
   logoSlide: any | null = null;
+  navbarSlide: any | null = null;
   instagramSlide: any | null = null;
   categories: any[] = [];
   subcategories: { [key: number]: SubCategory[] } = {};
+  isSearchActive = false;
+  searchText = '';
   filteredCategories = [...this.categories];
-  searchQuery = ' ';
-  searchResults: any[] = [];
   cartItemCount: number = 0;
   private cartSubscription!: Subscription;
   baseUrl: string = 'http://localhost:8000/storage/';
@@ -40,6 +42,7 @@ export class AppComponent implements OnInit {
     private cartService: CartService,
     private searchService: SearchService,
     private router: Router,
+    private route: ActivatedRoute,
     private http: HttpClient
   ) { }
 
@@ -69,31 +72,19 @@ export class AppComponent implements OnInit {
       this.slides = data;
       this.logoSlide = this.slides.find(slide => slide.logo == true);
       this.instagramSlide = this.slides.filter(slide => Boolean(slide.instagram));
+      this.navbarSlide = this.slides.find(slide => slide.navbar == true);
     });
   }
-
-  onInputChange() {
-    console.log("Valeur de l'input :", this.searchQuery);
+  
+  toggleSearch() {
+    this.isSearchActive = !this.isSearchActive;
   }
 
-  onSearch(event: Event) {
-    event.preventDefault(); // Empêche le rechargement de la page
-
-    console.log("Texte recherché :", this.searchQuery);
-    if (!this.searchQuery.trim()) {
-      console.warn("Le champ de recherche est vide !");
-      return;
+  hideSearch() {
+    if (this.searchText.trim()) {
+      this.router.navigate(['/Shop'], { queryParams: { search: this.searchText } });
     }
-
-    this.http.get(`http://localhost:8000/api/products/search?name=${encodeURIComponent(this.searchQuery)}`)
-      .subscribe(
-        (response) => {
-          console.log("Résultats :", response);
-        },
-        (error) => {
-          console.error("Erreur lors de la recherche :", error);
-        }
-      );
+    this.isSearchActive = false;
   }
 
 }

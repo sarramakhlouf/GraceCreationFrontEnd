@@ -2,7 +2,7 @@
     <main class="main">
         <div class="section block-shop-head-3">
             <div class="container text-center">
-                <h2 class="font-4xl mb-20">Baby Collections</h2>
+                <h2 class="font-4xl mb-20">Nos produits</h2>
                 <div class="breadcrumbs">
                     <app-breadcrumb></app-breadcrumb>
                 </div>
@@ -12,6 +12,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-9 order-lg-last">
+                        <div *ngIf="searchQuery">
+                            <h2>Résultats pour "{{ searchQuery }}"</h2>
+                        </div>
                         <div class="box-filter-top">
                             <div class="number-product">
                                 <p class="body-p2 neutral-medium-dark">Showing {{ products.length }} products</p>
@@ -51,7 +54,7 @@
                         <div *ngIf="products.length === 0" class="text-center">
                             <p>Aucun produit trouvé</p>
                         </div>
-                        <nav class="box-pagination">
+                        <!--<nav class="box-pagination">
                             <ul class="pagination">
                                 <li class="page-item" [class.disabled]="currentPage === 1">
                                     <a class="page-link" (click)="changePage(currentPage - 1)">«</a>
@@ -66,7 +69,7 @@
                                     <a class="page-link" (click)="changePage(currentPage + 1)">»</a>
                                 </li>
                             </ul>
-                        </nav>
+                        </nav>-->
                     </div>
                     <div class="col-lg-3 order-lg-first">
                         <div class="sidebar-left">

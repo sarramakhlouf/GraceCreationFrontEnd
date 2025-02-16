@@ -3,7 +3,6 @@ import { ProductService } from '../services/product.service';
 import { Product } from '../model/Product.model';
 import { CartService } from '../services/cart.service';
 import { SlideService } from '../services/slide.service';
-import { CategoryService } from '../services/category.service';
 import { Category } from '../model/Category.model';
 import { SubCategory } from '../model/SubCategory.model';
 import { SubcategoryService } from '../services/subcategory.service';
@@ -43,12 +42,13 @@ export class HomeComponent implements OnInit {
 
   addToCart(product: any) {
     this.cartService.addToCart(product);
+    alert("Votre commande est ajoutée au panier avec succès !");
   }
 
   loadSlides() {
     this.slideService.getSlides().subscribe((data) => {
       this.slides = data;
-      this.filteredSlides = this.slides.filter(slide => !slide.logo && !slide.instagram); 
+      this.filteredSlides = this.slides.filter(slide => !slide.logo && !slide.instagram && !slide.navbar); 
 
     });
   }

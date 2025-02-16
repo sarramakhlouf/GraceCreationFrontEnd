@@ -7,6 +7,7 @@ import { randomUUID } from 'crypto';
 import { CartService } from '../services/cart.service';
 import { ActivatedRoute } from '@angular/router';
 import { FilterService } from '../services/filter.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-shop',
@@ -21,6 +22,7 @@ export class ShopComponent {
   lastPage!: number;
   filters: any[] = [];
   categories: any[] = [];
+  searchQuery: string | null = null;
   /*selectedCategories: number[] = [];
   selectedFilters: number[] = [];*/
   baseUrl: string = 'http://localhost:8000/storage/';
@@ -30,7 +32,8 @@ export class ShopComponent {
     private categoryService: CategoryService,
     private cartService: CartService,
     private filterService: FilterService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private http: HttpClient) { }
 
   ngOnInit(): void {
     this.loadProducts();
@@ -47,24 +50,22 @@ export class ShopComponent {
         this.getProductsBySubCategory(subCategoryId);
       }
     });
+    this.route.queryParams.subscribe(params => {
+      this.searchQuery = params['search'] || null;
+      if (this.searchQuery) {
+        this.fetchProducts();
+      } else {
+        this.fetchAllProducts();
+      }
+    });
   }
 
-  loadProducts(page: number = 1): void {
-    this.productService.listeProducts(page).subscribe((data) => {
-      console.log("Loaded products:", data);
-      this.products = data.data; // On prend uniquement les produits
-      this.currentPage = data.current_page;
-      this.lastPage = data.last_page;
+  loadProducts(): void {
+    this.productService.listeProducts().subscribe((data) => {
+      this.products = data;
     });
   }
   
-
-  changePage(page: number): void {
-    if (page >= 1 && page <= this.lastPage) {
-      this.currentPage = page;
-      this.loadProducts();
-    }
-  }
 
   loadCategories(): void {
     this.categoryService.getCategories().subscribe((data) => {
@@ -74,6 +75,7 @@ export class ShopComponent {
 
   addToCart(product: any) {
     this.cartService.addToCart(product);
+    alert("Votre commande est ajoutée au panier avec succès !");
   }
 
   getProductsByCategory(categoryId: number): void {
@@ -97,6 +99,31 @@ export class ShopComponent {
         this.filters = data;
       },
     );
+  }
+
+  fetchProducts() {
+    this.http.get(`http://localhost:8000/api/products/search?query=${encodeURIComponent(this.searchQuery!)}`)
+      .subscribe(
+        (data: any) => {
+          this.products = data;
+        },
+        error => {
+          this.products = [];
+          console.error('Erreur lors de la récupération des produits :', error);
+        }
+      );
+  }
+
+  fetchAllProducts() {
+    this.http.get(`http://localhost:8000/api/products`)
+      .subscribe(
+        (data: any) => {
+          this.products = data;
+        },
+        error => {
+          console.error('Erreur lors de la récupération des produits :', error);
+        }
+      );
   }
 
 

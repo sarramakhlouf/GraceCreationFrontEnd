@@ -1,46 +1,43 @@
 <body>
     <main class="main">
-<!------------------------------------------------------SECTION BANNER----------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
         <section class="section banner-homepage1 banner-homepage4">
             <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
                 <div class="carousel-inner">
-                    <div *ngFor="let slide of filteredSlides; let i = index" class="carousel-item" [class.active]="i === 0">
-                        <a *ngIf="slide.category_id && slide.subcategory_id" [routerLink]="['/Shop', slide.category_id, slide.subcategory_id]">
+                    <div *ngFor="let slide of filteredSlides; let i = index" class="carousel-item"
+                        [class.active]="i === 0">
+                        <a *ngIf="slide.category_id && slide.subcategory_id"
+                            [routerLink]="['/Shop', slide.category_id, slide.subcategory_id]">
                             <img [src]="baseUrl + slide.image" class="d-block w-100" [alt]="'Slide ' + (i + 1)">
                         </a>
                     </div>
                 </div>
-            
                 <!-- Points de navigation -->
                 <div class="carousel-indicators">
-                    <button *ngFor="let slide of filteredSlides; let i = index" type="button" data-bs-target="#carouselExampleAutoplaying"
-                        [attr.data-bs-slide-to]="i" [class.active]="i === 0" [attr.aria-label]="'Slide ' + (i - 1)">
+                    <button *ngFor="let slide of filteredSlides; let i = index" type="button"
+                        data-bs-target="#carouselExampleAutoplaying" [attr.data-bs-slide-to]="i"
+                        [class.active]="i === 0" [attr.aria-label]="'Slide ' + (i - 1)">
                     </button>
                 </div>
             </div>
         </section>
-<!-------------------------------------------------------CATEGORIES SLIDER------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
         <div class="section block-section block-section-categories-slider wow animate__animated animate__fadeIn">
             <div class="container">
                 <div id="categoriesCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
                     <div class="carousel-inner text-center">
-                        <div *ngFor="let chunk of getSubCategoryChunks(); let i = index" class="carousel-item" [class.active]="i === 0">
+                        <div *ngFor="let chunk of getSubCategoryChunks(); let i = index" class="carousel-item"
+                            [class.active]="i === 0">
                             <div class="row">
                                 <div *ngFor="let subcategory of chunk" class="col-2">
                                     <div class="cardCategory">
                                         <div class="cardImage">
                                             <a [routerLink]="['/Shop', subcategory.categoryId, subcategory.id]">
-                                                <img [src]="baseUrl + subcategory.image" class="d-block w-100" [alt]="subcategory.name">
+                                                <img [src]="baseUrl + subcategory.image" class="d-block w-100"
+                                                    [alt]="subcategory.name">
                                             </a>
                                         </div>
                                         <div class="cardInfo">
-                                            <a [routerLink]="['/Shop', subcategory.categoryId, subcategory.id]">{{ subcategory.name }}</a>
+                                            <a [routerLink]="['/Shop', subcategory.categoryId, subcategory.id]">{{
+                                                subcategory.name }}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -50,69 +47,61 @@
 
                     <!-- Points de navigation -->
                     <div class="carousel-indicators">
-                        <button *ngFor="let chunk of getSubCategoryChunks(); let i = index" type="button" 
-                                data-bs-target="#categoriesCarousel"
-                                [attr.data-bs-slide-to]="i"
-                                [class.active]="i === 0"
-                                [attr.aria-label]="'Slide ' + (i + 1)">
+                        <button *ngFor="let chunk of getSubCategoryChunks(); let i = index" type="button"
+                            data-bs-target="#categoriesCarousel" [attr.data-bs-slide-to]="i" [class.active]="i === 0"
+                            [attr.aria-label]="'Slide ' + (i + 1)">
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-<!------------------------------------------------------FEATURED PRODUCT--------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
-<section class="section block-section block-section-features-product">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-5">
-                <div class="top-head">
-                    <h4 class="text-uppercase brand-1">Produits Phares</h4>
-                </div>
-            </div>
-        </div>
-        <div class="box-product-lists" *ngIf="products.length > 0">
-            <div class="row">
-                <ng-container *ngFor="let product of products">
-                    <div class="col-xl-4 col-sm-6" *ngIf="product.featured">
-                        <div class="cardProduct cardProduct6">
-                            <div class="cardImage">
-                                <label *ngIf="product.promotion" class="lbl-hot">Promo</label>
-                                <a [routerLink]="['/Product', product.id]">
-                                    <img [src]="baseUrl + product.image" [alt]="product.name" class="product-image" />
-                                </a>
-                                <div class="button-select">
-                                    <a routerLink="/" (click)="addToCart(product)">Add to Cart</a>
-                                </div>
-                            </div>
-                            <div class="cardInfo">
-                                <a [routerLink]="['/Product', product.id]">
-                                    <h6 class="font-md-bold cardTitle">{{ product.name }}</h6>
-                                </a>
-                                <div class="product-info-bottom">
-                                    <p class="font-lg">
-                                        <span *ngIf="product.promotion" class="cardDesc mr-15">{{ product.promo_price }} TND</span>
-                                        <span [class.cardPriceSale]="product.promotion">{{ product.price }} TND</span>
-                                    </p>
-                                </div>
-                            </div>
+        <section class="section block-section block-section-features-product">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="top-head">
+                            <h4 class="text-uppercase brand-1">Produits Phares</h4>
                         </div>
                     </div>
-                </ng-container>
+                </div>
+                <div class="box-product-lists" *ngIf="products.length > 0">
+                    <div class="row">
+                        <ng-container *ngFor="let product of products">
+                            <div class="col-xl-4 col-sm-6" *ngIf="product.featured">
+                                <div class="cardProduct cardProduct6">
+                                    <div class="cardImage">
+                                        <label *ngIf="product.promotion" class="lbl-hot">Promo</label>
+                                        <a [routerLink]="['/Product', product.id]">
+                                            <img [src]="baseUrl + product.image" [alt]="product.name"
+                                                class="product-image" />
+                                        </a>
+                                        <div class="button-select">
+                                            <a routerLink="/" (click)="addToCart(product)">Add to Cart</a>
+                                        </div>
+                                    </div>
+                                    <div class="cardInfo">
+                                        <a [routerLink]="['/Product', product.id]">
+                                            <h6 class="font-md-bold cardTitle">{{ product.name }}</h6>
+                                        </a>
+                                        <div class="product-info-bottom">
+                                            <p class="font-lg">
+                                                <span *ngIf="product.promotion" class="cardDesc mr-15">{{
+                                                    product.promo_price }} TND</span>
+                                                <span [class.cardPriceSale]="product.promotion">{{ product.price }}
+                                                    TND</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <div *ngIf="products.length === 0" class="text-center">
+                    <p>No products found for this category.</p>
+                </div>
             </div>
-        </div>
-        <div *ngIf="products.length === 0" class="text-center">
-            <p>No products found for this category.</p>
-        </div>
-    </div>
-</section>
-
-<!-------------------------------------------------------------DEAL OF THE DAY -------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
+        </section>
         <section class="section block-section block-section-deal-day-4">
             <div class="container">
                 <div class="row">
@@ -500,14 +489,11 @@
                 </div>
             </div>
         </section>
-<!------------------------------------------------------------NEW IN STORE------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
         <section class="section block-section-1">
             <div class="container">
                 <div class="text-center">
-                    <p class="font-xl brand-2 wow animate__animated animate__fadeIn"><span class="rounded-text">NOS NOUVEAUTÉS</span></p>
+                    <p class="font-xl brand-2 wow animate__animated animate__fadeIn"><span class="rounded-text">NOS
+                            NOUVEAUTÉS</span></p>
                 </div>
                 <div class="box-product-lists" *ngIf="products.length > 0">
                     <div class="row">
@@ -517,7 +503,8 @@
                                     <div class="cardImage">
                                         <label *ngIf="product.promotion" class="lbl-hot">Promo</label>
                                         <a [routerLink]="['/Product', product.id]">
-                                            <img [src]="baseUrl + product.image" [alt]="product.name" class="product-image" />
+                                            <img [src]="baseUrl + product.image" [alt]="product.name"
+                                                class="product-image" />
                                         </a>
                                         <div class="button-select">
                                             <a routerLink="/" (click)="addToCart(product)">Add to Cart</a>
@@ -531,14 +518,15 @@
                                             <p class="font-lg">
                                                 <span *ngIf="product.promotion" class="cardDesc mr-15">{{
                                                     product.promo_price }} TND</span>
-                                                <span [class.cardPriceSale]="product.promotion">{{ product.price}}TND</span>
+                                                <span [class.cardPriceSale]="product.promotion">{{
+                                                    product.price}}TND</span>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </ng-container>
-                        
+
                     </div>
                 </div>
                 <div *ngIf="products.length === 0" class="text-center">
@@ -546,10 +534,6 @@
                 </div>
             </div>
         </section>
-<!------------------------------------------------------------LATEST TRENDING------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
-<!------------------------------------------------------------------------------------------------------------------------------------------------->
         <section class="section block-section block-section-events-4">
             <div class="container">
                 <div class="row">
@@ -558,7 +542,8 @@
                             style="background-image: url(assets/imgs/page/homepage5/bg-latest.png)">
                             <div class="cardInfo">
                                 <h4 class="heading-4 mb-15">Dernières tendances</h4>
-                                <p class="font-2xl mb-30">Offres de la Saint-Valentin</p><a class="btn btn-brand-1" routerLink="/Shop">Achetez maintenant</a>
+                                <p class="font-2xl mb-30">Offres de la Saint-Valentin</p><a class="btn btn-brand-1"
+                                    routerLink="/Shop">Achetez maintenant</a>
                             </div>
                         </div>
                     </div>
@@ -576,7 +561,8 @@
                             style="background-image: url(assets/imgs/page/homepage5/bg-comfortable.png)">
                             <div class="cardInfo">
                                 <h4 class="heading-4 mb-15">Des sacs confortables</h4>
-                                <p class="font-2xl mb-30">Des sacs pratiques pour vos enfants</p><a class="btn btn-brand-1" routerLink="/Shop">Achetez maintenant</a>
+                                <p class="font-2xl mb-30">Des sacs pratiques pour vos enfants</p><a
+                                    class="btn btn-brand-1" routerLink="/Shop">Achetez maintenant</a>
                             </div>
                         </div>
                     </div>
@@ -584,5 +570,4 @@
             </div>
         </section>
     </main>
-
 </body>

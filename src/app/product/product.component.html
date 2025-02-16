@@ -1,16 +1,5 @@
 <body>
     <main class="main">
-        <div class="section block-shop-head-2 block-breadcrumb-type-1">
-            <div class="container">
-                <div class="breadcrumbs">
-                    <ul>
-                        <li><a href="#">Home </a></li>
-                        <li><a href="#">Shop</a></li>
-                        <li> <a href="#">Boys Clothing</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
         <section class="section block-product-content">
             <div class="container" *ngIf="product">
                 <div class="row">
@@ -43,7 +32,7 @@
                                     <input class="input-quantity border-0 text-center" type="number" [(ngModel)]="product.quantity" readonly min=1>
                                     <button (click)="increaseQuantity(product)">+</button>
                                 </div>
-                                <button class="btn btn-brand-1-border" (click)="addToCart()">Add to Cart</button>
+                                <button class="btn btn-brand-1-border" (click)="addToCart()">Ajouter au panier</button>
                             </div>
                             <div class="box-product-tag d-flex justify-content-between align-items-end">
                                 <div class="box-tag-right">

@@ -9,16 +9,20 @@
     top: 0px;
     left: 0px;
 }
+
 .header .main-header {
     display: flex;
     align-items: center;
     position: relative;
+    height: 50px;
 }
+
 .header .main-header .header-logo {
-    max-width: 170px;
+    max-width: 100px;
     width: 10%;
-    min-width: 170px;
+    min-width: 10px;
 }
+
 .sticky-bar.stick {
     animation: 700ms ease-in-out 0s normal none 1 running fadeInDown;
     box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.05);
@@ -31,26 +35,46 @@
     border-bottom: 0px solid #B9CAD0;
     background: #ffffff;
 }
-.header-style-4 {
-    background-color: #ffffff;
-    position: relative;
-}
-.header-style-4 .main-header .header-account {
-    width: auto;
-    min-width: 488px;
-    display: flex;
-    align-items: center;
 
-}
-.header-style-4 .account-icon.search {
-    display: none;
-}
-.col-menu{
+.col-menu {
     width: 100px;
     align-items: center;
 }
-.main-menu .col-menu h6 {
+
+.menu-inner .col-menu h6 a {
     font-weight: bold;
     font-size: 1.1rem;
     color: #333;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search-container input {
+    width: 150px;
+    padding: 5px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: width 0.3s ease-in-out;
+}
+
+.header-account {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    /* Espacement entre les icônes */
+}
+
+.search-container .search-icon {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
 }

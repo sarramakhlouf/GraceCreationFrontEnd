@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'Account', component: AccountComponent},
   { path: 'Contact', component: ContactComponent},
   { path: 'shopCart', component: ShopCartComponent},
-  { path: 'search-results', component: SearchComponent}
+  { path: 'search-results', component: SearchComponent},
 
 ];
 
