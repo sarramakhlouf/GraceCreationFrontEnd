@@ -1,5 +1,5 @@
 <body>
-  <header class="header sticky-bar header-style-1">
+  <header class="header sticky-bar header-style-1" *ngIf="showLayout">
     <div class="box-top-header">
       <div class="container">
         <div class="main-header">
@@ -8,7 +8,7 @@
               <img [src]="baseUrl + logoSlide.image" alt="GraceCreations">
             </a>
           </div>
-          <div class="header-menu">
+          <div class="header-menu" >
             <div class="header-nav">
               <nav class="nav-main-menu d-none d-xl-block">
                 <ul class="main-menu">
@@ -99,7 +99,7 @@
   </header>
   <main class="content">
     <router-outlet></router-outlet>
-    <div class="section block-section block-section-gallery block-section-instagram-5">
+    <div class="section block-section block-section-gallery block-section-instagram-5"  *ngIf="showLayout && showIgLayout">
       <div class="container">
         <div class="top-head top-head-abs justify-content-center">
           <p class="font-md-bold text-uppercase brand-1 wow fadeInDown">FOLLOW US ON INSTAGRAM</p>
@@ -116,7 +116,7 @@
       </div>
     </div>
   </main>
-  <footer class="footer footer-style-4">
+  <footer class="footer footer-style-4"  *ngIf="showLayout">
     <div class="footer-1">
       <div class="container">
         <div class="row">

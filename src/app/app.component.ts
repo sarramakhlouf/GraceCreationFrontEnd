@@ -3,7 +3,7 @@ import { CategoryService } from './services/category.service';
 import { SubcategoryService } from './services/subcategory.service';
 import { Category } from './model/Category.model';
 import { SubCategory } from './model/SubCategory.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ProductService } from './services/product.service';
 import { SearchService } from './services/search.service';
 import { HttpClient } from '@angular/common/http';
@@ -11,6 +11,7 @@ import { Slide } from './model/Slide.model';
 import { SlideService } from './services/slide.service';
 import { CartService } from './services/cart.service';
 import { Subscription } from 'rxjs';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -32,6 +33,8 @@ export class AppComponent implements OnInit {
   filteredCategories = [...this.categories];
   cartItemCount: number = 0;
   private cartSubscription!: Subscription;
+  showLayout: boolean = true;
+  showIgLayout: boolean = true;
   baseUrl: string = 'http://localhost:8000/storage/';
 
 
@@ -40,11 +43,20 @@ export class AppComponent implements OnInit {
     private subcategoryService: SubcategoryService,
     private slideService: SlideService,
     private cartService: CartService,
-    private searchService: SearchService,
+    public authService: AuthService,
     private router: Router,
-    private route: ActivatedRoute,
-    private http: HttpClient
-  ) { }
+  ) { 
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.showLayout = !(event.url.includes('/login') || event.url.includes('/signup'));
+      }
+    });
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.showIgLayout = !(event.url.includes('/profile'));
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.loadCategoriesAndSubcategories();
@@ -85,6 +97,11 @@ export class AppComponent implements OnInit {
       this.router.navigate(['/Shop'], { queryParams: { search: this.searchText } });
     }
     this.isSearchActive = false;
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 
 }

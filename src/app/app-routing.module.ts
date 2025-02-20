@@ -8,6 +8,10 @@ import { AccountComponent } from './account/account.component';
 import { ContactComponent } from './contact/contact.component';
 import { ShopCartComponent } from './shop-cart/shop-cart.component';
 import { SearchComponent } from './search/search.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { AuthGuard } from './guards/auth.guard';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -16,10 +20,13 @@ const routes: Routes = [
   { path: 'Shop/:categoryId/:subCategoryId', component: ShopComponent},
   { path: 'Shop/:categoryId', component: ShopComponent},
   { path: 'Product/:id', component: ProductComponent},
-  { path: 'Account', component: AccountComponent},
   { path: 'Contact', component: ContactComponent},
   { path: 'shopCart', component: ShopCartComponent},
   { path: 'search-results', component: SearchComponent},
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'profile', component: AccountComponent, canActivate: [AuthGuard] }, 
+  { path: '**', component: NotFoundComponent } 
 
 ];
 
