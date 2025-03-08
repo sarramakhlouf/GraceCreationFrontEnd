@@ -1,9 +1,9 @@
 .box-form-contact {
-    padding: 40px; /* Ajustez la valeur selon votre besoin */
+    padding: 40px; 
 }
 
 .form-group {
-    padding: 10px 0; /* Espacement vertical entre les champs */
+    padding: 10px 0; 
 }
 
 .box-contact-right {
@@ -18,4 +18,8 @@
 .text-center{
     width: 100%;
 
+}
+
+.row{
+    margin-top: 2%;
 }

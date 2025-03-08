@@ -78,3 +78,152 @@
     width: 28px;
     height: 28px;
 }
+
+/* Styles pour le bouton */
+.open-btn {
+    background-color: #A785D8;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.open-btn:hover {
+    background-color: #9773c1;
+}
+
+/* Styles du popup */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+/* Contenu du popup */
+.modal-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    width: 400px;
+    /*text-align: center;*/
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Bouton de fermeture */
+.close {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Champs et bouton */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.btn-primary {
+    width: 100%;
+    background-color: #A785D8;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #9773c1;
+}
+
+/* Styles des onglets */
+.tabs {
+    /*display: flex;*/
+    justify-content: left;
+    margin-bottom: 20px;
+}
+
+.tabs a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    padding: 10px 20px;
+    transition: color 0.3s, opacity 0.3s;
+    opacity: 0.6;
+}
+
+.tabs a.active {
+    font-weight: bold;
+    opacity: 1;
+}
+
+.tabs a:hover {
+    color: rgb(186, 134, 186);
+}
+
+/***************************************************************/
+/*.block-section-instagram-5 {
+    text-align: center;
+    position: relative;
+  }*/
+  
+  .top-head-abs {
+   /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);*/
+    background: rgba(255, 255, 255, 0.95);
+    padding: 12px 25px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .top-head-abs p {
+    font-size: 14px;
+    font-weight: bold;
+    color: #8a4abf;
+    margin: 0;
+  }
+  
+  .GraceCreations-icon {
+    font-size: 14px;
+    color: #808080; 
+    text-decoration: none;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .GraceCreations-icon i {
+    font-size: 18px;
+    color: #808080; 
+  }
+  

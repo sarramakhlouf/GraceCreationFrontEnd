@@ -37,7 +37,10 @@ export class BreadcrumbComponent implements OnInit {
       const categoryId = +params['categoryId'];
       const subCategoryId = +params['subCategoryId'];
 
-      this.breadcrumbs = [{ label: 'Accueil', url: '/' }]; // Toujours afficher "Accueil"
+      this.breadcrumbs = [
+        { label: 'Accueil', url: '/' },
+        { label: 'Produits', url: '/Shop' }
+      ];
 
       if (categoryId) {
         const category = this.categories.find(cat => cat.id === categoryId);

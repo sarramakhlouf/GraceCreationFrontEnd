@@ -35,6 +35,12 @@ export class AppComponent implements OnInit {
   private cartSubscription!: Subscription;
   showLayout: boolean = true;
   showIgLayout: boolean = true;
+  credentials = { email: '', password: '' };
+  errorMessage: string = '';
+  user = { name: '', email: '', password: '', password_confirmation: '' };
+  isModalOpen = false; 
+  activeTab = 'login';
+  isLoggedIn: boolean = false;
   baseUrl: string = 'http://localhost:8000/storage/';
 
 
@@ -45,7 +51,7 @@ export class AppComponent implements OnInit {
     private cartService: CartService,
     public authService: AuthService,
     private router: Router,
-  ) { 
+  ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.showLayout = !(event.url.includes('/login') || event.url.includes('/signup'));
@@ -61,10 +67,11 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.loadCategoriesAndSubcategories();
     this.loadSlides();
-    this.cartItemCount = this.cartService.getCartCount(); 
+    this.cartItemCount = this.cartService.getCartCount();
     this.cartSubscription = this.cartService.cartUpdated.subscribe(() => {
       this.cartItemCount = this.cartService.getCartCount();
     });
+    this.isLoggedIn = this.authService.isLoggedIn();
   }
   loadCategoriesAndSubcategories(): void {
     this.categoryService.getCategories().subscribe((categories: Category[]) => {
@@ -87,7 +94,7 @@ export class AppComponent implements OnInit {
       this.navbarSlide = this.slides.find(slide => slide.navbar == true);
     });
   }
-  
+
   toggleSearch() {
     this.isSearchActive = !this.isSearchActive;
   }
@@ -103,5 +110,55 @@ export class AppComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(['/']);
   }
+
+  onLogin(event: Event) {
+    event.preventDefault();
+
+    this.authService.login(this.credentials).subscribe(
+      response => {
+        this.authService.saveToken(response.token);
+        this.router.navigate(['/profile']);
+      },
+      error => {
+        this.errorMessage = 'Email ou mot de passe incorrect.';
+      }
+    );
+  }
+
+  onSignup(event: Event) {
+    event.preventDefault();
+
+    this.authService.register(this.user).subscribe(
+      () => {
+        this.router.navigate(['/profile']);
+      },
+      error => {
+        this.errorMessage = 'Erreur lors de l’inscription.';
+      }
+    );
+  }
+
+  switchTab(tab: string, event: Event) {
+    /*event.preventDefault();*/
+    this.activeTab = tab;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+  }
+
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  openModalOrProfile() {
+    if (this.isLoggedIn) {
+      this.router.navigate(['/profile']);
+    } else {
+      this.openModal();
+    }
+  }
+
+
 
 }

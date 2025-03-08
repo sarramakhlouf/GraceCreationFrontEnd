@@ -15,8 +15,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { SearchComponent } from './search/search.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { StatusPipe } from './pipe/status.pipe';
 
@@ -32,8 +30,6 @@ import { StatusPipe } from './pipe/status.pipe';
     ShopCartComponent,
     SearchComponent,
     BreadcrumbComponent,
-    LoginComponent,
-    SignupComponent,
     NotFoundComponent,
     StatusPipe
   ],
