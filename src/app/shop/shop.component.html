@@ -75,113 +75,69 @@
                         <div class="sidebar-left">
                             <div class="box-filters-sidebar">
                                 <div class="row">
+                                    <!-- Catégories -->
                                     <div class="col-lg-12 col-md-6">
-                                        <h5 class="font-3xl-bold mt-5">Filter</h5>
+                                        <h5 class="font-3xl-bold mt-5">Filtres</h5>
                                         <div class="block-filter">
-                                            <h6 class="item-collapse">Categories</h6>
+                                            <h6 class="item-collapse">Catégories</h6>
                                             <div class="box-collapse">
                                                 <ul class="list-filter-checkbox">
                                                     <li *ngFor="let category of categories">
                                                         <div class="col-menu">
                                                             <input type="checkbox" id="{{category.id}}">
-                                                            <label for="{{category.id}}"><a
-                                                                    routerLink="['/Shop', category.id]"> {{
-                                                                    category.name }}</a></label>
+                                                            <label for="{{category.id}}">
+                                                                <a [routerLink]="['/Shop', category.id]">
+                                                                    {{ category.name }}
+                                                                </a>
+                                                            </label>
                                                         </div>
-                                                        <span class="count-badge">{{ category.count }}</span>
+                                                        <span class="count-badge">{{ category.products_count }}</span>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
+                    
+                                    <!-- Couleurs -->
                                     <div class="col-lg-12 col-md-6">
                                         <div class="block-filter">
-                                            <h6 class="item-collapse">Coleurs</h6>
+                                            <h6 class="item-collapse">Couleurs</h6>
                                             <div class="box-collapse">
                                                 <ul class="list-color">
-                                                    <li *ngFor="let filter of filters" class="color-item">
+                                                    <li *ngFor="let color of colors" class="color-item">
                                                         <span class="box-circle-color">
-                                                            <a href="#">
-                                                                <img [src]="baseUrl + filter.icon" [alt]="filter.name"
-                                                                    class="color-icon" />
-                                                            </a>
+                                                            <img [src]="baseUrl + color.icon" [alt]="color.name" class="color-icon" />
                                                         </span>
-                                                        <span class="font-xs">{{ filter.name }}</span>
+                                                        <span class="font-xs">{{ color.name }}</span>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
+                    
+                                    <!-- Prix -->
                                     <div class="col-lg-12 col-md-6">
                                         <div class="block-filter">
                                             <h6 class="title-filter">Prix</h6>
                                             <div class="box-collapse">
-                                                <div class="box-slider-range mt-20 mb-25">
-                                                    <div class="row mb-20">
-                                                        <div class="col-sm-12">
-                                                            <div id="slider-range"></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <label class="lb-slider font-sm neutral-500 mr-5">Plage de
-                                                                prix :</label>
-                                                            <span class="min-value-money font-sm neutral-900"></span>
-                                                            <label class="lb-slider font-sm neutral-900"></label> -
-                                                            <span class="max-value-money font-sm neutral-900"></span> DT
-                                                        </div>
-                                                        <div class="col-lg-12">
-                                                            <input class="form-control min-value" type="hidden"
-                                                                name="min-value" value="20">
-                                                            <input class="form-control max-value" type="hidden"
-                                                                name="max-value" value="200">
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 <ul class="list-filter-checkbox">
-                                                    <li>
+                                                    <li *ngFor="let range of priceRanges">
                                                         <label class="cb-container">
-                                                            <input type="checkbox"><span class="text-small">20 DT - 50
-                                                                DT</span>
+                                                            <input type="checkbox">
+                                                            <span class="text-small">{{ range.min }} DT - {{ range.max }} DT</span>
                                                             <span class="checkmark"></span>
-                                                        </label><span class="number-item">10</span>
-                                                    </li>
-                                                    <li>
-                                                        <label class="cb-container">
-                                                            <input type="checkbox"><span class="text-small">50 DT - 100
-                                                                DT</span>
-                                                            <span class="checkmark"></span>
-                                                        </label><span class="number-item">25</span>
-                                                    </li>
-                                                    <li>
-                                                        <label class="cb-container">
-                                                            <input type="checkbox"><span class="text-small">100 DT - 150
-                                                                DT</span>
-                                                            <span class="checkmark"></span>
-                                                        </label><span class="number-item">40</span>
-                                                    </li>
-                                                    <li>
-                                                        <label class="cb-container">
-                                                            <input type="checkbox"><span class="text-small">150 DT - 200
-                                                                DT</span>
-                                                            <span class="checkmark"></span>
-                                                        </label><span class="number-item">30</span>
-                                                    </li>
-                                                    <li>
-                                                        <label class="cb-container">
-                                                            <input type="checkbox"><span class="text-small">Plus de 200
-                                                                DT</span>
-                                                            <span class="checkmark"></span>
-                                                        </label><span class="number-item">15</span>
+                                                        </label>
+                                                        <span class="number-item">{{ range.count }}</span>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
+                    
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>                    
                 </div>
             </div>
         </section>

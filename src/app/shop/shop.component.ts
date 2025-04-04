@@ -23,6 +23,8 @@ export class ShopComponent {
   filters: any[] = [];
   categories: any[] = [];
   searchQuery: string | null = null;
+  colors: any[] = [];
+  priceRanges: any[] = [];
   /*selectedCategories: number[] = [];
   selectedFilters: number[] = [];*/
   baseUrl: string = 'http://localhost:8000/storage/';
@@ -38,8 +40,7 @@ export class ShopComponent {
   ngOnInit(): void {
     this.loadProducts();
     this.loadCategories();
-    //this.loadFilteredProducts();
-    this.loadFilters();
+    this.getFilters();
     this.route.params.subscribe(params => {
       const categoryId = params['categoryId'];
       const subCategoryId = params['subCategoryId'];
@@ -94,12 +95,7 @@ export class ShopComponent {
     });
   }
 
-  loadFilters(): void {
-    this.filterService.getFiltersForColor().subscribe((data) => {
-        this.filters = data;
-      },
-    );
-  }
+  
 
   fetchProducts() {
     this.http.get(`http://localhost:8000/api/products/search?query=${encodeURIComponent(this.searchQuery!)}`)
@@ -126,30 +122,16 @@ export class ShopComponent {
       );
   }
 
-
-  /*loadFilteredProducts(): void {
-    this.productService.getFilteredProducts(this.selectedCategories, this.selectedFilters)
-      .subscribe((data) => {
-        this.products = data;
-      });
-  }
-  onCategoryChange(categoryId: number, event: any) {
-    if (event.target.checked) {
-      this.selectedCategories.push(categoryId);
-    } else {
-      this.selectedCategories = this.selectedCategories.filter(id => id !== categoryId);
-    }
-    this.loadProducts();
+  getFilters() {
+    this.filterService.getFilters().subscribe(response => {
+      this.categories = response.categories;
+      this.colors = response.colors;
+      this.priceRanges = response.priceRanges;
+    }, error => {
+      console.error('Erreur lors du chargement des filtres:', error);
+    });
   }
 
-  onFilterChange(filterId: number, event: any) {
-    if (event.target.checked) {
-      this.selectedFilters.push(filterId);
-    } else {
-      this.selectedFilters = this.selectedFilters.filter(id => id !== filterId);
-    }
-    this.loadProducts();
-  }*/
 
 
 }

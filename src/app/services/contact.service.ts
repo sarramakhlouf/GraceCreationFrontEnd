@@ -10,6 +10,10 @@ export class ContactService {
   constructor(private http: HttpClient) {}
 
   envoyerEmail(contactData: any): Observable<any> {
-    return this.http.post('/api/contact', contactData);
+    return this.http.post('/api/contact', contactData, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
   }
 }

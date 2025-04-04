@@ -9,7 +9,7 @@ export class FilterService {
 
   constructor(private http: HttpClient) {}
 
-  getFiltersForColor(): Observable<any> {
-    return this.http.get('/api/filters/color');
+  getFilters(): Observable<any> {
+    return this.http.get<any>('/api/filters');
   }
 }

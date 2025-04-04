@@ -188,7 +188,7 @@
               [(ngModel)]="credentials.password" name="password" required />
           </div>
 
-          <button class="btn-primary" type="submit">Se connecter</button>
+          <button class="btn-primary" type="submit" (click)="closeModal()">Se connecter</button>
         </form>
       </div>
 
@@ -221,7 +221,7 @@
               [(ngModel)]="user.password_confirmation" name="password_confirmation" required />
           </div>
           <div class="d-grid">
-            <button class="btn btn-primary" type="submit">Créer mon compte</button>
+            <button class="btn btn-primary" type="submit" (click)="closeModal()">Créer mon compte</button>
           </div>
         </form>
       </div>

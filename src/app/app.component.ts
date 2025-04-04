@@ -3,7 +3,7 @@ import { CategoryService } from './services/category.service';
 import { SubcategoryService } from './services/subcategory.service';
 import { Category } from './model/Category.model';
 import { SubCategory } from './model/SubCategory.model';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { ProductService } from './services/product.service';
 import { SearchService } from './services/search.service';
 import { HttpClient } from '@angular/common/http';
@@ -16,7 +16,7 @@ import { AuthService } from './services/auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrls: ['./app.component.css'],
   standalone: false,
 })
 export class AppComponent implements OnInit {
@@ -62,16 +62,22 @@ export class AppComponent implements OnInit {
         this.showIgLayout = !(event.url.includes('/profile'));
       }
     });
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0); // Scroll en haut après chaque changement de route
+      }
+    });
   }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.authService.isLoggedIn();
     this.loadCategoriesAndSubcategories();
     this.loadSlides();
     this.cartItemCount = this.cartService.getCartCount();
     this.cartSubscription = this.cartService.cartUpdated.subscribe(() => {
       this.cartItemCount = this.cartService.getCartCount();
     });
-    this.isLoggedIn = this.authService.isLoggedIn();
+    
   }
   loadCategoriesAndSubcategories(): void {
     this.categoryService.getCategories().subscribe((categories: Category[]) => {
@@ -107,8 +113,11 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout();
-    this.router.navigate(['/']);
+    this.authService.logout().subscribe(() => {
+      this.authService.logoutUser();
+      this.isLoggedIn = false;
+      this.router.navigate(['/']);
+    });
   }
 
   onLogin(event: Event) {
@@ -117,6 +126,7 @@ export class AppComponent implements OnInit {
     this.authService.login(this.credentials).subscribe(
       response => {
         this.authService.saveToken(response.token);
+        this.isLoggedIn = true;
         this.router.navigate(['/profile']);
       },
       error => {
@@ -139,7 +149,6 @@ export class AppComponent implements OnInit {
   }
 
   switchTab(tab: string, event: Event) {
-    /*event.preventDefault();*/
     this.activeTab = tab;
   }
 
@@ -152,12 +161,13 @@ export class AppComponent implements OnInit {
   }
 
   openModalOrProfile() {
+    this.isLoggedIn = this.authService.isLoggedIn();
     if (this.isLoggedIn) {
       this.router.navigate(['/profile']);
     } else {
       this.openModal();
-    }
-  }
+  }}
+  
 
 
 

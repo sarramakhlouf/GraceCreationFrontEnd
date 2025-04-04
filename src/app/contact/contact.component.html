@@ -7,36 +7,51 @@
         </div>
         <div class="row">
             <div class="col-lg-6">
-                <form (ngSubmit)="envoyerMessage()" #contactForm="ngForm">
+                <form [formGroup]="contactForm" (ngSubmit)="envoyerMessage()">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <input class="form-control" type="text" placeholder="Votre nom *"
-                                    [(ngModel)]="contact.nom" name="nom" required>
+                                    formControlName="name">
+                                <div *ngIf="contactForm.get('name')?.errors?.['required'] && contactForm.get('name')?.touched">
+                                    Le nom est requis.
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <input class="form-control" type="email" placeholder="Votre email *"
-                                    [(ngModel)]="contact.email" name="email" required>
+                                    formControlName="email">
+                                <div *ngIf="contactForm.get('email')?.errors?.['required'] && contactForm.get('email')?.touched">
+                                    L'email est requis.
+                                </div>
+                                <div *ngIf="contactForm.get('email')?.errors?.['email'] && contactForm.get('email')?.touched">
+                                    Veuillez entrer un email valide.
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Votre téléphone"
-                                    [(ngModel)]="contact.telephone" name="telephone">
+                                <input class="form-control" type="text" placeholder="Votre téléphone" formControlName="phone">
+                                <div *ngIf="contactForm.get('phone')?.errors?.['required'] && contactForm.get('phone')?.touched">
+                                  Le téléphone est requis.
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <textarea class="form-control" rows="6" placeholder="Message / Note"
-                                    [(ngModel)]="contact.message" name="message" required></textarea>
+                                    formControlName="message"></textarea>
+                                <div *ngIf="contactForm.get('message')?.errors?.['required'] && contactForm.get('message')?.touched">
+                                    Le message est requis.
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <button class="btn btn-brand-1-medium" type="submit"
-                                    [disabled]="!contactForm.form.valid">Soumettre maintenant</button>
+                                <button class="btn btn-brand-1-medium" type="submit" [disabled]="!contactForm.valid">
+                                    Soumettre maintenant
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -44,12 +59,11 @@
             </div>
             <div class="col-lg-6">
                 <div class="box-contact-right">
-                    <h4 class="font-2xl-bold mb-10">Vous recherchez de l'aide ou une discussion avec le service
-                        commercial ?</h4>
+                    <h4 class="font-2xl-bold mb-10">Vous recherchez de l'aide ou une discussion avec le service commercial ?</h4>
                     <p class="font-md mb-40">
                         Si vous avez besoin d'aide avec une carte Kidify existante, veuillez envoyer un e-mail à :
-                        <strong>GraceCreations&#64;gmail.com</strong>. Pour parler à un membre de notre équipe commerciale,
-                        veuillez parler à un expert.
+                        <strong>GraceCreations&#64;gmail.com</strong>. Pour parler à un membre de notre équipe
+                        commerciale, veuillez parler à un expert.
                     </p>
                 </div>
             </div>

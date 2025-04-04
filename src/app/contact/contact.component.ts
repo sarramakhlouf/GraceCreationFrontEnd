@@ -5,29 +5,35 @@ import { ContactService } from '../services/contact.service';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrl: './contact.component.css',
+  styleUrls: ['./contact.component.css'],
   standalone: false,
 })
 export class ContactComponent {
-  contact = {
-    nom: '',
-    email: '',
-    telephone: '',
-    message: ''
-  };
+  contactForm: FormGroup;
 
-  constructor(private contactService: ContactService) {}
-
-  envoyerMessage() {
-    this.contactService.envoyerEmail(this.contact).subscribe(
-      response => {
-        alert('Message envoyé avec succès !');
-        this.contact = { nom: '', email: '', telephone: '', message: '' }; 
-      },
-      error => {
-        alert('Erreur lors de l’envoi du message.');
-      }
-    );
+  constructor(
+    private contactService: ContactService,
+    private fb: FormBuilder
+  ) {
+    this.contactForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', Validators.required],
+      message: ['', Validators.required]
+    });
   }
 
+  envoyerMessage() {
+    if (this.contactForm.valid) {
+      this.contactService.envoyerEmail(this.contactForm.value).subscribe(
+        (response) => {
+          alert('Message envoyé avec succès !');
+          this.contactForm.reset();
+        },
+        (error) => {
+          alert('Erreur lors de l’envoi du message.');
+        }
+      );
+    }
+  }
 }

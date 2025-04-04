@@ -226,4 +226,36 @@
     font-size: 18px;
     color: #808080; 
   }
+
+
+
+  /****************************************************navbar****************************************/
+  /* Add to your component's CSS or global styles */
+.offcanvas {
+    background-color: #fff; /* or your preferred background */
+  }
+  
+  .main-menu {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .main-menu li {
+    margin-bottom: 1rem;
+  }
+  
+  .main-menu a {
+    text-decoration: none;
+    color: #333; /* or your preferred color */
+    font-size: 1.1rem;
+  }
+  
+  .main-menu a:hover {
+    color: #000; /* hover color */
+  }
+  
+  .sub-menu {
+    padding-left: 1rem;
+    margin-top: 0.5rem;
+  }
   
