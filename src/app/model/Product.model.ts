@@ -12,5 +12,14 @@ export class Product {
     promo_price!: number;
     pack!: boolean;
     pack_id!: number;
+    category?: {
+        id: number;
+        name: string;
+      };
+    filter_id?: number;
+    category_id?: number;
+    category_name?: string;
+    subcategory_name?: string;
+    filter_name?: string;
     
 }

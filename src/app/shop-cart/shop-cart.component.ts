@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { OrderService } from '../services/order.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-shop-cart',
@@ -12,12 +13,15 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class ShopCartComponent implements OnInit {
   cart: any[] = [];
   orderForm: FormGroup;
+  isAuthenticated = false;
+  userEmail: string | null = null;
   baseUrl: string = 'http://localhost:8000/storage/';
 
   constructor(
     private cartService: CartService, 
     private orderService: OrderService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authService: AuthService
   ) {
     this.orderForm = this.formBuilder.group({
       name: [''],
@@ -29,6 +33,17 @@ export class ShopCartComponent implements OnInit {
 
   ngOnInit() {
     this.cart = this.cartService.getCartItems();
+    this.authService.getCurrentUser().subscribe({
+      next: (user) => {
+        if (user && user.email) {
+          this.userEmail = user.email;
+          this.orderForm.get('email')?.setValue(this.userEmail);
+        }
+      },
+      error: () => {
+        this.userEmail = null;
+      }
+    });
   }
 
   removeProduct(productId: string) {
@@ -37,19 +52,15 @@ export class ShopCartComponent implements OnInit {
   }
 
   increaseQuantity(product: any) {
-    product.quantity += 1;
-    this.updateCart();
+    this.cartService.updateQuantity(product.id, 1);
+    this.cart = this.cartService.getCartItems(); // synchroniser le panier local
   }
-
+  
   decreaseQuantity(product: any) {
     if (product.quantity > 1) {
-      product.quantity -= 1;
-      this.updateCart();
+      this.cartService.updateQuantity(product.id, -1);
+      this.cart = this.cartService.getCartItems();
     }
-  }
-
-  updateCart() {
-    localStorage.setItem('cart', JSON.stringify(this.cart));
   }
 
   calculateSubTotal(): number {
@@ -69,6 +80,7 @@ export class ShopCartComponent implements OnInit {
   submitOrder(orderData: any) {
     const order = {
       ...orderData,
+      email: orderData.email || this.userEmail,
       total: this.calculateTotal(),
     };
 

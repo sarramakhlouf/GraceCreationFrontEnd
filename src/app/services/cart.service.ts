@@ -48,6 +48,22 @@ export class CartService {
     }
   }
 
+  updateQuantity(productId: string, change: number) {
+    if (this.isBrowser) {
+      let cart = this.getCartItems();
+      const product = cart.find((item: any) => item.id === productId);
+      if (product) {
+        product.quantity += change;
+        if (product.quantity <= 0) {
+          cart = cart.filter((item: any) => item.id !== productId);
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        this.cartUpdated.emit();
+      }
+    }
+  }
+  
+
   clearCart() {
     if (this.isBrowser) {
       localStorage.removeItem('cart');

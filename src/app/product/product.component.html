@@ -29,9 +29,9 @@
                             <div class="box-form-cart">
                                 <div class="quantity-controls">
                                     <button (click)="decreaseQuantity(product)">-</button>
-                                    <input class="input-quantity border-0 text-center" type="number" [(ngModel)]="product.quantity" readonly min=1>
+                                    <input class="input-quantity border-0 text-center" type="number" [(ngModel)]="product.quantity" readonly min=1 placeholder="1">
                                     <button (click)="increaseQuantity(product)">+</button>
-                                </div>
+                                </div> 
                                 <button class="btn btn-brand-1-border" (click)="addToCart()">Ajouter au panier</button>
                             </div>
                             <div class="box-product-tag d-flex justify-content-between align-items-end">

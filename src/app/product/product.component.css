@@ -1,6 +1,7 @@
 .quantity-controls {
     display: flex;
     align-items: center;
+    gap: 5px;
   }
   
   .quantity-controls button {
@@ -16,3 +17,10 @@
     text-align: center;
     margin: 0px 5px;
 }
+
+.box-form-cart{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+

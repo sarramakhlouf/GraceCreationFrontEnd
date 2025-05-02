@@ -10,6 +10,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   register(user: any): Observable<any> {
+    const headers = { 'Content-Type': 'application/json' };
     return this.http.post(`/api/auth/register`, {
       name: user.name,
       email: user.email,
@@ -30,7 +31,7 @@ export class AuthService {
     return this.http.get(`/api/auth/user`, { headers: this.getAuthHeaders() });
   }
 
-  private getAuthHeaders() {
+  getAuthHeaders() {
     const token = localStorage.getItem('client_auth_token');
     return { Authorization: `Bearer ${token}` };
   }
@@ -47,12 +48,16 @@ export class AuthService {
     localStorage.removeItem('client_auth_token');
   }
 
-  getOrders(): Observable<any> {
-    return this.http.get(`/api/orderss`, { headers: this.getAuthHeaders() });
+  getOrders(email: string): Observable<any> {
+    return this.http.get(`/api/orderss/${email}`, { headers: this.getAuthHeaders() });
   }
 
   updateUser(data: any) {
     return this.http.put('/api/auth/update', data);
+  }
+
+  getCurrentUser(): Observable<any> {
+    return this.http.get('/api/auth/user', { headers: this.getAuthHeaders() });
   }
   
 }

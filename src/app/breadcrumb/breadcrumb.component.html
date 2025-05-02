@@ -1,8 +1,8 @@
 <nav>
-  <ul class="breadcrumb">
+  <ol class="breadcrumb">
     <li *ngFor="let breadcrumb of breadcrumbs; let last = last">
-      <a *ngIf="!last && breadcrumb.url" [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
-      <span *ngIf="last || !breadcrumb.url">{{ breadcrumb.label }}</span>
+      <a *ngIf="breadcrumb.url && !last" [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
+      <span *ngIf="!breadcrumb.url || last">{{ breadcrumb.label }}</span>
     </li>
-  </ul>
+  </ol>
 </nav>

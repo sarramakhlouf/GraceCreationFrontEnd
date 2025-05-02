@@ -17,16 +17,23 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ShopComponent {
   product: Product | null = null;
-  products!: Product[];
-  currentPage!: number;
-  lastPage!: number;
+  products: Product[] = [];
+  allProducts: Product[] = []; 
+
   filters: any[] = [];
   categories: any[] = [];
-  searchQuery: string | null = null;
   colors: any[] = [];
   priceRanges: any[] = [];
-  /*selectedCategories: number[] = [];
-  selectedFilters: number[] = [];*/
+
+  selectedCategories: number[] = [];
+  selectedColors: number[] = [];
+  selectedPriceRange: { min: number, max: number } | null = null;
+
+  searchQuery: string | null = null;
+
+  currentPage!: number;
+  lastPage!: number;
+
   baseUrl: string = 'http://localhost:8000/storage/';
 
   constructor(
@@ -41,6 +48,7 @@ export class ShopComponent {
     this.loadProducts();
     this.loadCategories();
     this.getFilters();
+
     this.route.params.subscribe(params => {
       const categoryId = params['categoryId'];
       const subCategoryId = params['subCategoryId'];
@@ -51,6 +59,7 @@ export class ShopComponent {
         this.getProductsBySubCategory(subCategoryId);
       }
     });
+
     this.route.queryParams.subscribe(params => {
       this.searchQuery = params['search'] || null;
       if (this.searchQuery) {
@@ -59,6 +68,12 @@ export class ShopComponent {
         this.fetchAllProducts();
       }
     });
+
+    this.productService.getProductsWithDetails().subscribe(data => {
+      this.products = data;
+      this.allProducts = data;
+    });
+  
   }
 
   loadProducts(): void {
@@ -83,6 +98,7 @@ export class ShopComponent {
     this.productService.getProductsByCategory(categoryId).subscribe({
       next: (data) => {
         this.products = data;
+        this.allProducts = data;
       },
     });
   }
@@ -91,11 +107,10 @@ export class ShopComponent {
     this.productService.getProductsBySubCategory(subCategoryId).subscribe({
       next: (data) => {
         this.products = data;
+        this.allProducts = data;
       },
     });
   }
-
-  
 
   fetchProducts() {
     this.http.get(`http://localhost:8000/api/products/search?query=${encodeURIComponent(this.searchQuery!)}`)
@@ -131,6 +146,58 @@ export class ShopComponent {
       console.error('Erreur lors du chargement des filtres:', error);
     });
   }
+
+  applyFilters() {
+    this.products = this.allProducts.filter(product => {
+      const categoryMatch =
+        this.selectedCategories.length === 0 ||
+        this.selectedCategories.includes(Number(product.category_id));
+  
+      const colorMatch =
+        this.selectedColors.length === 0 ||
+        this.selectedColors.includes(Number(product.filter_id));
+  
+      const priceMatch = !this.selectedPriceRange || (
+        product.price >= this.selectedPriceRange.min &&
+        product.price <= this.selectedPriceRange.max
+      );
+
+      console.log('Filter Debug:', {
+        selectedCategories: this.selectedCategories,
+        productCategory: product.category_id,
+        categoryMatch,
+        colorMatch,
+        priceMatch
+      });
+  
+      return categoryMatch && colorMatch && priceMatch;
+    });
+  }
+
+  onCategoryChange(categoryId: number, event: any): void {
+    if (event.target.checked) {
+      this.selectedCategories.push(categoryId);
+    } else {
+      this.selectedCategories = this.selectedCategories.filter(id => id !== categoryId);
+    }
+    this.applyFilters();
+  }
+  
+  onColorChange(colorId: number, event: any): void {
+    if (event.target.checked) {
+      this.selectedColors.push(colorId);
+    } else {
+      this.selectedColors = this.selectedColors.filter(id => id !== colorId);
+    }
+    this.applyFilters();
+  }
+  
+  onPriceChange(range: { min: number, max: number } | null): void {
+    this.selectedPriceRange = range;
+    this.applyFilters();
+  }
+  
+
 
 
 

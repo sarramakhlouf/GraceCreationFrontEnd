@@ -13,18 +13,18 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
-  { path: 'About', component: AboutComponent},
-  { path: 'Shop', component: ShopComponent},
-  { path: 'Shop/:categoryId/:subCategoryId', component: ShopComponent},
-  { path: 'Shop/:categoryId', component: ShopComponent},
-  { path: 'Product/:id', component: ProductComponent},
-  { path: 'Contact', component: ContactComponent},
-  { path: 'shopCart', component: ShopCartComponent},
-  { path: 'search-results', component: SearchComponent},
-  { path: 'profile', component: AccountComponent, canActivate: [AuthGuard] }, 
+  { path: 'About', component: AboutComponent },
+  { path: 'Shop', component: ShopComponent },
+  { path: 'Shop/:categoryId/:subCategoryId', component: ShopComponent }, 
+  { path: 'Shop/:categoryId', component: ShopComponent },
+  { path: 'Product/:id', component: ProductComponent },
+  { path: 'Contact', component: ContactComponent },
+  { path: 'shopCart', component: ShopCartComponent },
+  { path: 'search-results', component: SearchComponent },
+  { path: 'profile', component: AccountComponent, canActivate: [AuthGuard] },
   { path: '**', component: NotFoundComponent } 
-
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'top' })],

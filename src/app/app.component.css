@@ -95,6 +95,7 @@
 }
 
 /* Styles du popup */
+/* Modal container */
 .modal {
     display: none;
     position: fixed;
@@ -116,9 +117,10 @@
     background: #fff;
     padding: 30px;
     border-radius: 8px;
-    width: 400px;
-    /*text-align: center;*/
+    width: 450px; /* Ajusté pour plus d'espace */
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
 }
 
 /* Bouton de fermeture */
@@ -130,7 +132,40 @@
     cursor: pointer;
 }
 
-/* Champs et bouton */
+/* Image du formulaire */
+.feature-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Styles des onglets (sidebar) */
+.tabs {
+    display: flex; 
+    margin-bottom: 20px;
+}
+
+.tabs a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    padding: 10px 20px;
+    transition: color 0.3s, opacity 0.3s;
+    opacity: 0.6;
+    cursor: pointer;
+    margin-right: 15px; 
+}
+
+.tabs a.active {
+    font-weight: bold;
+    opacity: 1;
+}
+
+.tabs a:hover {
+    color: rgb(186, 134, 186);
+}
+
+/* Champs et boutons de formulaire */
 .form-group {
     margin-bottom: 15px;
 }
@@ -157,30 +192,20 @@
     background-color: #9773c1;
 }
 
-/* Styles des onglets */
-.tabs {
-    /*display: flex;*/
-    justify-content: left;
+/* Espacement entre l'image et la sidebar */
+.feature-image {
     margin-bottom: 20px;
 }
 
-.tabs a {
-    text-decoration: none;
-    color: black;
-    font-size: 18px;
-    padding: 10px 20px;
-    transition: color 0.3s, opacity 0.3s;
-    opacity: 0.6;
+/* Style de l'alerte */
+.alert-danger {
+    color: #fff;
+    background-color: #f44336;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
 }
 
-.tabs a.active {
-    font-weight: bold;
-    opacity: 1;
-}
-
-.tabs a:hover {
-    color: rgb(186, 134, 186);
-}
 
 /***************************************************************/
 /*.block-section-instagram-5 {
@@ -230,9 +255,8 @@
 
 
   /****************************************************navbar****************************************/
-  /* Add to your component's CSS or global styles */
 .offcanvas {
-    background-color: #fff; /* or your preferred background */
+    background-color: #fff;
   }
   
   .main-menu {

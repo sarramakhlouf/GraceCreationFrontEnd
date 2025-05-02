@@ -38,14 +38,16 @@ export class AccountComponent {
   }
 
   loadOrders() {
-    this.authService.getOrders().subscribe(
-      response => {
-        this.orders = response;
-      },
-      error => {
-        this.errorMessage = 'Impossible de récupérer les commandes.';
+    this.authService.getCurrentUser().subscribe(user => {
+      const email = user?.email;
+      if (email) {
+        this.authService.getOrders(email).subscribe(
+          orders => this.orders = orders,
+          error => this.errorMessage = 'Impossible de récupérer les commandes.'
+        );
       }
-    );
+    });
+    
   }
 
   updateProfile() {

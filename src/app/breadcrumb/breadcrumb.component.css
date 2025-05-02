@@ -1,25 +1,29 @@
 .breadcrumb {
-    list-style: none;
     display: flex;
-    gap: 8px;
-    padding: 0;
-    margin: 0;
-}
-
-.breadcrumb li {
-    display: inline;
-}
-
-.breadcrumb a {
-    text-decoration: none;
-    color: black;
-}
-
-.breadcrumb a:hover {
-    text-decoration: underline;
-}
-
-.breadcrumb span {
-    color: violet;
-    font-weight: bold;
-}
+    justify-content: center; 
+    align-items: center; 
+    padding: 10px 0;
+    margin: 0 auto;
+  }
+  
+  .breadcrumb li {
+    margin-right: 10px;
+  }
+  
+  .breadcrumb li:last-child {
+    margin-right: 0; 
+  }
+  
+  .breadcrumb a {
+    text-decoration: none; 
+    color: #007bff; 
+  }
+  
+  .breadcrumb a:hover {
+    text-decoration: underline; 
+  }
+  
+  .breadcrumb span {
+    color: #6c757d; 
+  }
+  

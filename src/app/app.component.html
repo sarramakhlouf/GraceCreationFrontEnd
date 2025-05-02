@@ -161,68 +161,72 @@
     </div>
   </footer>
   <!-----------------------------------------------------------LOGIN/SIGNUP---------------------------------------------------------->
-
   <div class="modal" [class.show]="isModalOpen">
-    <div class="modal-content">
+    <div class="modal-content p-4">
       <span class="close" (click)="closeModal()">&times;</span>
-      <div class="feature-image"><img src="assets/imgs/Website-pic/Slides/login_register.png" alt="GraceCreations"></div>
-      <div class="tabs">
-        <a href="#" [class.active]="activeTab === 'login'" (click)="switchTab('login', $event)">Connexion</a>
-        <a href="#" [class.active]="activeTab === 'signup'" (click)="switchTab('signup', $event)">Inscription</a>
+
+      <div class="feature-image mb-4">
+        <img src="assets/imgs/Website-pic/Slides/login_register.png" alt="GraceCreations" class="img-fluid">
       </div>
 
-      <!-- Formulaire de connexion -->
+      <div class="tabs mb-4">
+        <ul class="nav flex-row" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab === 'login'" (click)="switchTab('login', $event)">
+              Connexion
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab === 'signup'" (click)="switchTab('signup', $event)">
+              Inscription
+            </a>
+          </li>
+        </ul>
+      </div>
+
       <div *ngIf="activeTab === 'login'">
-        <div *ngIf="errorMessage" class="alert alert-danger text-center">
-          {{ errorMessage }}
-        </div>
+        <h4 class="mb-3">Connexion</h4>
+        <div *ngIf="errorMessage" class="alert alert-danger text-center">{{ errorMessage }}</div>
         <form (submit)="onLogin($event)">
           <div class="form-group">
             <label>Email</label>
-            <input class="form-control" type="email" placeholder="Entrez votre email" [(ngModel)]="credentials.email" name="email" required />
+            <input class="form-control" type="email" placeholder="Entrez votre email" [(ngModel)]="credentials.email"
+              name="email" required />
           </div>
-
           <div class="form-group">
             <label>Mot de passe</label>
             <input class="form-control" type="password" placeholder="Entrez votre mot de passe"
               [(ngModel)]="credentials.password" name="password" required />
           </div>
-
-          <button class="btn-primary" type="submit" (click)="closeModal()">Se connecter</button>
+          <button class="btn btn-brand-1-medium mt-3" type="submit">Se connecter</button>
         </form>
       </div>
 
       <div *ngIf="activeTab === 'signup'">
-        <div *ngIf="errorMessage" class="alert alert-danger text-center">
-          {{ errorMessage }}
-        </div>
+        <h4 class="mb-3">Inscription</h4>
+        <div *ngIf="errorMessage" class="alert alert-danger text-center">{{ errorMessage }}</div>
         <form (submit)="onSignup($event)">
           <div class="form-group">
             <label>Nom & prénom</label>
             <input class="form-control" type="text" placeholder="Entrez votre nom & prénom" [(ngModel)]="user.name"
               name="name" required />
           </div>
-
           <div class="form-group">
             <label>Email</label>
             <input class="form-control" type="email" placeholder="Entrez votre email" [(ngModel)]="user.email"
               name="email" required />
           </div>
-
           <div class="form-group">
             <label>Mot de passe</label>
             <input class="form-control" type="password" placeholder="Entrez votre mot de passe"
               [(ngModel)]="user.password" name="password" required />
           </div>
-
           <div class="form-group">
             <label>Confirmer mot de passe</label>
-            <input class="form-control" type="password" placeholder="Comfirmer votre mot de passe"
+            <input class="form-control" type="password" placeholder="Confirmez votre mot de passe"
               [(ngModel)]="user.password_confirmation" name="password_confirmation" required />
           </div>
-          <div class="d-grid">
-            <button class="btn btn-primary" type="submit" (click)="closeModal()">Créer mon compte</button>
-          </div>
+          <button class="btn btn-brand-1-medium mt-3" type="submit">Créer mon compte</button>
         </form>
       </div>
     </div>

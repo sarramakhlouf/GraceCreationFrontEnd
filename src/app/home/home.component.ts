@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit {
   }
 
   getSubCategoryChunks(): SubCategory[][] {
-    const chunkSize = 5; // Nombre de catégories par slide
+    const chunkSize = 5;
     const chunks: SubCategory[][] = [];
     
     for (let i = 0; i < this.subcategories.length; i += chunkSize) {

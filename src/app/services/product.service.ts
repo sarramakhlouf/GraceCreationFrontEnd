@@ -14,9 +14,8 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
-  // Récupérer la liste des produits
-  listeProducts(page: number = 1): Observable<any> {
-    return this.http.get<any>(`/api/products?page=${page}`);
+  listeProducts(): Observable<any> {
+    return this.http.get<any>(`/api/products`);
   }
 
   getProductById(id: number): Observable<any> {
@@ -31,12 +30,8 @@ export class ProductService {
     return this.http.get(`/api/products/subcategories/${subCategoryId}`);
   }
   
-  /*getFilteredProducts(categories: number[], filters: number[]): Observable<any> {
-    return this.http.get(`${this.baseUrl}/GetFiltredProducts`, {
-      params: {
-        categories: categories.join(','), // Convertit en chaîne
-        filters: filters.join(',')
-      }
-    });
-  }*/
+  getProductsWithDetails(): Observable<any[]> {
+    return this.http.get<any[]>(`/api/products-with-details`);
+  }
+
 }

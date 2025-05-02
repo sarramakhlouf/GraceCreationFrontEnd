@@ -64,7 +64,7 @@ export class AppComponent implements OnInit {
     });
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        window.scrollTo(0, 0); // Scroll en haut après chaque changement de route
+        window.scrollTo(0, 0); 
       }
     });
   }
@@ -127,10 +127,17 @@ export class AppComponent implements OnInit {
       response => {
         this.authService.saveToken(response.token);
         this.isLoggedIn = true;
+        this.closeModal();
         this.router.navigate(['/profile']);
       },
       error => {
-        this.errorMessage = 'Email ou mot de passe incorrect.';
+        console.error(error);
+        if (error.status === 422 && error.error?.errors) {
+          const firstKey = Object.keys(error.error.errors)[0];
+          this.errorMessage = error.error.errors[firstKey][0];
+        } else {
+          this.errorMessage = 'Erreur lors de l’inscription.';
+        }
       }
     );
   }
@@ -140,10 +147,17 @@ export class AppComponent implements OnInit {
 
     this.authService.register(this.user).subscribe(
       () => {
-        this.router.navigate(['/profile']);
+        this.closeModal();
+        this.activeTab = 'login';
       },
       error => {
-        this.errorMessage = 'Erreur lors de l’inscription.';
+        console.error(error);
+        if (error.status === 422 && error.error?.errors) {
+          const firstKey = Object.keys(error.error.errors)[0];
+          this.errorMessage = error.error.errors[firstKey][0];
+        } else {
+          this.errorMessage = 'Erreur lors de l’inscription.';
+        }
       }
     );
   }

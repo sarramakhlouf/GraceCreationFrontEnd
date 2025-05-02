@@ -76,7 +76,7 @@
               </div>
               <div class="col-lg-6">
                 <div class="form-group">
-                  <input class="form-control" type="email" name="email" placeholder="Saisir votre email (optionnel)" ngModel>
+                  <input class="form-control" type="email" name="email" placeholder="Saisir votre email (optionnel)" ngModel [readonly]="userEmail !== null">
                 </div>
               </div>
               <div class="col-lg-6">

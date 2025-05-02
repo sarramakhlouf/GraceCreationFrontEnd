@@ -42,6 +42,7 @@ import { StatusPipe } from './pipe/status.pipe';
     NgxSliderModule,
     ReactiveFormsModule
   ],
+  exports: [BreadcrumbComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
